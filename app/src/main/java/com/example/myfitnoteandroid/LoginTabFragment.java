@@ -17,7 +17,7 @@ public class LoginTabFragment extends Fragment {
 
    EditText username;
    EditText password;
-   FloatingActionButton login;
+   Button login;
    float v=0;
 
 
@@ -25,7 +25,7 @@ public class LoginTabFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.login_tab_fragment, container, false);
 
-        username =  root.findViewById(R.id.username);
+        username =   root.findViewById(R.id.username);
         password = root.findViewById(R.id.password);
         login = root.findViewById(R.id.login);
 

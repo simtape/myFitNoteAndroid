@@ -8,13 +8,9 @@ import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
 
 public class LoginActivity extends AppCompatActivity {
-
-
     TabLayout tabLayout;
     ViewPager viewPager;
-
-
-
+    private LoginAdapter3 adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,17 +19,13 @@ public class LoginActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
 
-
         tabLayout.addTab(tabLayout.newTab().setText("Login"));
-        tabLayout.addTab(tabLayout.newTab().setText("Ragistrazione"));
+        tabLayout.addTab(tabLayout.newTab().setText("Registrazione"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final LoginAdapter adapter = new LoginAdapter(getSupportFragmentManager(), this, tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
-
+        adapter = new LoginAdapter3(getSupportFragmentManager(), 2 );
+       viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
-
 
 
 
