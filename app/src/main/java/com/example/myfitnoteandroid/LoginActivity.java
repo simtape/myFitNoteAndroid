@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Registrazione"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
+
         adapter = new LoginAdapter3(getSupportFragmentManager(), 2 );
        viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
