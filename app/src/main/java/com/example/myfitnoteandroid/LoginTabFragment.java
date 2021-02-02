@@ -1,5 +1,6 @@
 package com.example.myfitnoteandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.textclassifier.TextLinks;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -21,9 +23,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.myfitnoteandroid.data.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Map;
 
 public class LoginTabFragment extends Fragment implements View.OnClickListener {
 
@@ -31,7 +36,7 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
     EditText password;
     Button login;
     float v = 0;
-    private JSONObject postData;
+    private JSONObject postData, userJsonObject;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -77,12 +82,52 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
     private void login() {
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
         String url = "https://myfitnote.herokuapp.com/users/login";
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
+
+        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,
+                postData, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
                 System.out.println(response);
                 System.out.println(postData);
+
+                //se response non è nullo, vuol dire che il login è andato a buon fine
+                try {
+                    userJsonObject = response.getJSONObject("user");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+                try {
+                    if (userJsonObject != null) {
+
+                        //setto l'oggetto user con il risultato della post
+                        String name = userJsonObject.getString("name");
+                        String surname = userJsonObject.getString("surname");
+                        String mail = userJsonObject.getString("mail");
+                        User.getInstance().setCurrentUser(name, surname, mail);
+
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        startActivity(intent);
+
+                    }
+                    else {
+                        switch (response.getString("message")) {
+                            case "Utente sbagliato":
+                                System.out.println("Utente sbagliato");
+                                Toast.makeText(getContext(), "Utente sbagliato", Toast.LENGTH_LONG).show();
+                                break;
+                            case "Password sbagliata":
+                                Toast.makeText(getContext(), "Password sbagliata", Toast.LENGTH_LONG).show();
+                                break;
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -113,9 +158,8 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-
-
         queue.add(jsonObjectRequest);
+
 
     }
 
