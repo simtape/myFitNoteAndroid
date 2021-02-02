@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="@drawable/login_dark_background"
     tools:context=".LoginActivity">
 
-    <ImageView
+  <!--  <ImageView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:src="@drawable/facebook_cover_photo_2"
+        android:src="@drawable/sfondo3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,7 +19,7 @@
         app:layout_constraintHeight_percent=".30"
         android:scaleType="centerCrop"
         app:layout_constraintVertical_bias="0"/>
-
+-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

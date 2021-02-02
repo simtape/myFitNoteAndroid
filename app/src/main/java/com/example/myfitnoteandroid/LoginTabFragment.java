@@ -47,15 +47,15 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
         password = root.findViewById(R.id.password);
         login = root.findViewById(R.id.login);
 
-        username.setAlpha(v);
+        /*username.setAlpha(v);
         password.setAlpha(v);
-        login.setAlpha(v);
+        login.setAlpha(v);*/
 
         login.setOnClickListener(this);
 
-        username.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
+       /* username.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
         password.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
-        login.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();
+        login.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();*/
 
         return root;
     }
@@ -72,12 +72,11 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
             login();
         }
 
-
     }
+
 
     private void login() {
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
@@ -87,16 +86,11 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
                 postData, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
-                System.out.println(response);
-                System.out.println(postData);
-
                 //se response non è nullo, vuol dire che il login è andato a buon fine
                 try {
                     userJsonObject = response.getJSONObject("user");
                 } catch (JSONException e) {
                     e.printStackTrace();
-
                 }
                 try {
                     if (userJsonObject != null) {
@@ -106,17 +100,19 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
                         String surname = userJsonObject.getString("surname");
                         String mail = userJsonObject.getString("mail");
                         User.getInstance().setCurrentUser(name, surname, mail);
-
+                        
                         Intent intent = new Intent(getActivity(), MainActivity.class);
+                        //finisce l'activity del login, l'utente non potrà più rivederla
+                        getActivity().finish();
                         startActivity(intent);
 
                     }
                     else {
                         switch (response.getString("message")) {
                             case "Utente sbagliato":
-                                System.out.println("Utente sbagliato");
                                 Toast.makeText(getContext(), "Utente sbagliato", Toast.LENGTH_LONG).show();
                                 break;
+
                             case "Password sbagliata":
                                 Toast.makeText(getContext(), "Password sbagliata", Toast.LENGTH_LONG).show();
                                 break;
@@ -157,12 +153,8 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
 
             }
         });
-
         queue.add(jsonObjectRequest);
-
-
     }
-
 }
 
 

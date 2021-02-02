@@ -3,4 +3,10 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="orange">#ff8f00</color>
+    <color name="darkOrange">#c56000</color>
+    <color name="lightOrange">#ffc046</color>
+    <color name = "primaryViolet">#ba68c8</color>
+    <color name = "lightViolet">#ee98fb</color>
+    <color name = "darkViolet">#883997</color>
 </resources>
