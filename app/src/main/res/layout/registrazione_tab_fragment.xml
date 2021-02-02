@@ -5,25 +5,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:fillViewport="true">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
         >
 
         <EditText
             android:id="@+id/nome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
             android:background="@drawable/edit_text_bg"
             android:hint="Nome"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias=".5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent=".8" />
@@ -46,23 +49,6 @@
             app:layout_constraintVertical_bias="0"
             app:layout_constraintWidth_percent=".8" />
 
-        <EditText
-            android:id="@+id/username"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/edit_text_bg"
-            android:hint="Username"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias=".5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Cognome"
-            app:layout_constraintVertical_bias="0"
-            app:layout_constraintWidth_percent=".8" />
 
         <EditText
             android:id="@+id/Email"
@@ -78,7 +64,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias=".5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username"
+            app:layout_constraintTop_toBottomOf="@+id/Cognome"
             app:layout_constraintVertical_bias="0"
             app:layout_constraintWidth_percent=".8" />
 
@@ -163,19 +149,17 @@
             android:layout_width="329dp"
             android:layout_height="wrap_content"
             android:background="@drawable/button_bg"
-            android:text="Login"
+            android:text="Registrazione"
             android:textColor="@color/cardview_light_background"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.463"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password"
-            app:layout_constraintWidth_percent=".8" />
-
+            app:layout_constraintWidth_percent=".8"
+            app:layout_constraintTop_toBottomOf="@+id/password"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
 </ScrollView>
-
