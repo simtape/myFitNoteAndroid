@@ -9,4 +9,8 @@
     <color name = "primaryViolet">#ba68c8</color>
     <color name = "lightViolet">#ee98fb</color>
     <color name = "darkViolet">#883997</color>
+
+    <color name = "lightVioletGrey">#fff7ff</color>
+    <color name = "primaryVioletGrey">#d1c4e9</color>
+    <color name = "darkVioletGrey">#a094b7</color>
 </resources>

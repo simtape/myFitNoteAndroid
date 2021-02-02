@@ -7,6 +7,4 @@ android:shape="rectangle">
 <corners android:topLeftRadius="40dp"
     android:topRightRadius="40dp"/>
 
-    <stroke android:width="3dp" android:color="@color/lightViolet"/>
-
 </shape>
