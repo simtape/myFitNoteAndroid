@@ -92,6 +92,8 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+                //modifica inutile
                 try {
                     if (userJsonObject != null) {
 
