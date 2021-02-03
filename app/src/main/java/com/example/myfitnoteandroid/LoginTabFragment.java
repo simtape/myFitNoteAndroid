@@ -28,7 +28,7 @@ import org.json.JSONObject;
 
 public class LoginTabFragment extends Fragment implements View.OnClickListener {
 
-    EditText username;
+    EditText email;
     EditText password;
     Button login;
     float v = 0;
@@ -44,7 +44,7 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
                              ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.login_tab_fragment, container, false);
 
-        username = root.findViewById(R.id.username);
+        email = root.findViewById(R.id.email);
         password = root.findViewById(R.id.password);
         login = root.findViewById(R.id.login);
 
@@ -68,7 +68,7 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
         if (v.getId() == login.getId()) {
             Log.d("PROVA", "ho cliccato sul tasto login");
             try {
-                postData.put("mail", username.getText().toString().trim());
+                postData.put("mail", email.getText().toString().trim());
                 postData.put("password", password.getText().toString().trim());
             } catch (JSONException e) {
                 e.printStackTrace();

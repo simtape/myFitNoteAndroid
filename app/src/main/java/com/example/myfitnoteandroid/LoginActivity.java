@@ -25,14 +25,12 @@ public class LoginActivity extends AppCompatActivity {
 
         SessionManager sessionManager = new SessionManager(LoginActivity.this);
         String userId = sessionManager.getSession();
-        System.out.println("name" + sessionManager.getName());
-        System.out.println("surname" + sessionManager.getSurname());
-        System.out.println("mail" + sessionManager.getMail());
 
         if(userId!=null){
+
+            sessionManager.updateUser();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
             startActivity(intent);
 
         }else{
