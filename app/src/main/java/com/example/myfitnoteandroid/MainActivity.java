@@ -1,13 +1,17 @@
 package com.example.myfitnoteandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.myfitnoteandroid.data.SessionManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -54,7 +58,31 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        //return true;
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.logout: {
+
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                this.finish();
+                startActivity(intent);
+                SessionManager sessionManager = new SessionManager(this);
+                sessionManager.removeSession();
+                break;
+            }
+            default:
+                break;
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

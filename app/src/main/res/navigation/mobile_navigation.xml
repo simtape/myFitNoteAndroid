@@ -46,4 +46,5 @@
         android:name="com.example.myfitnoteandroid.ui.esercizi.eserciziFragment"
         android:label="@string/esercizi"
         tools:layout="@layout/fragment_esercizi" />
+
 </navigation>

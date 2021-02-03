@@ -3,8 +3,10 @@ package com.example.myfitnoteandroid;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.myfitnoteandroid.data.SessionManager;
 import com.google.android.material.tabs.TabLayout;
 
 public class LoginActivity extends AppCompatActivity {
@@ -12,7 +14,35 @@ public class LoginActivity extends AppCompatActivity {
     ViewPager viewPager;
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        checkSession();
+    }
+
+    private void checkSession() {
+
+        SessionManager sessionManager = new SessionManager(LoginActivity.this);
+        String userId = sessionManager.getSession();
+        System.out.println(userId);
+
+        if(userId!=null){
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            startActivity(intent);
+
+        }else{
+
+        }
+
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -45,5 +75,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }

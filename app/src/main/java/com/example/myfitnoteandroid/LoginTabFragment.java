@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.textclassifier.TextLinks;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,21 +13,18 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.myfitnoteandroid.data.SessionManager;
 import com.example.myfitnoteandroid.data.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Map;
 
 public class LoginTabFragment extends Fragment implements View.OnClickListener {
 
@@ -38,6 +34,11 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
     float v = 0;
     private JSONObject postData, userJsonObject;
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        //checkSession();
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -101,13 +102,15 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
                         String name = userJsonObject.getString("name");
                         String surname = userJsonObject.getString("surname");
                         String mail = userJsonObject.getString("mail");
-                        User.getInstance().setCurrentUser(name, surname, mail);
-                        
+                        String id = userJsonObject.getString("_id");
+                        User user = new User(name, surname, mail, id);
+                        SessionManager sessionHandler = new SessionManager(getContext());
+                        sessionHandler.saveSession(user);
+                        System.out.println("sessione: "  + sessionHandler.getSession());
                         Intent intent = new Intent(getActivity(), MainActivity.class);
-                        //finisce l'activity del login, l'utente non potrà più rivederla
-
-                        startActivity(intent);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         getActivity().finish();
+                        startActivity(intent);
 
                     }
                     else {
@@ -158,6 +161,23 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
         });
         queue.add(jsonObjectRequest);
     }
+    private void checkSession(){
+
+        SessionManager sessionManager = new SessionManager(getContext());
+        String userId = sessionManager.getSession();
+        if(userId!=null){
+            Intent intent = new Intent(getContext(), MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            startActivity(intent);
+
+        }else{
+
+        }
+
+    }
+
+
 }
 
 

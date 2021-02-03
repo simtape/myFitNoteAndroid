@@ -2,25 +2,23 @@ package com.example.myfitnoteandroid.data;
 
 public class User {
 
-    private static User instance = new User();
-
-    private User() {
-
-    }
-
     private String name;
     private String surname;
     private String mail;
+    private String id;
 
 
-    public static User getInstance() {
-        return instance;
-    }
-
-    public void setCurrentUser(String name, String surname, String mail) {
+    public User(String name, String surname, String mail, String id) {
         this.name = name;
         this.surname = surname;
         this.mail = mail;
+        this.id = id;
+    }
+
+
+    public String getId(){
+        return this.id;
+
     }
 
 
