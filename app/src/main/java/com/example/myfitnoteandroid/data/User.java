@@ -21,5 +21,15 @@ public class User {
 
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getMail() {
+        return mail;
+    }
 }

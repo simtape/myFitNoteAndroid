@@ -37,7 +37,7 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-        //checkSession();
+
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -161,21 +161,7 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
         });
         queue.add(jsonObjectRequest);
     }
-    private void checkSession(){
 
-        SessionManager sessionManager = new SessionManager(getContext());
-        String userId = sessionManager.getSession();
-        if(userId!=null){
-            Intent intent = new Intent(getContext(), MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-            startActivity(intent);
-
-        }else{
-
-        }
-
-    }
 
 
 }

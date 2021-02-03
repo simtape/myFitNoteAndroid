@@ -22,9 +22,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private void checkSession() {
 
+
         SessionManager sessionManager = new SessionManager(LoginActivity.this);
         String userId = sessionManager.getSession();
-        System.out.println(userId);
+        System.out.println("name" + sessionManager.getName());
+        System.out.println("surname" + sessionManager.getSurname());
+        System.out.println("mail" + sessionManager.getMail());
 
         if(userId!=null){
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
