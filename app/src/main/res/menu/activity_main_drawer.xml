@@ -9,12 +9,18 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_calcola_kcal"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:title="@string/menu_kcal" />
+
+        <item
+            android:id="@+id/nav_mis_battito"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/misura_battito" />
+
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:title="@string/esercizi" />
     </group>
 </menu>

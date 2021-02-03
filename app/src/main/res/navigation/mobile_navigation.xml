@@ -30,14 +30,20 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.myfitnoteandroid.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_calcola_kcal"
+        android:name="com.example.myfitnoteandroid.ui.calcolaKcal.calcolaKcalFragment"
+        android:label="@string/menu_kcal"
+        tools:layout="@layout/fragment_kcal" />
+
+    <fragment
+        android:id="@+id/nav_mis_battito"
+        android:name="com.example.myfitnoteandroid.ui.misuraBattito.misuraBattitoFragment"
+        android:label="@string/misura_battito"
+        tools:layout="@layout/fragment_kcal" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.myfitnoteandroid.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:name="com.example.myfitnoteandroid.ui.esercizi.eserciziFragment"
+        android:label="@string/esercizi"
+        tools:layout="@layout/fragment_esercizi" />
 </navigation>

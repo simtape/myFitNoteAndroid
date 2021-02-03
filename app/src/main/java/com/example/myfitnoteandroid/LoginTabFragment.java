@@ -105,8 +105,9 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
                         
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         //finisce l'activity del login, l'utente non potrà più rivederla
-                        getActivity().finish();
+
                         startActivity(intent);
+                        getActivity().finish();
 
                     }
                     else {
