@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +18,7 @@ import com.example.myfitnoteandroid.R;
 
 public class eserciziFragment extends Fragment {
 
+
     private eserciziViewModel slideshowViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -23,13 +26,17 @@ public class eserciziFragment extends Fragment {
         slideshowViewModel =
                 ViewModelProviders.of(this).get(eserciziViewModel.class);
         View root = inflater.inflate(R.layout.fragment_esercizi, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
+
         slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+                //ListView.(s);
             }
         });
         return root;
     }
+
+
+
+
 }

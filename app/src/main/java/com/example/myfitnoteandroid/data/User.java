@@ -8,13 +8,15 @@ public class User {
     private String id;
 
 
-    public User(String name, String surname, String mail, String id) {
+    public User(String name, String surname, String mail ) {
         this.name = name;
         this.surname = surname;
         this.mail = mail;
-        this.id = id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getId(){
         return this.id;

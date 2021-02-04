@@ -103,7 +103,8 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
                         String surname = userJsonObject.getString("surname");
                         String mail = userJsonObject.getString("mail");
                         String id = userJsonObject.getString("_id");
-                        User user = new User(name, surname, mail, id);
+                        User user = new User(name, surname, mail);
+                        user.setId(id);
                         SessionManager sessionHandler = new SessionManager(getContext());
                         sessionHandler.saveSession(user);
                         System.out.println("sessione: "  + sessionHandler.getSession());

@@ -33,8 +33,8 @@ public class SessionManager {
     }
 
     public void updateUser(){
-        this.user = new User(getName(), getSurname(), getMail(), getSession());
-
+        this.user = new User(getName(), getSurname(), getMail());
+        this.user.setId(getSession());
     }
     public String getSession() {
         return sharedPreferences.getString(SESSION_KEY, null);
