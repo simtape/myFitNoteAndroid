@@ -26,7 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class RegistrazioneTabFragment extends Fragment {
+public class RegistrazioneTabFragment extends Fragment implements View.OnClickListener{
 
     //RequestQueue requestQueue;
     EditText nome, cognome, email, password;
@@ -67,16 +67,17 @@ public class RegistrazioneTabFragment extends Fragment {
             String Passwordtopass = password.getText().toString();
             if (Nometopass.isEmpty() & Cognometopass.isEmpty() & Emailtopass.isEmpty() & Passwordtopass.isEmpty()) {
 
+                Toast.makeText(getContext(), "Compilare tutti i campi", Toast.LENGTH_LONG).show();
 
+
+
+            } else {
                 Intent goRegistrazione2 = new Intent(getActivity(), FragmentRegistrazioneDue.class);
                 goRegistrazione2.putExtra("nome", Nometopass);
                 goRegistrazione2.putExtra("cognome", Cognometopass);
                 goRegistrazione2.putExtra("email", Emailtopass);
                 goRegistrazione2.putExtra("password", Passwordtopass);
-
                 this.startActivity(goRegistrazione2);
-            } else {
-                Toast.makeText(getContext(), "Compilare tutti i campi", Toast.LENGTH_LONG).show();
             }
 
         }
