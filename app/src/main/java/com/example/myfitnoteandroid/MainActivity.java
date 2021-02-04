@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.example.myfitnoteandroid.data.SessionManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -43,6 +46,14 @@ public class MainActivity extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        TextView nome = headerView.findViewById(R.id.nav_nome_cognome);
+        TextView navMail = (TextView) headerView.findViewById(R.id.menuMail);
+        SessionManager sessionManager = new SessionManager(this);
+
+        navMail.setText(sessionManager.getMail());
+        nome.setText(sessionManager.getName() + " " + sessionManager.getSurname());
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(

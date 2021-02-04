@@ -5,6 +5,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.example.myfitnoteandroid.data.SessionManager;
 import com.google.android.material.tabs.TabLayout;
@@ -12,6 +13,7 @@ import com.google.android.material.tabs.TabLayout;
 public class LoginActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
+
 
     @Override
     protected void onStart() {
@@ -31,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
             sessionManager.updateUser();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+
             startActivity(intent);
 
         }else{
@@ -53,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Login"));
         tabLayout.addTab(tabLayout.newTab().setText("Registrazione"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
 
 
         final LoginAdapter adapter = new LoginAdapter(getSupportFragmentManager(),this,  tabLayout.getTabCount() );

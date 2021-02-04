@@ -83,6 +83,3 @@ public class RegistrazioneTabFragment extends Fragment implements View.OnClickLi
         }
     }
 }
-
-
-
