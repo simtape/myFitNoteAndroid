@@ -21,14 +21,17 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         //background = findViewById(R.id.bg_splash);
-        //logo = findViewById(R.id.logo_splash);
+        logo = findViewById(R.id.logo_splash);
+
+        logo.setTranslationX(0);
 
         intent = new Intent(this, LoginActivity.class);
-
+        logo.animate().translationX(1000).alpha(1).setDuration(300).setStartDelay(1100);
 
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
+
                 startActivity(intent);
                 finish();
             }
