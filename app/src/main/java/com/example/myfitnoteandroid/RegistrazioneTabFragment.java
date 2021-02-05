@@ -26,7 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class RegistrazioneTabFragment extends Fragment implements View.OnClickListener{
+public class RegistrazioneTabFragment extends Fragment implements View.OnClickListener {
 
     //RequestQueue requestQueue;
     EditText nome, cognome, email, password;
@@ -51,8 +51,6 @@ public class RegistrazioneTabFragment extends Fragment implements View.OnClickLi
 
         btn_registration1.setOnClickListener((View.OnClickListener) this);
 
-        //btn_registration.setOnClickListener(this);
-
 
         return root;
     }
@@ -65,21 +63,32 @@ public class RegistrazioneTabFragment extends Fragment implements View.OnClickLi
             String Cognometopass = cognome.getText().toString();
             String Emailtopass = email.getText().toString();
             String Passwordtopass = password.getText().toString();
-            if (Nometopass.isEmpty() & Cognometopass.isEmpty() & Emailtopass.isEmpty() & Passwordtopass.isEmpty()) {
-
+            if (Nometopass.trim().isEmpty() && Cognometopass.trim().isEmpty() && Emailtopass.trim().isEmpty() && Passwordtopass.trim().isEmpty()) {
                 Toast.makeText(getContext(), "Compilare tutti i campi", Toast.LENGTH_LONG).show();
-
-
-
+            } else if (Nometopass.trim().isEmpty()) {
+                Toast.makeText(getContext(), "Compilare campo nome", Toast.LENGTH_LONG).show();
+            }else if (Cognometopass.trim().isEmpty()) {
+                Toast.makeText(getContext(), "Compilare campo cognome", Toast.LENGTH_LONG).show();
+            }else if (Emailtopass.trim().isEmpty()) {
+                Toast.makeText(getContext(), "Compilare campo email", Toast.LENGTH_LONG).show();
+            }else if (Passwordtopass.trim().isEmpty()) {
+                Toast.makeText(getContext(), "Compilare campo password", Toast.LENGTH_LONG).show();
             } else {
                 Intent goRegistrazione2 = new Intent(getActivity(), FragmentRegistrazioneDue.class);
                 goRegistrazione2.putExtra("nome", Nometopass);
                 goRegistrazione2.putExtra("cognome", Cognometopass);
                 goRegistrazione2.putExtra("email", Emailtopass);
                 goRegistrazione2.putExtra("password", Passwordtopass);
-                this.startActivity(goRegistrazione2);
+
+                
+
+                goRegistrazione2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                getActivity().finish();
+                startActivity(goRegistrazione2);
+
             }
 
         }
     }
-}
+    }
+

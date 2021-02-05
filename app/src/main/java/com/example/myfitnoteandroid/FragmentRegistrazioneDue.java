@@ -21,14 +21,13 @@ public class FragmentRegistrazioneDue extends Fragment {
         System.out.print(nome);
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.registrazione_due_fragment, container, false);
+
+        //= getIntent();
+        // message = intent.getStringExtra("message");
+
+        return root;
     }
-
-    //= getIntent();
-    // message = intent.getStringExtra("message");
-
-
 }

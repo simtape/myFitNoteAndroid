@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_dark_background">
-
-    <EditText
+        <EditText
         android:id="@+id/nome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
