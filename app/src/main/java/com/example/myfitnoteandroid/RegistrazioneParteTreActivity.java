@@ -23,7 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class RegistrazioneParteTreActivity extends AppCompatActivity implements View.OnClickListener {
-    TextView name, surname, mail, password, peso, altezza;
+    TextView label, name, surname, mail, password, peso, altezza;
     Button button;
 
     private JSONObject postData, userJsonObject;
@@ -33,6 +33,7 @@ public class RegistrazioneParteTreActivity extends AppCompatActivity implements 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrazione_parte_tre);
 
+        label = findViewById(R.id.i_tuoi_dati);
         name = findViewById(R.id.nome);
         surname = findViewById(R.id.Cognome);
         mail = findViewById(R.id.Email);
@@ -44,6 +45,7 @@ public class RegistrazioneParteTreActivity extends AppCompatActivity implements 
 
         SessionManager sessionManager = new SessionManager(this);
 
+        label.setText("I tuoi dati");
         name.setText(sessionManager.getName());
         surname.setText(sessionManager.getSurname());
         mail.setText(sessionManager.getMail());

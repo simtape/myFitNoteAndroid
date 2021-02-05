@@ -6,19 +6,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_dark_background">
+
+    <TextView
+        android:id="@+id/i_tuoi_dati"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:textSize="40sp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="#ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".8" />
+
+
     <TextView
         android:id="@+id/nome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/edit_text_bg"
-
+        android:layout_marginTop="96dp"
+        android:background="@drawable/text_view_bg"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:textColor="@color/darkVioletGrey"
+        android:textSize="21sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/i_tuoi_dati"
         app:layout_constraintWidth_percent=".8" />
 
     <TextView
@@ -26,30 +44,30 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/edit_text_bg"
-
+        android:background="@drawable/text_view_bg"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:textColor="@color/darkVioletGrey"
+        android:textSize="20.5sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nome"
-        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_bias="0.003"
         app:layout_constraintWidth_percent=".8" />
-
 
     <TextView
         android:id="@+id/Email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/edit_text_bg"
-
+        android:background="@drawable/text_view_bg"
+        android:textColor="@color/darkVioletGrey"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:textSize="20.5sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias=".5"
@@ -63,11 +81,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/edit_textfilled"
-
+        android:background="@drawable/text_view_bg"
+        android:textColor="@color/darkVioletGrey"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:textSize="20.5sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias=".5"
@@ -81,11 +100,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/edit_text_bg"
+        android:background="@drawable/text_view_bg"
         android:hint="Peso"
         android:paddingLeft="20dp"
+        android:textColor="@color/darkVioletGrey"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:textSize="20.5sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias=".5"
@@ -99,11 +120,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/edit_text_bg"
+        android:background="@drawable/text_view_bg"
         android:hint="Altezza"
         android:paddingLeft="20dp"
+        android:textColor="@color/darkVioletGrey"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:textSize="20.5sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias=".5"
@@ -128,11 +151,7 @@
         app:layout_constraintWidth_percent=".8"
         app:layout_constraintTop_toBottomOf="@+id/Altezza"/>
 
-    <GridView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="246dp" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
