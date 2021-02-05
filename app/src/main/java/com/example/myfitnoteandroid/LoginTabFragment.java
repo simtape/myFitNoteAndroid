@@ -48,15 +48,19 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
         password = root.findViewById(R.id.password);
         login = root.findViewById(R.id.login);
 
-        /*username.setAlpha(v);
+        email.setTranslationX(800);
+        password.setTranslationX(800);
+        login.setTranslationX(800);
+
+        email.setAlpha(v);
         password.setAlpha(v);
-        login.setAlpha(v);*/
+        login.setAlpha(v);
 
         login.setOnClickListener(this);
 
-       /* username.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
+        email.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
         password.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
-        login.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();*/
+        login.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();
 
         return root;
     }

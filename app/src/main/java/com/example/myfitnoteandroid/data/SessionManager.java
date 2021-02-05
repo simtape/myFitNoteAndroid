@@ -14,6 +14,10 @@ public class SessionManager {
     String SESSION_NAME = "session_name";
     String SESSION_SURNAME = "session_surname";
     String SESSION_MAIL = "session_mail";
+    String REGISTRATION_PASSWORD = "session_password";
+    String REGISTRATION_PESO = "registration_peso";
+    String REGISTRATION_ALTEZZA = "registration_altezza";
+
 
 
     public SessionManager(Context context) {
@@ -67,4 +71,48 @@ public class SessionManager {
         return this.user;
 
     }
+
+    public void setSessionName(String name){
+        editor.putString(SESSION_NAME, name).commit();
+    }
+
+    public void setSessionSurname(String surname){
+        editor.putString(SESSION_SURNAME, surname).commit();
+    }
+
+    public void setSessionMail(String mail){
+
+        editor.putString(SESSION_MAIL, null).commit();
+        editor.putString(SESSION_MAIL, mail).commit();
+    }
+
+    public void setSessionPassword(String password){
+        editor.putString(REGISTRATION_PASSWORD, password).commit();
+
+    }
+
+    public String getPassword(){
+        return sharedPreferences.getString(REGISTRATION_PASSWORD, null);
+
+    }
+
+    public String getPeso(){
+
+        return sharedPreferences.getString(REGISTRATION_PESO, null);
+    }
+
+    public String getAltezza(){
+        return sharedPreferences.getString(REGISTRATION_ALTEZZA, null);
+
+    }
+
+    public void setPeso(String peso){
+        editor.putString(REGISTRATION_PESO, peso).commit();
+    }
+
+    public void setAltezza(String altezza){
+        editor.putString(REGISTRATION_ALTEZZA, altezza).commit();
+    }
+
+
 }

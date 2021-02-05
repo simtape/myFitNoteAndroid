@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myfitnoteandroid.R;
+import com.example.myfitnoteandroid.data.SessionManager;
 import com.example.myfitnoteandroid.data.User;
 
 import org.json.JSONException;
@@ -59,32 +62,37 @@ public class RegistrazioneTabFragment extends Fragment implements View.OnClickLi
 
         if (v.getId() == btn_registration1.getId()) {
             Log.d("PROVA", "ho cliccato sul tasto registrazione parte 1");
-            String Nometopass = nome.getText().toString();
-            String Cognometopass = cognome.getText().toString();
-            String Emailtopass = email.getText().toString();
-            String Passwordtopass = password.getText().toString();
-            if (Nometopass.trim().isEmpty() && Cognometopass.trim().isEmpty() && Emailtopass.trim().isEmpty() && Passwordtopass.trim().isEmpty()) {
+            String name = nome.getText().toString();
+            String surname = cognome.getText().toString();
+            String mail = email.getText().toString();
+            String password = this.password.getText().toString();
+            if (name.trim().isEmpty() && surname.trim().isEmpty() && mail.trim().isEmpty() && password.trim().isEmpty()) {
                 Toast.makeText(getContext(), "Compilare tutti i campi", Toast.LENGTH_LONG).show();
-            } else if (Nometopass.trim().isEmpty()) {
+            } else if (name.trim().isEmpty()) {
                 Toast.makeText(getContext(), "Compilare campo nome", Toast.LENGTH_LONG).show();
-            }else if (Cognometopass.trim().isEmpty()) {
+            }else if (surname.trim().isEmpty()) {
                 Toast.makeText(getContext(), "Compilare campo cognome", Toast.LENGTH_LONG).show();
-            }else if (Emailtopass.trim().isEmpty()) {
+            }else if (mail.trim().isEmpty()) {
                 Toast.makeText(getContext(), "Compilare campo email", Toast.LENGTH_LONG).show();
-            }else if (Passwordtopass.trim().isEmpty()) {
+            }else if (password.trim().isEmpty()) {
                 Toast.makeText(getContext(), "Compilare campo password", Toast.LENGTH_LONG).show();
             } else {
-                Intent goRegistrazione2 = new Intent(getActivity(), FragmentRegistrazioneDue.class);
-                goRegistrazione2.putExtra("nome", Nometopass);
-                goRegistrazione2.putExtra("cognome", Cognometopass);
-                goRegistrazione2.putExtra("email", Emailtopass);
-                goRegistrazione2.putExtra("password", Passwordtopass);
 
-                
+                SessionManager sessionManager  =  new SessionManager(getContext());
 
-                goRegistrazione2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                getActivity().finish();
-                startActivity(goRegistrazione2);
+                sessionManager.removeSession();
+                sessionManager.setSessionName(name);
+                sessionManager.setSessionSurname(surname);
+                sessionManager.setSessionMail(mail);
+                sessionManager.setSessionPassword(password);
+
+                System.out.println("Nome registrazione parte 1: " + sessionManager.getName());
+                System.out.println("Cognome registrazione parte 1: " + sessionManager.getSurname());
+                System.out.println("Email registrazione parte 1: " + sessionManager.getMail());
+                Intent intent = new Intent(getActivity(), RegistrazioneParteDueActivity.class);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //getActivity().finish();
+                startActivity(intent);
 
             }
 

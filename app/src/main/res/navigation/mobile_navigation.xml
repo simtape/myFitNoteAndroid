@@ -42,9 +42,21 @@
         tools:layout="@layout/fragment_kcal" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_esercizi"
         android:name="com.example.myfitnoteandroid.ui.esercizi.eserciziFragment"
         android:label="@string/esercizi"
         tools:layout="@layout/fragment_esercizi" />
+
+    <fragment
+        android:id="@+id/nav_schede"
+        android:name="com.example.myfitnoteandroid.ui.schede.SchedeFragment"
+        android:label="@string/schede"
+        tools:layout="@layout/schede_fragment" />
+
+    <fragment
+        android:id="@+id/registrazione2"
+        android:name="com.example.myfitnoteandroid.FragmentRegistrazioneDue"
+        android:label="@string/registrazione_2"
+        tools:layout="@layout/schede_fragment" />
 
 </navigation>
