@@ -19,7 +19,6 @@ public class SessionManager {
     String REGISTRATION_ALTEZZA = "registration_altezza";
 
 
-
     public SessionManager(Context context) {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -36,10 +35,11 @@ public class SessionManager {
 
     }
 
-    public void updateUser(){
+    public void updateUser() {
         this.user = new User(getName(), getSurname(), getMail());
         this.user.setId(getSession());
     }
+
     public String getSession() {
         return sharedPreferences.getString(SESSION_KEY, null);
     }
@@ -63,54 +63,54 @@ public class SessionManager {
         return sharedPreferences.getString(SESSION_SURNAME, null);
     }
 
-    public String getMail(){
+    public String getMail() {
         return sharedPreferences.getString(SESSION_MAIL, null);
     }
 
-    public User getUser(){
+    public User getUser() {
         return this.user;
 
     }
 
-    public void setSessionName(String name){
+    public void setSessionName(String name) {
         editor.putString(SESSION_NAME, name).commit();
     }
 
-    public void setSessionSurname(String surname){
+    public void setSessionSurname(String surname) {
         editor.putString(SESSION_SURNAME, surname).commit();
     }
 
-    public void setSessionMail(String mail){
+    public void setSessionMail(String mail) {
 
         editor.putString(SESSION_MAIL, null).commit();
         editor.putString(SESSION_MAIL, mail).commit();
     }
 
-    public void setSessionPassword(String password){
+    public void setSessionPassword(String password) {
         editor.putString(REGISTRATION_PASSWORD, password).commit();
 
     }
 
-    public String getPassword(){
+    public String getPassword() {
         return sharedPreferences.getString(REGISTRATION_PASSWORD, null);
 
     }
 
-    public String getPeso(){
+    public String getPeso() {
 
         return sharedPreferences.getString(REGISTRATION_PESO, null);
     }
 
-    public String getAltezza(){
+    public String getAltezza() {
         return sharedPreferences.getString(REGISTRATION_ALTEZZA, null);
 
     }
 
-    public void setPeso(String peso){
+    public void setPeso(String peso) {
         editor.putString(REGISTRATION_PESO, peso).commit();
     }
 
-    public void setAltezza(String altezza){
+    public void setAltezza(String altezza) {
         editor.putString(REGISTRATION_ALTEZZA, altezza).commit();
     }
 

@@ -66,9 +66,9 @@ public class RegistrazioneTabFragment extends Fragment implements View.OnClickLi
             String surname = cognome.getText().toString();
             String mail = email.getText().toString();
             String password = this.password.getText().toString();
-            if (name.trim().isEmpty() && surname.trim().isEmpty() && mail.trim().isEmpty() && password.trim().isEmpty()) {
-                Toast.makeText(getContext(), "Compilare tutti i campi", Toast.LENGTH_LONG).show();
-            } else if (name.trim().isEmpty()) {
+            if (name.trim().isEmpty() || surname.trim().isEmpty() || mail.trim().isEmpty() || password.trim().isEmpty()) {
+                Toast.makeText(getContext(), "Non hai compilato tutti i campi", Toast.LENGTH_LONG).show();
+            } /*else if (name.trim().isEmpty()) {
                 Toast.makeText(getContext(), "Compilare campo nome", Toast.LENGTH_LONG).show();
             }else if (surname.trim().isEmpty()) {
                 Toast.makeText(getContext(), "Compilare campo cognome", Toast.LENGTH_LONG).show();
@@ -76,7 +76,7 @@ public class RegistrazioneTabFragment extends Fragment implements View.OnClickLi
                 Toast.makeText(getContext(), "Compilare campo email", Toast.LENGTH_LONG).show();
             }else if (password.trim().isEmpty()) {
                 Toast.makeText(getContext(), "Compilare campo password", Toast.LENGTH_LONG).show();
-            } else {
+            } */else {
 
                 SessionManager sessionManager  =  new SessionManager(getContext());
 
