@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegistrazioneParteTreActivity"></activity>
+        <activity android:name=".ui.slide_show.SlideShowFirstActivity"></activity>
+        <activity android:name=".RegistrazioneParteTreActivity" />
         <activity android:name=".RegistrazioneParteDueActivity" />
         <activity
             android:name=".SplashScreenActivity"
