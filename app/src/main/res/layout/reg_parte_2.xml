@@ -66,8 +66,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/button_bg"
-        android:drawableBottom="@drawable/ic_baseline_date_range_24"
+        android:background="@drawable/ic_baseline_date_range_24"
+
         android:paddingLeft="20dip"
         android:paddingRight="20dip"
         android:textColor="@color/cardview_light_background"
