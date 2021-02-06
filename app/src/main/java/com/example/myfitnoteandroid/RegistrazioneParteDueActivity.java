@@ -6,41 +6,104 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.myfitnoteandroid.data.SessionManager;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class RegistrazioneParteDueActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText peso, altezza;
+
     Button button, datebtn;
-    TextView datetxt;
+    TextView datetxt, pesotext, altezzatext;
     Calendar c;
     DatePickerDialog dpd;
+     Spinner spinPeso, spinAltezza;
+     int i, k;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reg_parte_2);
 
-        peso = findViewById(R.id.Peso);
-        altezza = findViewById(R.id.Altezza);
+        pesotext = findViewById(R.id.Peso);
+        altezzatext = findViewById(R.id.Altezza);
         button = findViewById(R.id.reg_parte2);
         datetxt = findViewById(R.id.Data_nascita);
         datebtn = findViewById(R.id.btn_dtn);
 
+        spinPeso = findViewById(R.id.spinnerPeso);
+        spinAltezza = findViewById(R.id.spinnerAltezza);
+
         button.setOnClickListener(this);
         datebtn.setOnClickListener(this);
 
+        List<String> peso = new ArrayList<>();
+        peso.add("- scegli il tuo peso -");
+        for (i = 40; i <= 170; i++){
+            String stringpeso = String.valueOf(i);
+            peso.add( stringpeso);
 
+        }
 
+        List<String> altezza = new ArrayList<>();
+        peso.add("- scegli la tua altezza -");
+        for (k = 100; k <= 210; k++){
+            String stringaltezza = String.valueOf(k);
+            altezza.add( stringaltezza);
 
+        }
+        ArrayAdapter<String> pesoAdapter = new ArrayAdapter<>(this , android.R.layout.simple_spinner_item, peso );
+        pesoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinPeso.setAdapter(pesoAdapter);
+        spinPeso.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String yourPeso = spinPeso.getSelectedItem().toString();
+                if(!yourPeso.equals("- scegli il tuo peso ")){
+                    pesotext.setText(yourPeso);
+                } else {
+                    pesotext.setText("");
+                }
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        ArrayAdapter<String> altezzaAdapter = new ArrayAdapter<>(this , android.R.layout.simple_spinner_item, altezza );
+        altezzaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinAltezza.setAdapter(altezzaAdapter);
+        spinAltezza.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String yourAltezza = spinAltezza.getSelectedItem().toString();
+                if(!yourAltezza.equals("- scegli la tua altezza -")){
+                    altezzatext.setText(yourAltezza);
+                } else {
+                    altezzatext.setText("");
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
 
@@ -50,8 +113,8 @@ public class RegistrazioneParteDueActivity extends AppCompatActivity implements 
         switch (v.getId()){
             case  R.id.reg_parte2:
             SessionManager sessionManager = new SessionManager(this);
-            sessionManager.setPeso(peso.getText().toString());
-            sessionManager.setAltezza(altezza.getText().toString());
+            sessionManager.setPeso(pesotext.getText().toString());
+            sessionManager.setAltezza(altezzatext.getText().toString());
             Intent intent = new Intent(this, RegistrazioneParteTreActivity.class);
             startActivity(intent);
             break;
