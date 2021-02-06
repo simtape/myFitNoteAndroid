@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_dark_background"
     >
 
     <EditText
@@ -13,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/edit_text_bg"
-        android:hint="peso"
+        android:hint="Peso"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -42,6 +41,44 @@
         app:layout_constraintVertical_bias="0"
         app:layout_constraintWidth_percent=".8" />
 
+
+    <TextView
+        android:id="@+id/Data_nascita"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:background="@drawable/edit_text_bg"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.29"
+        app:layout_constraintWidth_percent=".8" />
+
+    <Button
+        android:id="@+id/btn_dtn"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/button_bg"
+        android:drawableBottom="@drawable/ic_baseline_date_range_24"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:iconGravity="textStart"
+        app:iconPadding="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/Data_nascita"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent=".8" />
+
     <Button
         android:id="@+id/reg_parte2"
         android:layout_width="329dp"
@@ -55,8 +92,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent=".8"
-        app:layout_constraintTop_toBottomOf="@+id/Altezza"/>
+        app:layout_constraintTop_toBottomOf="@+id/Data_nascita"
+        app:layout_constraintWidth_percent=".8" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
 
 
 
