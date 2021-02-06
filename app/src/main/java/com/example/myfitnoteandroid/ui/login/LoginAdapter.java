@@ -1,4 +1,4 @@
-package com.example.myfitnoteandroid;
+package com.example.myfitnoteandroid.ui.login;
 
 
 import android.content.Context;
@@ -6,7 +6,8 @@ import android.content.Context;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentStatePagerAdapter;
+
+import com.example.myfitnoteandroid.ui.sign_up.SignUpTabFragment;
 
 public class LoginAdapter extends FragmentPagerAdapter {
 
@@ -31,7 +32,7 @@ public class LoginAdapter extends FragmentPagerAdapter {
             LoginTabFragment loginTabFragment = new LoginTabFragment();
             return loginTabFragment;
             case 1:
-            RegistrazioneTabFragment registrazioneTabFragment = new RegistrazioneTabFragment();
+            SignUpTabFragment registrazioneTabFragment = new SignUpTabFragment();
             return registrazioneTabFragment;
             default:
                 return null;

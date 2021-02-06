@@ -1,4 +1,4 @@
-package com.example.myfitnoteandroid.ui.misuraBattito;
+package com.example.myfitnoteandroid.ui.heart_rate;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -25,7 +25,7 @@ public class misuraBattitoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.misura_battito_fragment, container, false);
+        return inflater.inflate(R.layout.heart_rate_fragment, container, false);
     }
 
     @Override

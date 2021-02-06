@@ -31,32 +31,27 @@
 
     <fragment
         android:id="@+id/nav_calcola_kcal"
-        android:name="com.example.myfitnoteandroid.ui.calcolaKcal.calcolaKcalFragment"
+        android:name="com.example.myfitnoteandroid.ui.calculate_kcal.calcolaKcalFragment"
         android:label="@string/menu_kcal"
         tools:layout="@layout/fragment_kcal" />
 
     <fragment
         android:id="@+id/nav_mis_battito"
-        android:name="com.example.myfitnoteandroid.ui.misuraBattito.misuraBattitoFragment"
+        android:name="com.example.myfitnoteandroid.ui.heart_rate.misuraBattitoFragment"
         android:label="@string/misura_battito"
         tools:layout="@layout/fragment_kcal" />
 
     <fragment
         android:id="@+id/nav_esercizi"
-        android:name="com.example.myfitnoteandroid.ui.esercizi.eserciziFragment"
+        android:name="com.example.myfitnoteandroid.ui.exercises.exercisesFragment"
         android:label="@string/esercizi"
-        tools:layout="@layout/fragment_esercizi" />
+        tools:layout="@layout/exercises_fragment" />
 
     <fragment
         android:id="@+id/nav_schede"
-        android:name="com.example.myfitnoteandroid.ui.schede.SchedeFragment"
+        android:name="com.example.myfitnoteandroid.ui.sheets.ShowSheetsFragment"
         android:label="@string/schede"
-        tools:layout="@layout/schede_fragment" />
+        tools:layout="@layout/show_sheets_fragment" />
 
-    <fragment
-        android:id="@+id/registrazione2"
-        android:name="com.example.myfitnoteandroid.FragmentRegistrazioneDue"
-        android:label="@string/registrazione_2"
-        tools:layout="@layout/schede_fragment" />
 
 </navigation>

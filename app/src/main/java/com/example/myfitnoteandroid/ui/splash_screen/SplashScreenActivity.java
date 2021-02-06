@@ -1,4 +1,4 @@
-package com.example.myfitnoteandroid;
+package com.example.myfitnoteandroid.ui.splash_screen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
 
-import com.example.myfitnoteandroid.LoginActivity;
 import com.example.myfitnoteandroid.R;
+import com.example.myfitnoteandroid.ui.login.LoginActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 

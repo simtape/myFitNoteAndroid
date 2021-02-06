@@ -1,16 +1,16 @@
-package com.example.myfitnoteandroid.ui.esercizi;
+package com.example.myfitnoteandroid.ui.calculate_kcal;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class eserciziViewModel extends ViewModel {
+public class calcolaKcalViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public eserciziViewModel() {
+    public calcolaKcalViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        mText.setValue("This is gallery fragment");
     }
 
     public LiveData<String> getText() {

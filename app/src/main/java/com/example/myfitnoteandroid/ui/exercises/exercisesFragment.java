@@ -1,12 +1,9 @@
-package com.example.myfitnoteandroid.ui.esercizi;
+package com.example.myfitnoteandroid.ui.exercises;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,16 +13,16 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myfitnoteandroid.R;
 
-public class eserciziFragment extends Fragment {
+public class exercisesFragment extends Fragment {
 
 
-    private eserciziViewModel slideshowViewModel;
+    private exercisesViewModel slideshowViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         slideshowViewModel =
-                ViewModelProviders.of(this).get(eserciziViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_esercizi, container, false);
+                ViewModelProviders.of(this).get(exercisesViewModel.class);
+        View root = inflater.inflate(R.layout.exercises_fragment, container, false);
 
         slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

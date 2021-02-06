@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 import com.example.myfitnoteandroid.R;
 
 
-public class ObiettiviFragment extends Fragment {
+public class GoalsFragment extends Fragment {
 
 
-    public ObiettiviFragment() {
+    public GoalsFragment() {
 
     }
 
@@ -28,6 +28,6 @@ public class ObiettiviFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_obiettivi, container, false);
+        return inflater.inflate(R.layout.goals_fragment, container, false);
     }
 }

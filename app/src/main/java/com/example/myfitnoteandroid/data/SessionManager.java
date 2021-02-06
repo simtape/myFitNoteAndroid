@@ -3,8 +3,6 @@ package com.example.myfitnoteandroid.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import androidx.annotation.NonNull;
-
 public class SessionManager {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -26,7 +24,6 @@ public class SessionManager {
     }
 
     public void saveSession(User user) {
-
         this.user = user;
         editor.putString(SESSION_KEY, this.user.getId()).commit();
         editor.putString(SESSION_NAME, this.user.getName()).commit();
@@ -45,7 +42,6 @@ public class SessionManager {
     }
 
     public void removeSession() {
-
         editor.putString(SESSION_KEY, null).commit();
         editor.putString(SESSION_NAME, null).commit();
         editor.putString(SESSION_SURNAME, null).commit();
@@ -56,15 +52,18 @@ public class SessionManager {
 
     public String getName() {
         return sharedPreferences.getString(SESSION_NAME, null);
+
     }
 
 
     public String getSurname() {
         return sharedPreferences.getString(SESSION_SURNAME, null);
+
     }
 
     public String getMail() {
         return sharedPreferences.getString(SESSION_MAIL, null);
+
     }
 
     public User getUser() {
@@ -74,14 +73,15 @@ public class SessionManager {
 
     public void setSessionName(String name) {
         editor.putString(SESSION_NAME, name).commit();
+
     }
 
     public void setSessionSurname(String surname) {
         editor.putString(SESSION_SURNAME, surname).commit();
+
     }
 
     public void setSessionMail(String mail) {
-
         editor.putString(SESSION_MAIL, null).commit();
         editor.putString(SESSION_MAIL, mail).commit();
     }

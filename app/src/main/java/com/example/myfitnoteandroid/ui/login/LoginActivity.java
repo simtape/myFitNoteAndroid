@@ -1,12 +1,13 @@
-package com.example.myfitnoteandroid;
+package com.example.myfitnoteandroid.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 
+import com.example.myfitnoteandroid.MainActivity;
+import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
 import com.google.android.material.tabs.TabLayout;
 

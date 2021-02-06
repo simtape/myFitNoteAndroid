@@ -1,8 +1,7 @@
-package com.example.myfitnoteandroid;
+package com.example.myfitnoteandroid.ui.sign_up;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,13 +15,13 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
-import com.example.myfitnoteandroid.data.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class RegistrazioneParteTreActivity extends AppCompatActivity implements View.OnClickListener {
+public class SignUpThreeActivity extends AppCompatActivity implements View.OnClickListener {
     TextView label, name, surname, mail, password, peso, altezza;
     Button button;
 
@@ -31,7 +30,7 @@ public class RegistrazioneParteTreActivity extends AppCompatActivity implements 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrazione_parte_tre);
+        setContentView(R.layout.sign_up_activity_three);
 
         label = findViewById(R.id.i_tuoi_dati);
         name = findViewById(R.id.nome);

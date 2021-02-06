@@ -1,7 +1,6 @@
-package com.example.myfitnoteandroid;
+package com.example.myfitnoteandroid.ui.sign_up;
 
 import android.content.Intent;
-import android.icu.text.StringPrepParseException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,23 +12,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
 import com.example.myfitnoteandroid.data.User;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class RegistrazioneTabFragment extends Fragment implements View.OnClickListener {
+public class SignUpTabFragment extends Fragment implements View.OnClickListener {
 
     //RequestQueue requestQueue;
     EditText nome, cognome, email, password;
@@ -42,7 +33,7 @@ public class RegistrazioneTabFragment extends Fragment implements View.OnClickLi
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.registrazione_tab_fragment, container, false);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.signup_tab_fragment, container, false);
 
         nome = root.findViewById(R.id.nome);
         cognome = root.findViewById(R.id.Cognome);
@@ -89,7 +80,7 @@ public class RegistrazioneTabFragment extends Fragment implements View.OnClickLi
                 System.out.println("Nome registrazione parte 1: " + sessionManager.getName());
                 System.out.println("Cognome registrazione parte 1: " + sessionManager.getSurname());
                 System.out.println("Email registrazione parte 1: " + sessionManager.getMail());
-                Intent intent = new Intent(getActivity(), RegistrazioneParteDueActivity.class);
+                Intent intent = new Intent(getActivity(), SignUpTwoActivity.class);
                 //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 //getActivity().finish();
                 startActivity(intent);

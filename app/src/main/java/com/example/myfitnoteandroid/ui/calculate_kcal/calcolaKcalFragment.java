@@ -1,4 +1,4 @@
-package com.example.myfitnoteandroid.ui.calcolaKcal;
+package com.example.myfitnoteandroid.ui.calculate_kcal;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

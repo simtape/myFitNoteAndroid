@@ -1,4 +1,4 @@
-package com.example.myfitnoteandroid.ui.misuraBattito;
+package com.example.myfitnoteandroid.ui.heart_rate;
 
 import androidx.lifecycle.ViewModel;
 

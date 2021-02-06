@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.widget.TextView;
 
 import com.example.myfitnoteandroid.data.SessionManager;
+import com.example.myfitnoteandroid.ui.login.LoginActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;

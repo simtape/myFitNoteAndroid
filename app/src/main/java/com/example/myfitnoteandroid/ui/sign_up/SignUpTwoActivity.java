@@ -1,4 +1,4 @@
-package com.example.myfitnoteandroid;
+package com.example.myfitnoteandroid.ui.sign_up;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,18 +10,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class RegistrazioneParteDueActivity extends AppCompatActivity implements View.OnClickListener {
+public class SignUpTwoActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     Button button, datebtn;
@@ -36,7 +35,7 @@ public class RegistrazioneParteDueActivity extends AppCompatActivity implements 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.reg_parte_2);
+        setContentView(R.layout.signup_activity_two);
 
         pesotext = findViewById(R.id.Peso);
         altezzatext = findViewById(R.id.Altezza);
@@ -115,7 +114,7 @@ public class RegistrazioneParteDueActivity extends AppCompatActivity implements 
             SessionManager sessionManager = new SessionManager(this);
             sessionManager.setPeso(pesotext.getText().toString());
             sessionManager.setAltezza(altezzatext.getText().toString());
-            Intent intent = new Intent(this, RegistrazioneParteTreActivity.class);
+            Intent intent = new Intent(this, SignUpThreeActivity.class);
             startActivity(intent);
             break;
             case R.id.btn_dtn:
@@ -123,7 +122,7 @@ public class RegistrazioneParteDueActivity extends AppCompatActivity implements 
                 int  day = c.get(Calendar.DAY_OF_MONTH);
                 int month = c.get(Calendar.MONTH);
                 int year = c.get(Calendar.YEAR);
-                dpd = new DatePickerDialog(RegistrazioneParteDueActivity.this, new DatePickerDialog.OnDateSetListener() {
+                dpd = new DatePickerDialog(SignUpTwoActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int mYear, int mMonth, int mDay) {
                         datetxt.setText(mDay + "/" + (mMonth+1) + "/" + mYear);
