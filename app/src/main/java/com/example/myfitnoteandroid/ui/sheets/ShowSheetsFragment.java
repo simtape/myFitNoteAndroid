@@ -1,6 +1,7 @@
 package com.example.myfitnoteandroid.ui.sheets;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,12 +29,12 @@ import org.json.JSONObject;
 
 
 public class ShowSheetsFragment extends Fragment {
-    private JSONObject postData, sheetsJson;
-    private JSONArray sheetsJsonArray;
+
 
     @Override
     public void onStart() {
         super.onStart();
+
         this.getSheets();
     }
 
@@ -42,25 +43,51 @@ public class ShowSheetsFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.show_sheets_fragment, container, false);
-        TextView textView = root.findViewById(R.id.text_fragment);
-        textView.setText("Non hai ancora creato nessuna scheda!");
+
+
 
         return root;
+
     }
 
     private void getSheets() {
 
-        postData = new JSONObject();
-        final SessionManager sessionManager = new SessionManager(getActivity());
+        SessionManager sessionManager = new SessionManager(getActivity());
 
-        try {
-            postData.put("user_id", sessionManager.getSession());
-            System.out.print("ora passo l'id dello user loggato" + sessionManager.getSession());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        String url = "https://myfitnote.herokuapp.com/sheets/get_sheets";
+        String url = "https://myfitnote.herokuapp.com/sheets/get_sheets?user_id=";
+        String conc_url = url.concat(sessionManager.getSession());
+        Log.d("id sessione", sessionManager.getSession());
+        Log.d("prova", conc_url);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, conc_url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    JSONArray jsonArrayResponse = response.getJSONArray("sheet");
+
+                    for (int i = 0; i < jsonArrayResponse.length(); i++) {
+
+                        JSONObject jsonObject = jsonArrayResponse.getJSONObject(i);
+                        //textView.setText(jsonObject.toString());
+                        Log.d("response", jsonObject.toString());
+                        //textView.setText(jsonObject.toString());
+                    }
+                } catch (JSONException e) {
+
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+
+        queue.add(jsonObjectRequest);
 
     }
 }
