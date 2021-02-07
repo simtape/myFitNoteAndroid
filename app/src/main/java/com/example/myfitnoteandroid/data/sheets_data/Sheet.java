@@ -2,14 +2,16 @@ package com.example.myfitnoteandroid.data.sheets_data;
 
 import com.example.myfitnoteandroid.data.sheets_data.SheetExercise;
 
+import java.util.Date;
 import java.util.List;
 
 public class Sheet {
     private String name;
     private String id;
+    private List<String> days;
     private List<SheetExercise>sheetExercises;
 
-    public Sheet(String name, String id, List<SheetExercise> sheetExercises) {
+    public Sheet(String name, String id, List<SheetExercise> sheetExercises, List<String>days) {
         this.name = name;
         this.id = id;
         this.sheetExercises = sheetExercises;
@@ -37,5 +39,8 @@ public class Sheet {
 
     public void setSheetExercises(List<SheetExercise> sheetExercises) {
         this.sheetExercises = sheetExercises;
+    }
+    public List<String>getDays(){
+        return this.days;
     }
 }
