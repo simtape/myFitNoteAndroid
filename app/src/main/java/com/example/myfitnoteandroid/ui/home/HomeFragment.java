@@ -7,6 +7,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,15 +24,17 @@ import com.example.myfitnoteandroid.data.SessionManager;
 
 public class HomeFragment extends Fragment {
 
-    TextView stepCountertxt;
+    TextView stepCountertxt, metrestxt;
     SensorManager sensorManager;
     double MagnitudePrevius = 0;
     private Integer stepCount = 0;
+    float metrespass;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
         stepCountertxt = root.findViewById(R.id.stepcounter);
+        metrestxt = root.findViewById(R.id.metri);
 
 
 
@@ -59,6 +62,8 @@ public class HomeFragment extends Fragment {
                         stepCount++;
                     }
                     stepCountertxt.setText(stepCount.toString());
+                    metrespass = cMetres();
+                    metrestxt.setText(String.valueOf(metrespass));
                 }
                }
 
@@ -68,6 +73,7 @@ public class HomeFragment extends Fragment {
                }
            };
            sensorManager.registerListener(stepDetector, stepCounter, SensorManager.SENSOR_DELAY_NORMAL);
+
     }
 
     public void onPause(){
@@ -94,5 +100,10 @@ public class HomeFragment extends Fragment {
         super.onResume();
         SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         stepCount = sharedPreferences.getInt("stepCount", 0);
+    }
+
+    public float cMetres(){
+        float metres = (float) (0.762*stepCount);
+        return metres;
     }
 }
