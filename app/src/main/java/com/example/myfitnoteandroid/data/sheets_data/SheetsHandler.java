@@ -1,12 +1,18 @@
 package com.example.myfitnoteandroid.data.sheets_data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SheetsHandler {
     private static SheetsHandler instance = new SheetsHandler();
-    private List<Sheet> userSheets;
+    private List<Sheet> userSheets = new ArrayList<>();
 
     private SheetsHandler() {
+
+    }
+
+    public void resetSheetsHandler(){
+        userSheets = new ArrayList<>();
 
     }
 
@@ -14,9 +20,12 @@ public class SheetsHandler {
         return instance;
     }
 
-    public void setUserSheets(List<Sheet> userSheets) {
-        this.userSheets = userSheets;
+    public void addSheet(Sheet sheet) {
+        userSheets.add(sheet);
 
     }
 
+    public List<Sheet> getUserSheets(){
+        return  userSheets;
+    }
 }

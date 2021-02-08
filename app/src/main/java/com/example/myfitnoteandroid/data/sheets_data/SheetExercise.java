@@ -4,6 +4,10 @@ public class SheetExercise {
     private String nameExercise;
     private int rep;
     private int serie;
-    private String day;
 
+    public SheetExercise(String nameExercise, int rep, int serie) {
+        this.nameExercise = nameExercise;
+        this.rep = rep;
+        this.serie = serie;
+    }
 }
