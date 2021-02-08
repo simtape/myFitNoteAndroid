@@ -106,4 +106,15 @@ public class HomeFragment extends Fragment {
         float metres = (float) (0.762*stepCount);
         return metres;
     }
+
+    public void resetstep(){
+        //reset steps every 24 hours
+        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        stepCount = 0;
+        editor.putInt("stepCount", stepCount);
+        editor.commit();
+
+    }
 }
