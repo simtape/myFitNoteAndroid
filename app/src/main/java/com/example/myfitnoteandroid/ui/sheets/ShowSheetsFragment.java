@@ -1,6 +1,8 @@
 package com.example.myfitnoteandroid.ui.sheets;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.DocumentsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,6 +43,7 @@ public class ShowSheetsFragment extends Fragment {
     List<SheetExercise> sheetExerciseList = new ArrayList<>();
     List<String> days = new ArrayList<>();
     JSONArray jsonArrayResponse;
+    ViewGroup root;
 
 
     @Override
@@ -54,11 +57,20 @@ public class ShowSheetsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.show_sheets_fragment, container, false);
-        LinearLayout linearLayout = root.findViewById(R.id.linear_layout);
-        List<TextView>textViews = createSheetLabes();
-        for(TextView textView: textViews)
-            linearLayout.addView(textView);
+         root = (ViewGroup) inflater.inflate(R.layout.show_sheets_fragment, container, false);
+
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                LinearLayout linearLayout = root.findViewById(R.id.linear_layout);
+                List<TextView>textViews = createSheetLabes();
+                for(TextView textView: textViews)
+                    linearLayout.addView(textView);
+
+            }
+        }, 1500);
 
         return root;
 
@@ -135,6 +147,7 @@ public class ShowSheetsFragment extends Fragment {
 
     private List<TextView> createSheetLabes(){
         int textViewSize = SheetsHandler.getInstance().getUserSheets().size();
+        Log.d("nome scheda f csl", String.valueOf(textViewSize));
         List<TextView> textViews = new ArrayList<>();
         for(int i = 0; i<textViewSize; i++){
             TextView textView = new TextView(getContext());
