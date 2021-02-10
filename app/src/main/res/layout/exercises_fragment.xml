@@ -1,33 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:fillViewport="true">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="0dp"
-    tools:context=".ui.exercises.exercisesFragment"
+    tools:context=".ui.sheets.ShowSheetsFragment"
     >
 
 
-
-
-
-    <TextView
-        android:id="@+id/eserciziTextview"
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ListView
+        android:id="@+id/list_viewExe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>

@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,31 +35,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class exercisesFragment extends Fragment {
-    TextView exercisesView;
+    ListView listView;
+    List<String> nameExercises = new ArrayList<>();
+    List<String> nameGear = new ArrayList<>();
+
     private exercisesViewModel slideshowViewModel;
+
 
     @Override
     public void onStart() {
         super.onStart();
-        this.getExercises();
+        //this.getExercises();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                ViewModelProviders.of(this).get(exercisesViewModel.class);
+
+        this.getExercises();
         View root = inflater.inflate(R.layout.exercises_fragment, container, false);
 
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                //ListView.(s);
-            }
-        });
 
-        exercisesView = root.findViewById(R.id.eserciziTextview);
+
+        //exercisesView = root.findViewById(R.id.eserciziTextview);
+    listView = root.findViewById(R.id.list_viewExe);
+
+    ShowExercisesAdapter adapter;
+    adapter = new ShowExercisesAdapter(getContext(), nameExercises, nameGear);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        }
+    });
+
+
+
         return root;
-    }
+}
 
 private void getExercises(){
     RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
@@ -77,8 +92,9 @@ private void getExercises(){
                             String nameExercise = esercizio.getString("nome");
                             String gearExercise = esercizio.getString("attrezzi");
 
-                            exercisesView.append(nameExercise + ", " + gearExercise + "\n\n");
-                            System.out.println("eccoliiii"+nameExercise);
+                            //exercisesView.append(nameExercise + ", " + gearExercise + "\n\n");
+                            nameExercises.add(nameExercise);
+                            nameGear.add(gearExercise);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
