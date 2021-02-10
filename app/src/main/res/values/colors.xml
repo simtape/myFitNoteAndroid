@@ -13,4 +13,7 @@
     <color name = "lightVioletGrey">#fff7ff</color>
     <color name = "primaryVioletGrey">#d1c4e9</color>
     <color name = "darkVioletGrey">#a094b7</color>
+    <color name="yellow_bg">#ffff8d</color>
+    <color name="green_bg">#69f0ae</color>
+    <color name="blue_bg">#8f9bff</color>
 </resources>

@@ -33,7 +33,7 @@ public class ShowExercisesAdapter extends ArrayAdapter<String>{
         LayoutInflater layoutInflater = (LayoutInflater)context.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowExe = layoutInflater.inflate(R.layout.rowexe, parent, false);
         TextView myExercise = rowExe.findViewById(R.id.textViewExe);
-        TextView myGear = rowExe.findViewById(R.id.textView2);
+        TextView myGear = rowExe.findViewById(R.id.gearTextView);
 
         myExercise.setText(rExercise.get(position));
         myGear.setText(rGear.get(position));
