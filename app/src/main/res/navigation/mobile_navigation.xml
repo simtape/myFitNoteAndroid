@@ -53,5 +53,14 @@
         android:label="@string/schede"
         tools:layout="@layout/show_sheets_fragment" />
 
+    <activity
+        android:id="@+id/sheet_details"
+        android:name="com.example.myfitnoteandroid.ui.sheets.SheetDetailsActivity"
+        android:label="@string/schede"
+        tools:layout="@layout/show_sheets_fragment"
+
+
+        />
+
 
 </navigation>

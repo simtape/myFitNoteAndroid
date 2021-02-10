@@ -12,10 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.sheets.SheetDetailsActivity"
+           ></activity>
+
         <receiver
             android:name=".ui.home.StepCounterReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
 
         <activity android:name=".ui.slide_show.SlideShowFirstActivity" />
         <activity android:name=".ui.sign_up.SignUpThreeActivity" />

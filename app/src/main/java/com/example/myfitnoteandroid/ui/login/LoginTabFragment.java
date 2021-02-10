@@ -182,74 +182,7 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
         queue.add(jsonObjectRequest);
     }
 
-    private void getSheets() {
-        SheetsHandler.getInstance().resetSheetsHandler();
-        SessionManager sessionManager = new SessionManager(getActivity());
-        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        String url = "https://myfitnote.herokuapp.com/sheets/get_sheets?user_id=";
-        String conc_url = url.concat(sessionManager.getSession());
-        Log.d("id sessione", sessionManager.getSession());
-        Log.d("prova", conc_url);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, conc_url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
 
-                try {
-                    jsonArrayResponse = response.getJSONArray("sheet");
-                    if (jsonArrayResponse.length() == 0) {
-                        Log.d("messaggio", "l'utente non ha inserito schede");
-                    } else {
-                        for (int i = 0; i < jsonArrayResponse.length(); i++) {
-
-                            JSONObject jsonObject = jsonArrayResponse.getJSONObject(i);
-                            for (int j = 0; j < jsonObject.getJSONArray("exercises").length(); j++) {
-                                JSONArray exerciseJsonArray = jsonObject.getJSONArray("exercises");
-                                JSONArray repsJsonArray = jsonObject.getJSONArray("reps");
-                                JSONArray seriesJsonArray = jsonObject.getJSONArray("series");
-
-                                String exercise = exerciseJsonArray.getString(j);
-                                String repsString = repsJsonArray.getString(j);
-                                String seriesString = seriesJsonArray.getString(j);
-
-                                int reps = Integer.valueOf(repsString);
-                                int series = Integer.valueOf(seriesString);
-
-                                SheetExercise sheetExercise = new SheetExercise(exercise, reps, series);
-                                sheetExerciseList.add(sheetExercise);
-                            }
-
-                            String name = jsonObject.getString("name_sheet");
-                            String id = jsonObject.getString("_id");
-                            String date = jsonObject.getString("date");
-                            JSONArray daysJsonArray = jsonObject.getJSONArray("days");
-
-                            for (int k = 0; k < daysJsonArray.length(); k++) {
-                                days.add(daysJsonArray.getString(k));
-
-                            }
-                            Sheet sheet = new Sheet(name, id, sheetExerciseList, days, date);
-                            Log.d("nome scheda:", sheet.getName());
-                            Log.d("id scheda: ", sheet.getId());
-
-                            SheetsHandler.getInstance().addSheet(sheet);
-                        }
-                    }
-                } catch (JSONException e) {
-
-
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-
-
-        queue.add(jsonObjectRequest);
-
-    }
 
 
 }

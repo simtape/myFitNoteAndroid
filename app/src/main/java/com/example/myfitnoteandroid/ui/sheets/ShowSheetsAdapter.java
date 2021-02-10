@@ -19,8 +19,10 @@ public class ShowSheetsAdapter extends ArrayAdapter<String> {
     String rTitle[];
     String rDescription[];
 
-    ShowSheetsAdapter (Context c, String title[], String description[]) {
+    ShowSheetsAdapter(Context c, String title[], String description[]) {
+
         super(c, R.layout.row, R.id.textView1, title);
+
         this.context = c;
         this.rTitle = title;
         this.rDescription = description;
@@ -31,20 +33,24 @@ public class ShowSheetsAdapter extends ArrayAdapter<String> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        LayoutInflater layoutInflater = (LayoutInflater) context.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row = layoutInflater.inflate(R.layout.row, parent, false);
-        //ImageView images = row.findViewById(R.id.image);
-        TextView myTitle = row.findViewById(R.id.textView1);
-        TextView myDescription = row.findViewById(R.id.textView2);
 
-        // now set our resources on views
-        //images.setImageResource(rImgs);
-        myTitle.setText(rTitle[position]);
-        myDescription.setText(rDescription[position]);
+            LayoutInflater layoutInflater = (LayoutInflater) context.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View row = layoutInflater.inflate(R.layout.row, parent, false);
+            //ImageView images = row.findViewById(R.id.image);
+            TextView myTitle = row.findViewById(R.id.textView1);
+            TextView myDescription = row.findViewById(R.id.textView2);
+
+            // now set our resources on views
+            //images.setImageResource(rImgs);
+            myTitle.setText(rTitle[position]);
+            myDescription.setText(rDescription[position]);
 
 
+            return row;
 
-
-        return row;
     }
+
+
+
+
 }
