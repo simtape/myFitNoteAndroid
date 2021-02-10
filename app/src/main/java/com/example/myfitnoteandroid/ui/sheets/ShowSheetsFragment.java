@@ -1,5 +1,6 @@
 package com.example.myfitnoteandroid.ui.sheets;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,6 +17,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -40,6 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class ShowSheetsFragment extends Fragment {
 
     List<SheetExercise> sheetExerciseList = new ArrayList<>();
@@ -54,13 +59,13 @@ public class ShowSheetsFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        this.getSheets();
+
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
+        this.getSheets();
         root = (ViewGroup) inflater.inflate(R.layout.show_sheets_fragment, container, false);
         listView = root.findViewById(R.id.list_view);
 
@@ -73,10 +78,23 @@ public class ShowSheetsFragment extends Fragment {
                 String[] dates = SheetsHandler.getInstance().getDates();
 
 
-                ShowSheetsAdapter showSheetsAdapter = new ShowSheetsAdapter(getContext(), names, dates);
+                ShowSheetsAdapter showSheetsAdapter;
+                showSheetsAdapter = new ShowSheetsAdapter(getContext(), names, dates);
                 listView.setAdapter(showSheetsAdapter);
+
             }
         }, 1500);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(getContext(), SheetDetailsActivity.class);
+                
+                startActivity(intent);
+
+
+            }
+        });
 
         return root;
 
