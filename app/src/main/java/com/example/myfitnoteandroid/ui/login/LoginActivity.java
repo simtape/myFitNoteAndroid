@@ -142,14 +142,14 @@ public class LoginActivity extends AppCompatActivity {
 
                             String name = jsonObject.getString("name_sheet");
                             String id = jsonObject.getString("_id");
-
+                            String date = jsonObject.getString("date");
                             JSONArray daysJsonArray = jsonObject.getJSONArray("days");
 
                             for (int k = 0; k < daysJsonArray.length(); k++) {
                                 days.add(daysJsonArray.getString(k));
 
                             }
-                            Sheet sheet = new Sheet(name, id, sheetExerciseList, days);
+                            Sheet sheet = new Sheet(name, id, sheetExerciseList, days, date);
                             Log.d("nome scheda:", sheet.getName());
                             Log.d("id scheda: ", sheet.getId());
 

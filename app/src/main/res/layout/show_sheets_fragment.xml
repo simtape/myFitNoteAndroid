@@ -7,9 +7,10 @@
     tools:context=".ui.sheets.ShowSheetsFragment">
 
 
-    <LinearLayout
-        android:id="@+id/linear_layout"
+    <ListView
+        android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
+        android:layout_height="match_parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

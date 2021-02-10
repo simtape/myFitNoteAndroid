@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +46,8 @@ public class ShowSheetsFragment extends Fragment {
     List<String> days = new ArrayList<>();
     JSONArray jsonArrayResponse;
     ViewGroup root;
+    ListView listView;
+    int img;
 
 
     @Override
@@ -57,18 +61,20 @@ public class ShowSheetsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-         root = (ViewGroup) inflater.inflate(R.layout.show_sheets_fragment, container, false);
+        root = (ViewGroup) inflater.inflate(R.layout.show_sheets_fragment, container, false);
+        listView = root.findViewById(R.id.list_view);
 
 
         Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                LinearLayout linearLayout = root.findViewById(R.id.linear_layout);
-                List<TextView>textViews = createSheetLabes();
-                for(TextView textView: textViews)
-                    linearLayout.addView(textView);
+                String[] names = SheetsHandler.getInstance().nameSheets();
+                String[] dates = SheetsHandler.getInstance().getDates();
 
+
+                ShowSheetsAdapter showSheetsAdapter = new ShowSheetsAdapter(getContext(), names, dates);
+                listView.setAdapter(showSheetsAdapter);
             }
         }, 1500);
 
@@ -114,14 +120,16 @@ public class ShowSheetsFragment extends Fragment {
 
                             String name = jsonObject.getString("name_sheet");
                             String id = jsonObject.getString("_id");
-
+                            String date = jsonObject.getString("date");
+                            String splittedDate = date.substring(0, 10);
                             JSONArray daysJsonArray = jsonObject.getJSONArray("days");
 
                             for (int k = 0; k < daysJsonArray.length(); k++) {
                                 days.add(daysJsonArray.getString(k));
 
                             }
-                            Sheet sheet = new Sheet(name, id, sheetExerciseList, days);
+                            Sheet sheet = new Sheet(name, id, sheetExerciseList, days, splittedDate);
+
                             Log.d("nome scheda:", sheet.getName());
                             Log.d("id scheda: ", sheet.getId());
 
@@ -143,21 +151,6 @@ public class ShowSheetsFragment extends Fragment {
 
         queue.add(jsonObjectRequest);
 
-    }
-
-    private List<TextView> createSheetLabes(){
-        int textViewSize = SheetsHandler.getInstance().getUserSheets().size();
-        Log.d("nome scheda f csl", String.valueOf(textViewSize));
-        List<TextView> textViews = new ArrayList<>();
-        for(int i = 0; i<textViewSize; i++){
-            TextView textView = new TextView(getContext());
-           /* textViews[i] = new TextView(getContext());
-            textViews[i].setText(SheetsHandler.getInstance().getUserSheets().get(i).getName());*/
-            textView.setText(SheetsHandler.getInstance().getUserSheets().get(i).getName());
-            textViews.add(textView);
-            Log.d("scheda", i + SheetsHandler.getInstance().getUserSheets().get(i).getName());
-        }
-        return textViews;
     }
 
 }

@@ -11,7 +11,7 @@ public class SheetsHandler {
 
     }
 
-    public void resetSheetsHandler(){
+    public void resetSheetsHandler() {
         userSheets = new ArrayList<>();
 
     }
@@ -25,7 +25,34 @@ public class SheetsHandler {
 
     }
 
-    public List<Sheet> getUserSheets(){
-        return  userSheets;
+    public List<Sheet> getUserSheets() {
+        return userSheets;
+    }
+
+    public String[] nameSheets() {
+        String[] names = new String[this.userSheets.size()];
+
+        int i = 0;
+        for (Sheet sheet : userSheets) {
+            names[i] = sheet.getName();
+            i++;
+        }
+
+
+        return names;
+    }
+
+    public String[]getDates(){
+        String[] dates = new String[this.userSheets.size()];
+
+        int i = 0;
+        for (Sheet sheet : userSheets) {
+            dates[i] = sheet.getDate();
+            i++;
+        }
+
+
+        return dates;
+
     }
 }

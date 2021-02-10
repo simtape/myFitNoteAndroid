@@ -10,11 +10,13 @@ public class Sheet {
     private String id;
     private List<String> days;
     private List<SheetExercise>sheetExercises;
+    private String date;
 
-    public Sheet(String name, String id, List<SheetExercise> sheetExercises, List<String>days) {
+    public Sheet(String name, String id, List<SheetExercise> sheetExercises, List<String>days, String date) {
         this.name = name;
         this.id = id;
         this.sheetExercises = sheetExercises;
+        this.date = date;
     }
 
     public String getName() {
@@ -42,5 +44,14 @@ public class Sheet {
     }
     public List<String>getDays(){
         return this.days;
+    }
+
+    public void setDate(String date){
+        this.date = date;
+    }
+
+    public String getDate(){
+        return date;
+
     }
 }
