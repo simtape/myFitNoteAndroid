@@ -1,6 +1,7 @@
 package com.example.myfitnoteandroid.ui.exercises;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,76 +55,82 @@ public class exercisesFragment extends Fragment {
         this.getExercises();
         View root = inflater.inflate(R.layout.exercises_fragment, container, false);
 
+        listView = root.findViewById(R.id.list_viewExe);
 
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ShowExercisesAdapter adapter;
+                adapter = new ShowExercisesAdapter(getContext(), nameExercises, nameGear);
+                listView.setAdapter(adapter);
+            }
+        }, 1500);
 
-        //exercisesView = root.findViewById(R.id.eserciziTextview);
-    listView = root.findViewById(R.id.list_viewExe);
-
-    ShowExercisesAdapter adapter;
-    adapter = new ShowExercisesAdapter(getContext(), nameExercises, nameGear);
-        listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        }
-    });
-
+            }
+        });
 
 
         return root;
-}
+    }
 
-private void getExercises(){
-    RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-    String url = "https://myfitnote.herokuapp.com/esercizi_2/get";
+    private void getExercises() {
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        String url = "https://myfitnote.herokuapp.com/esercizi_2/get";
 
 
-    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-            new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    try {
-                        JSONArray jsonArray = response.getJSONArray("exercises");
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("exercises");
 
-                        for (int i = 0; i < jsonArray.length(); i++){
-                            JSONObject esercizio = jsonArray.getJSONObject(i);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject esercizio = jsonArray.getJSONObject(i);
 
-                            String nameExercise = esercizio.getString("nome");
-                            String gearExercise = esercizio.getString("attrezzi");
+                                String nameExercise = esercizio.getString("nome");
+                                String gearExercise = esercizio.getString("attrezzi");
 
-                            //exercisesView.append(nameExercise + ", " + gearExercise + "\n\n");
-                            nameExercises.add(nameExercise);
-                            nameGear.add(gearExercise);
+                                //exercisesView.append(nameExercise + ", " + gearExercise + "\n\n");
+
+                                nameExercises.add(nameExercise);
+                                Log.d("nome esercizio", nameExercises.get(i));
+                                nameGear.add(gearExercise);
+                                Log.d("nome attrezzo", nameGear.get(i));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
-                }
 
-            }, new Response.ErrorListener() {
-        @Override
-        public void onErrorResponse(VolleyError error) {
-            error.printStackTrace();
-        }
-    });
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
 
-    jsonObjectRequest.setRetryPolicy(new RetryPolicy() {
-        @Override
-        public int getCurrentTimeout() {
-            return 50000;
-        }
+        jsonObjectRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
 
-        @Override
-        public int getCurrentRetryCount() {
-            return 50000;
-        }
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
 
-        @Override
-        public void retry(VolleyError error) throws VolleyError {
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
 
-        }
-    });
-    queue.add(jsonObjectRequest);
-}
+            }
+        });
+        queue.add(jsonObjectRequest);
+    }
 }
