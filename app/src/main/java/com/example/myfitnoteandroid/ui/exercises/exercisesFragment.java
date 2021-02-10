@@ -1,5 +1,6 @@
 package com.example.myfitnoteandroid.ui.exercises;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -27,6 +28,7 @@ import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.sheets_data.Sheet;
 import com.example.myfitnoteandroid.data.sheets_data.SheetExercise;
 import com.example.myfitnoteandroid.data.sheets_data.SheetsHandler;
+import com.example.myfitnoteandroid.ui.sheets.SheetDetailsActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,7 +72,10 @@ public class exercisesFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Intent intent = new Intent(getContext(), exerciseDetailsActivity.class);
+                Bundle bundle = new Bundle();
+                intent.putExtra("exe_position", position);
+                startActivity(intent);
             }
         });
 
