@@ -44,7 +44,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class ShowSheetsFragment extends Fragment {
 
     List<SheetExercise> sheetExerciseList = new ArrayList<>();
@@ -75,11 +74,10 @@ public class ShowSheetsFragment extends Fragment {
             @Override
             public void run() {
                 String[] names = SheetsHandler.getInstance().nameSheets();
-                String[] dates = SheetsHandler.getInstance().getDates();
 
 
                 ShowSheetsAdapter showSheetsAdapter;
-                showSheetsAdapter = new ShowSheetsAdapter(getContext(), names, dates);
+                showSheetsAdapter = new ShowSheetsAdapter(getContext(), names, SheetsHandler.getInstance().getUserSheets());
                 listView.setAdapter(showSheetsAdapter);
 
             }
@@ -89,7 +87,8 @@ public class ShowSheetsFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(getContext(), SheetDetailsActivity.class);
-                
+                Bundle bundle = new Bundle();
+                intent.putExtra("sheet_position", position);
                 startActivity(intent);
 
 
