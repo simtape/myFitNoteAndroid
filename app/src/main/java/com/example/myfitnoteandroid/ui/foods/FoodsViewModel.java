@@ -1,14 +1,14 @@
-package com.example.myfitnoteandroid.ui.calculate_kcal;
+package com.example.myfitnoteandroid.ui.foods;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class calcolaKcalViewModel extends ViewModel {
+public class FoodsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public calcolaKcalViewModel() {
+    public FoodsViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is gallery fragment");
     }

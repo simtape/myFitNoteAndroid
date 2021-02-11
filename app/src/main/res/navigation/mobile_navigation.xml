@@ -30,16 +30,16 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_calcola_kcal"
-        android:name="com.example.myfitnoteandroid.ui.calculate_kcal.calcolaKcalFragment"
-        android:label="@string/menu_kcal"
-        tools:layout="@layout/fragment_kcal" />
+        android:id="@+id/nav_foods"
+        android:name="com.example.myfitnoteandroid.ui.foods.FoodsViewFragment"
+        android:label="@string/menu_foods"
+        tools:layout="@layout/foods_view_fragment" />
 
     <fragment
         android:id="@+id/nav_mis_battito"
         android:name="com.example.myfitnoteandroid.ui.heart_rate.misuraBattitoFragment"
         android:label="@string/misura_battito"
-        tools:layout="@layout/fragment_kcal" />
+        tools:layout="@layout/foods_view_fragment" />
 
     <fragment
         android:id="@+id/nav_esercizi"
