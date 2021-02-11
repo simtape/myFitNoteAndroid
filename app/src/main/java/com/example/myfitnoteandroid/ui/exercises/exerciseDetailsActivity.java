@@ -20,7 +20,7 @@ import java.util.List;
 public class exerciseDetailsActivity extends AppCompatActivity {
     int position;
     String nameExercise, gearExercise;
-    TextView esercizioTxt, attrezoTxt;
+    TextView esercizioTxt, attrezzoTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +37,9 @@ public class exerciseDetailsActivity extends AppCompatActivity {
 
 
         esercizioTxt = findViewById(R.id.nomeEsercizio);
-        attrezoTxt = findViewById(R.id.attrezziEsercizio);
+        attrezzoTxt = findViewById(R.id.attrezziEsercizio);
         esercizioTxt.setText(nameExercise);
-        attrezoTxt.setText(gearExercise);
+        attrezzoTxt.setText(gearExercise);
 
     }
 }

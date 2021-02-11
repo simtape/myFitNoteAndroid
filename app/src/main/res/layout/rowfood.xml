@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/cibi"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:src="@drawable/_fastfood_24" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nameFoodTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="87dp"
+                android:layout_height="30dp"
+                android:text="KCAL"
+                android:textSize="15dp"
+                android:textAlignment="textStart"
+                android:gravity="start" />
+
+
+            <TextView
+                android:id="@+id/KcaltextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textColor="#a9a9a9"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <!--so our layout is set-->
+
+    </LinearLayout>
+
+</LinearLayout>
