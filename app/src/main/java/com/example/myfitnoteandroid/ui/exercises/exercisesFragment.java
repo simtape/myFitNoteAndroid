@@ -34,13 +34,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class exercisesFragment extends Fragment {
     ListView listView;
-    List<String> nameExercises = new ArrayList<>();
-    List<String> nameGear = new ArrayList<>();
+    private List<String> nameExercises = new ArrayList<>();
+    private List<String> nameGear = new ArrayList<>();
 
     private exercisesViewModel slideshowViewModel;
 
@@ -75,6 +76,9 @@ public class exercisesFragment extends Fragment {
                 Intent intent = new Intent(getContext(), exerciseDetailsActivity.class);
                 Bundle bundle = new Bundle();
                 intent.putExtra("exe_position", position);
+                intent.putExtra("exe", nameExercises.get(position));
+                intent.putExtra("gear", nameGear.get(position));
+
                 startActivity(intent);
             }
         });
