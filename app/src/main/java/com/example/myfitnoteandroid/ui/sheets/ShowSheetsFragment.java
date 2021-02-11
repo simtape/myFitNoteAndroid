@@ -145,7 +145,7 @@ public class ShowSheetsFragment extends Fragment {
 
                             }
                             Sheet sheet = new Sheet(name, id, sheetExerciseList, days, splittedDate);
-                            for(int m = 0; i<sheetExerciseList.size(); i++){
+                            for (int m = 0; i < sheetExerciseList.size(); i++) {
                                 Log.d("esercizi", String.valueOf(sheetExerciseList.size()));
 
                             }

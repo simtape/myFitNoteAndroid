@@ -22,14 +22,6 @@ public class exerciseDetailsActivity extends AppCompatActivity {
     String nameExercise, gearExercise;
     TextView esercizioTxt, attrezoTxt;
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
-        esercizioTxt.setText(nameExercise);
-        attrezoTxt.setText(gearExercise);
-        return super.onCreateView(name, context, attrs);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +31,15 @@ public class exerciseDetailsActivity extends AppCompatActivity {
         nameExercise = extras.getString("exe");
         gearExercise = extras.getString("gear");
 
-        esercizioTxt.findViewById(R.id.nomeEsercizio);
+
+        Log.d("esercizioooo activity", String.valueOf(nameExercise));
+        Log.d("exe_position", String.valueOf(position));
+
+
+        esercizioTxt = findViewById(R.id.nomeEsercizio);
         attrezoTxt = findViewById(R.id.attrezziEsercizio);
-
-
-
-//        Log.d("esercizioooo activity", String.valueOf(nameExercise));
-//        Log.d("exe_position", String.valueOf(position));
+        esercizioTxt.setText(nameExercise);
+        attrezoTxt.setText(gearExercise);
 
     }
 }
