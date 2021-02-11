@@ -105,8 +105,6 @@ public class ShowSheetsFragment extends Fragment {
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
         String url = "https://myfitnote.herokuapp.com/sheets/get_sheets?user_id=";
         String conc_url = url.concat(sessionManager.getSession());
-        Log.d("id sessione", sessionManager.getSession());
-        Log.d("prova", conc_url);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, conc_url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -114,11 +112,12 @@ public class ShowSheetsFragment extends Fragment {
                 try {
                     jsonArrayResponse = response.getJSONArray("sheet");
                     if (jsonArrayResponse.length() == 0) {
-                        Log.d("messaggio", "l'utente non ha inserito schede");
+
                     } else {
                         for (int i = 0; i < jsonArrayResponse.length(); i++) {
 
                             JSONObject jsonObject = jsonArrayResponse.getJSONObject(i);
+                            sheetExerciseList.clear();
                             for (int j = 0; j < jsonObject.getJSONArray("exercises").length(); j++) {
                                 JSONArray exerciseJsonArray = jsonObject.getJSONArray("exercises");
                                 JSONArray repsJsonArray = jsonObject.getJSONArray("reps");
@@ -146,9 +145,10 @@ public class ShowSheetsFragment extends Fragment {
 
                             }
                             Sheet sheet = new Sheet(name, id, sheetExerciseList, days, splittedDate);
+                            for(int m = 0; i<sheetExerciseList.size(); i++){
+                                Log.d("esercizi", String.valueOf(sheetExerciseList.size()));
 
-                            Log.d("nome scheda:", sheet.getName());
-                            Log.d("id scheda: ", sheet.getId());
+                            }
 
                             SheetsHandler.getInstance().addSheet(sheet);
                         }

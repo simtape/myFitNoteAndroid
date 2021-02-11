@@ -10,4 +10,16 @@ public class SheetExercise {
         this.rep = rep;
         this.serie = serie;
     }
+
+    public String getNameExercise() {
+        return nameExercise;
+    }
+
+    public int getRep() {
+        return rep;
+    }
+
+    public int getSerie() {
+        return serie;
+    }
 }

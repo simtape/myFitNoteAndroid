@@ -1,6 +1,7 @@
 package com.example.myfitnoteandroid.ui.sheets;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,21 +39,22 @@ public class ShowSheetsAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-            LayoutInflater layoutInflater = (LayoutInflater) context.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View row = layoutInflater.inflate(R.layout.row, parent, false);
-            //ImageView images = row.findViewById(R.id.image);
-            TextView myTitle = row.findViewById(R.id.textView1);
-            TextView myDescription = row.findViewById(R.id.gearTextView);
+        LayoutInflater layoutInflater = (LayoutInflater) context.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View row = layoutInflater.inflate(R.layout.row, parent, false);
+        //ImageView images = row.findViewById(R.id.image);
+        TextView myTitle = row.findViewById(R.id.textView1);
+        TextView myDescription = row.findViewById(R.id.gearTextView);
 
-            // now set our resources on views
-            //images.setImageResource(rImgs);
-            //myTitle.setText(rTitle[position]);
-            myTitle.setText(sheets.get(position).getName());
-            myDescription.setText(sheets.get(position).getDate());
-            //myDescription.setText(rDescription[position]);
+        // now set our resources on views
+        //images.setImageResource(rImgs);
+        //myTitle.setText(rTitle[position]);
+        myTitle.setText(sheets.get(position).getName());
+        myDescription.setText(sheets.get(position).getDate());
+        //myDescription.setText(rDescription[position]);
+        Log.d("prova schede", "ok");
 
 
-            return row;
+        return row;
 
     }
 }
