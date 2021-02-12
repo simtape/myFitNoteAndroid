@@ -1,11 +1,13 @@
 package com.example.myfitnoteandroid.ui.goals;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,7 +20,7 @@ public class GoalsAdapter extends ArrayAdapter<String> {
     String rTitle[];
     String rDesciption[];
     int rImgs[];
-
+    long item;
     GoalsAdapter(Context c, String[] title, String[] description, int imgs[]) {
         super(c, R.layout.goals_row, R.id.goalstv1, title);
         this.context = c;
@@ -39,7 +41,7 @@ public class GoalsAdapter extends ArrayAdapter<String> {
         images.setImageResource(rImgs[position]);
         myTitle.setText(rTitle[position]);
         myDescription.setText(rDesciption[position]);
-
+        Switch aSwitch = goals_row.findViewById(R.id.goals_switch);
         return goals_row;
     }
 }
