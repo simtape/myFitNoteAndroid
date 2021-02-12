@@ -1,18 +1,29 @@
 package com.example.myfitnoteandroid.ui.foods;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.MenuCompat;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -41,6 +52,8 @@ public class FoodsViewFragment extends Fragment {
     private List<String> nameFoods = new ArrayList<>();
     private List<Integer> nameKcal = new ArrayList<>();
     ListView listView;
+    SearchView searchViewfood;
+    ShowFoodAdapter adapter;
 
     @Override
     public void onStart() {
@@ -52,12 +65,26 @@ public class FoodsViewFragment extends Fragment {
         this.getFood();
         View root = inflater.inflate(R.layout.foods_view_fragment, container, false);
         listView = root.findViewById(R.id.list_viewFood);
+        searchViewfood = root.findViewById(R.id.searchView2);
+
+        searchViewfood.setOnQueryTextListener(
+                new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        adapter.getFilter().filter(newText);
+                        return false;
+                    }
+                });
 
       Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ShowFoodAdapter adapter;
                 adapter = new ShowFoodAdapter(getContext(), nameFoods, nameKcal);
                 listView.setAdapter(adapter);
             }
@@ -74,7 +101,6 @@ public class FoodsViewFragment extends Fragment {
 //
 //                startActivity(intent);
 //            }
-//        });
 
 
         return root;

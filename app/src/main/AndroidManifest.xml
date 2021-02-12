@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.foods.foodDetailsActivity"></activity>
+        <activity android:name=".ui.foods.foodDetailsActivity" />
         <activity android:name=".ui.exercises.exerciseDetailsActivity" />
         <activity android:name=".ui.sheets.SheetDetailsActivity" />
 
