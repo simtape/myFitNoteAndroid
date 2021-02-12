@@ -6,7 +6,7 @@
     android:padding="16dp">
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/imageWater"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:src="@drawable/ic_baseline_wysiwyg_24" />
