@@ -18,6 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -48,7 +49,7 @@ public class GoalsFragment extends Fragment {
 
     String mTitle[] = {"Acqua", "Grassi Bruciati"};
     String mDescription[] = {"Quantità di acqua da bere", "Calorie da bruciare"};
-    Boolean userGoals[];
+    Boolean userGoals[] = {false, false};
     int progressGoals[];
     int valueGoals[];
     int images[] = {R.drawable.ic_baseline_local_drink_24, R.drawable.ic_kcal};
@@ -111,14 +112,17 @@ public class GoalsFragment extends Fragment {
 
 
                     JSONObject res = response.getJSONObject("goal");
-                    JSONArray status = res.getJSONArray("status");
-                    Log.d("status to string", status.toString());
-                    userGoals = new Boolean[status.length()];
-                    for (int i = 0; i < status.length(); i++) {
-                        userGoals[i] = status.getBoolean(i);
+                    if (res != null) {
+                        JSONArray status = res.getJSONArray("status");
+                        Log.d("status to string", status.toString());
+                        userGoals = new Boolean[status.length()];
+                        for (int i = 0; i < status.length(); i++) {
+                            userGoals[i] = status.getBoolean(i);
 
+                        }
+                        setSwitches();
                     }
-                    setSwitches();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
 
@@ -180,6 +184,11 @@ public class GoalsFragment extends Fragment {
             }
 
         }
+
+    }
+
+    public void updateGoals() {
+
 
     }
 
