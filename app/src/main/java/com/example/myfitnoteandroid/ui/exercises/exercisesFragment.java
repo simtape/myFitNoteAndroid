@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,14 +43,15 @@ public class exercisesFragment extends Fragment {
     ListView listView;
     private List<String> nameExercises = new ArrayList<>();
     private List<String> nameGear = new ArrayList<>();
+    SearchView searchViewExe;
+    ShowExercisesAdapter adapter;
 
-    private exercisesViewModel slideshowViewModel;
+
 
 
     @Override
     public void onStart() {
         super.onStart();
-        //this.getExercises();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -59,12 +61,28 @@ public class exercisesFragment extends Fragment {
         View root = inflater.inflate(R.layout.exercises_fragment, container, false);
 
         listView = root.findViewById(R.id.list_viewExe);
+        searchViewExe = root.findViewById(R.id.searchViewexe);
+
+        searchViewExe.setOnQueryTextListener(
+                new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        adapter.getFilter().filter(newText);
+                        return false;
+                    }
+                });
+
+
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                ShowExercisesAdapter adapter;
                 adapter = new ShowExercisesAdapter(getContext(), nameExercises, nameGear);
                 listView.setAdapter(adapter);
             }
