@@ -30,17 +30,20 @@ import java.util.Calendar;
 
 public class HomeFragment extends Fragment {
 
-    TextView stepCountertxt, metrestxt;
+    TextView stepCountertxt, metrestxt, pesoTxt, kcaltxt;
     SensorManager sensorManager;
     double MagnitudePrevius = 0;
     private Integer stepCount = 0;
-    float metrespass;
+    float metrespass, kcalpass;
+    String peso;
+    int pesoInt;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
         stepCountertxt = root.findViewById(R.id.stepcounter);
         metrestxt = root.findViewById(R.id.metri);
+        kcaltxt = root.findViewById(R.id.kcal);
         resetstep();
 
 
@@ -51,6 +54,11 @@ public class HomeFragment extends Fragment {
 
        public void onActivityCreated (Bundle savedInstanceState){
            super.onActivityCreated(savedInstanceState);
+           SessionManager sessionManager = new SessionManager(getContext());
+           peso = sessionManager.getPeso();
+           pesoInt = Integer.parseInt(peso);
+
+
             sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
             Sensor stepCounter = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
            SensorEventListener stepDetector = new SensorEventListener() {
@@ -70,6 +78,12 @@ public class HomeFragment extends Fragment {
                     stepCountertxt.setText(String.valueOf(StepCounterHandler.getInstance().getCounter()));
                     metrespass = cMetres();
                     metrestxt.setText(String.valueOf(metrespass));
+                    kcalpass = cKcal();
+                    kcaltxt.setText(String.valueOf(kcalpass));
+
+
+
+
                 }
                }
 
@@ -111,6 +125,11 @@ public class HomeFragment extends Fragment {
     public float cMetres(){
         float metres = (float) (0.762*StepCounterHandler.getInstance().getCounter());
         return metres;
+    }
+
+    public float cKcal(){
+        float kcal = (float) ((0.50)*(pesoInt)*(metrespass*1000));
+        return kcal;
     }
 
     public void resetstep() {
