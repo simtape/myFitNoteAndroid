@@ -1,8 +1,11 @@
 package com.example.myfitnoteandroid.ui.goals;
 
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -49,6 +52,7 @@ public class GoalsFragment extends Fragment {
 
     String mTitle[] = {"Acqua", "Grassi Bruciati"};
     String mDescription[] = {"Quantità di acqua da bere", "Calorie da bruciare"};
+    Button conferma;
     Boolean userGoals[] = {false, false};
     int progressGoals[];
     int valueGoals[];
@@ -56,6 +60,7 @@ public class GoalsFragment extends Fragment {
     Switch waterSwitch, kcalSwitch;
     ViewGroup root;
     private JSONObject postData;
+    private JSONObject goals;
     int arraySize;
     TextView water, kcal;
 
@@ -63,10 +68,6 @@ public class GoalsFragment extends Fragment {
         return new GoalsFragment();
     }
 
-    public void onCreate() {
-
-
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -80,17 +81,10 @@ public class GoalsFragment extends Fragment {
         kcalSwitch = root.findViewById(R.id.switchKcal);
         water.setText(mTitle[0]);
         kcal.setText(mTitle[1]);
-  /*     Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setSwitches();
-            }
-        }, 3000);*/
-
-
+        confermaButton();
         return root;
     }
+
 
     public void getGoals() {
         postData = new JSONObject();
@@ -109,16 +103,14 @@ public class GoalsFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-
-
                     JSONObject res = response.getJSONObject("goal");
+                    goals = response.getJSONObject("goal");
                     if (res != null) {
                         JSONArray status = res.getJSONArray("status");
                         Log.d("status to string", status.toString());
                         userGoals = new Boolean[status.length()];
                         for (int i = 0; i < status.length(); i++) {
                             userGoals[i] = status.getBoolean(i);
-
                         }
                         setSwitches();
                     }
@@ -158,9 +150,45 @@ public class GoalsFragment extends Fragment {
     }
 
     public void createGoals() {
+        postData = new JSONObject();
+        SessionManager sessionManager = new SessionManager(getContext());
+        try {
+            postData.put("id_user", sessionManager.getSession());
+            Log.d("user_id", sessionManager.getSession());
+            Log.d("user_id", "d" + postData.getBoolean("status[0]"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         String url = "https://myfitnote.herokuapp.com/goals/create_goals";
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+
+
+                    JSONObject res = response.getJSONObject("goal");
+                    if (res != null) {
+                        JSONArray status = res.getJSONArray("status");
+                        Log.d("status to string", status.toString());
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+
+        });
 
     }
+
 
     public void setSwitches() {
         //ricerca di acqua
@@ -192,5 +220,28 @@ public class GoalsFragment extends Fragment {
 
     }
 
+    public void confermaButton() {
+        conferma = root.findViewById(R.id.conferma);
+        conferma.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(View view) {
+                Switch switchBtn;
+                Log.d("msg", "but");
+                switchBtn = root.findViewById(R.id.switchWater);
+                if (switchBtn.isChecked()) {
+                    userGoals[0] = true;
+                } else {
+                    userGoals[0] = false;
+                }
+                switchBtn = root.findViewById(R.id.switchKcal);
+                if (switchBtn.isChecked()) {
+                    userGoals[1] = true;
+                } else {
+                    userGoals[1] = false;
+                }
+            }
+        });
+    }
 
 }

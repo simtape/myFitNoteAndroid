@@ -17,21 +17,6 @@
         >
 
         <EditText
-            android:id="@+id/nome"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:background="@drawable/edit_text_bg"
-            android:hint="Nome"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".8" />
-
-        <EditText
             android:id="@+id/Cognome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -49,6 +34,21 @@
             app:layout_constraintVertical_bias="0"
             app:layout_constraintWidth_percent=".8" />
 
+
+        <EditText
+            android:id="@+id/nome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/edit_text_bg"
+            android:hint="Nome"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".8" />
 
         <EditText
             android:id="@+id/Email"
