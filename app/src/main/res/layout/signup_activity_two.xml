@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,8 +10,12 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="272dp"
-        android:layout_height="57dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -27,119 +31,181 @@
 
     </TextView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="171dp"
+        >
 
-    <TextView
-        android:id="@+id/Peso"
-        android:layout_width="313dp"
-        android:layout_height="45dp"
-        android:background="@drawable/edit_text_bg"
-        android:hint="Peso"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_bg"
+            ></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearReg1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="204dp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.12"
-        app:layout_constraintWidth_percent=".8" />
+        >
 
-    <TextView
-        android:id="@+id/Altezza"
-        android:layout_width="313dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/edit_text_bg"
-        android:hint="Altezza"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+        <TextView
+            android:id="@+id/Peso"
+            android:layout_width="250dp"
+            android:layout_height="45dp"
+            android:layout_gravity="start|center"
+            android:background="@drawable/edit_text_bg"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinnerPeso"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_gravity="start|center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.118"
+            tools:layout_editor_absoluteX="4dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearReg2"
+        android:layout_below="@+id/linearReg1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="257dp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Peso"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintWidth_percent=".8" />
+        >
 
-    <TextView
-        android:id="@+id/Data_nascita"
-        android:layout_width="248dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/edit_text_bg"
-        android:hint="Data di nascita"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.331"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.295"
-        app:layout_constraintWidth_percent=".8" />
+        <TextView
+            android:id="@+id/Altezza"
+            android:layout_width="250dp"
+            android:layout_height="45dp"
+            android:layout_gravity="start|center"
+            android:background="@drawable/edit_text_bg"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    <Button
-        android:id="@+id/btn_dtn"
-        android:layout_width="48dp"
-        android:layout_height="53dp"
-        android:layout_marginEnd="356dp"
-        android:layout_marginRight="356dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/date_icon"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip"
-        android:textColor="@color/cardview_light_background"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:iconGravity="textStart"
-        app:iconPadding="10dp"
-        app:layout_constraintBottom_toBottomOf="@id/Data_nascita"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent=".8" />
+        </TextView>
+
+        <Spinner
+            android:id="@+id/spinnerAltezza"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_gravity="start|center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.118"
+            tools:layout_editor_absoluteX="4dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearReg3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:layout_below="@+id/linearReg2"
+        tools:layout_editor_absoluteY="233dp">
+
+        <TextView
+            android:id="@+id/Data_nascita"
+            android:layout_width="260dp"
+            android:layout_height="46dp"
+            android:layout_gravity="start|center"
+            android:background="@drawable/edit_text_bg"
+            android:gravity="center"
+            android:hint="Data di nascita"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btn_dtn"
+            android:layout_width="48dp"
+            android:layout_height="53dp"
+            android:layout_gravity="center"
+            android:background="@drawable/date_icon"
+            android:gravity="center"
+            android:paddingLeft="10dip"
+            android:paddingTop="10dp"
+            android:paddingRight="10dip"
+            android:paddingBottom="10dp"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:iconPadding="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/Data_nascita"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="400dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_bg"
+            ></TextView>
+    </LinearLayout>
 
     <Button
         android:id="@+id/reg_parte2"
         android:layout_width="329dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="38dp"
+        android:layout_marginRight="38dp"
+
+        android:layout_marginBottom="68dp"
         android:background="@drawable/button_bg"
+        android:gravity="center"
         android:text="PROSEGUI"
         android:textColor="@color/cardview_light_background"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Data_nascita"
-        app:layout_constraintWidth_percent=".8" />
+        tools:layout_editor_absoluteY="590dp" />
 
 
-    <Spinner
-        android:id="@+id/spinnerPeso"
-        android:layout_width="51dp"
-        android:layout_height="47dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.118"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="1dp" />
-
-    <Spinner
-        android:id="@+id/spinnerAltezza"
-        android:layout_width="49dp"
-        android:layout_height="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.214"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="1dp" />
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

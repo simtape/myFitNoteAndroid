@@ -10,6 +10,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,8 +35,8 @@ public class HomeFragment extends Fragment {
     SensorManager sensorManager;
     double MagnitudePrevius = 0;
     private Integer stepCount = 0;
-    float metrespass, kcalpass;
-    String peso;
+    float metrespass, kcalpass , kcalConvert;
+    String peso, KcalString;
     int pesoInt;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -79,8 +80,13 @@ public class HomeFragment extends Fragment {
                     metrespass = cMetres();
                     metrestxt.setText(String.valueOf(metrespass));
                     kcalpass = cKcal();
-                    kcaltxt.setText(String.valueOf(kcalpass));
 
+
+                    //Da sistemare le cifre dopo la virgola
+                    KcalString= String.valueOf(kcalpass);
+                    String.format(KcalString, "%.2f");
+                    kcaltxt.setText(String.valueOf(KcalString));
+                    //////////////////////////////////////
 
 
 

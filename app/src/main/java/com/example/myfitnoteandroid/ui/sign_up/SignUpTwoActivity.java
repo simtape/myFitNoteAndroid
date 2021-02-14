@@ -3,6 +3,7 @@ package com.example.myfitnoteandroid.ui.sign_up;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
@@ -58,7 +60,7 @@ public class SignUpTwoActivity extends AppCompatActivity implements View.OnClick
         }
 
         List<String> altezza = new ArrayList<>();
-        peso.add("- scegli la tua altezza -");
+        altezza.add("- scegli la tua altezza -");
         for (k = 100; k <= 210; k++){
             String stringaltezza = String.valueOf(k);
             altezza.add( stringaltezza);
@@ -71,7 +73,7 @@ public class SignUpTwoActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String yourPeso = spinPeso.getSelectedItem().toString();
-                if(!yourPeso.equals("- scegli il tuo peso ")){
+                if(!yourPeso.equals("- scegli il tuo peso -")){
                     pesotext.setText(yourPeso);
                 } else {
                     pesotext.setText("");
@@ -111,12 +113,21 @@ public class SignUpTwoActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()){
             case  R.id.reg_parte2:
-            SessionManager sessionManager = new SessionManager(this);
-            sessionManager.setPeso(pesotext.getText().toString());
-            sessionManager.setAltezza(altezzatext.getText().toString());
-            Intent intent = new Intent(this, SignUpThreeActivity.class);
-            startActivity(intent);
-            break;
+                String date = datetxt.getText().toString();
+                String peso = pesotext.getText().toString();
+                String altezza = altezzatext.getText().toString();
+                if (date.trim().isEmpty() || peso.trim().isEmpty() || altezza.trim().isEmpty()) {
+                    Toast.makeText(this, "Non hai compilato tutti i campi", Toast.LENGTH_LONG).show();
+                }else {
+                    SessionManager sessionManager = new SessionManager(this);
+                    sessionManager.setPeso(pesotext.getText().toString());
+                    sessionManager.setAltezza(altezzatext.getText().toString());
+                    Intent intent = new Intent(this, SignUpThreeActivity.class);
+                    startActivity(intent);
+                }
+                    break;
+
+
             case R.id.btn_dtn:
                 c  = Calendar.getInstance();
                 int  day = c.get(Calendar.DAY_OF_MONTH);
