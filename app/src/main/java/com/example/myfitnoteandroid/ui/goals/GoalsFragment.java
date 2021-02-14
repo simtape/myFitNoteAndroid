@@ -1,31 +1,23 @@
 package com.example.myfitnoteandroid.ui.goals;
 
 import androidx.annotation.RequiresApi;
-import androidx.lifecycle.ViewModelProvider;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.TextClock;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -34,18 +26,12 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.myfitnoteandroid.MainActivity;
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
-import com.example.myfitnoteandroid.ui.sheets.SheetDetailsActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.lang.reflect.Array;
-
-import static android.widget.Toast.LENGTH_SHORT;
 
 
 public class GoalsFragment extends Fragment {
@@ -61,9 +47,9 @@ public class GoalsFragment extends Fragment {
     ViewGroup root;
     private JSONObject postData;
     private JSONObject goals;
+    private JSONObject newGoal;
     int arraySize;
     TextView water, kcal;
-
     public static GoalsFragment newInstance() {
         return new GoalsFragment();
     }
@@ -81,6 +67,8 @@ public class GoalsFragment extends Fragment {
         kcalSwitch = root.findViewById(R.id.switchKcal);
         water.setText(mTitle[0]);
         kcal.setText(mTitle[1]);
+        water_switchLst();
+        kcal_switchLst();
         confermaButton();
         return root;
     }
@@ -105,6 +93,7 @@ public class GoalsFragment extends Fragment {
                 try {
                     JSONObject res = response.getJSONObject("goal");
                     goals = response.getJSONObject("goal");
+                    Log.d("status to string", goals.toString());
                     if (res != null) {
                         JSONArray status = res.getJSONArray("status");
                         Log.d("status to string", status.toString());
@@ -197,22 +186,26 @@ public class GoalsFragment extends Fragment {
 
             if (userGoals[0]) {
                 waterSwitch.setChecked(true);
+                /*value.setVisibility(View.VISIBLE);
+            }else {
+                value.setVisibility(View.INVISIBLE);*/
             }
 
         }
-
         //ricerca di kcal
         for (int j = 0; j < mTitle.length; j++) {
             Log.d("for", "entra");
 
             if (userGoals[1]) {
-
-
                 kcalSwitch.setChecked(true);
-            }
+                //value.setVisibility(View.INVISIBLE);
+            }//else {
+                //value.setVisibility(View.INVISIBLE);
+            //}
 
         }
-
+        setWaterView();
+        setKcalView();
     }
 
     public void updateGoals() {
@@ -222,26 +215,60 @@ public class GoalsFragment extends Fragment {
 
     public void confermaButton() {
         conferma = root.findViewById(R.id.conferma);
+        Log.d("msg", "but");
         conferma.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View view) {
-                Switch switchBtn;
                 Log.d("msg", "but");
-                switchBtn = root.findViewById(R.id.switchWater);
-                if (switchBtn.isChecked()) {
+                if (waterSwitch.isChecked()) {
                     userGoals[0] = true;
                 } else {
                     userGoals[0] = false;
                 }
-                switchBtn = root.findViewById(R.id.switchKcal);
-                if (switchBtn.isChecked()) {
+                if ( kcalSwitch.isChecked()) {
                     userGoals[1] = true;
                 } else {
                     userGoals[1] = false;
                 }
             }
         });
+    }
+
+    public void water_switchLst() {
+        Button water = (Button) root.findViewById(R.id.switchWater);
+        water.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setWaterView();
+            }
+        });
+    }
+    public void kcal_switchLst() {
+        Button kcal = (Button) root.findViewById(R.id.switchKcal);
+        kcal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setKcalView();
+            }
+        });
+    }
+
+    public void setWaterView() {
+        CardView water_value = (CardView) root.findViewById(R.id.water_value);
+        //ricerca di acqua
+            if (waterSwitch.isChecked()) {
+                water_value.setVisibility(View.VISIBLE);
+            }else {
+                water_value.setVisibility(View.GONE);
+            }
+    }
+    public void setKcalView() {
+        CardView kcal_value = (CardView) root.findViewById(R.id.kcal_value);
+        if (kcalSwitch.isChecked()) {
+            kcal_value.setVisibility(View.VISIBLE);
+        }else {
+            kcal_value.setVisibility(View.GONE);
+        }
     }
 
 }
