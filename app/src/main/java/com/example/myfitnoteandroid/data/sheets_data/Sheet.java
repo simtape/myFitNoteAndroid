@@ -2,6 +2,7 @@ package com.example.myfitnoteandroid.data.sheets_data;
 
 import com.example.myfitnoteandroid.data.sheets_data.SheetExercise;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,14 +10,15 @@ public class Sheet {
     private String name;
     private String id;
     private List<String> days;
-    private List<SheetExercise>sheetExercises;
+    private List<SheetExercise> sheetExercises;
     private String date;
 
-    public Sheet(String name, String id, List<SheetExercise> sheetExercises, List<String>days, String date) {
+    public Sheet(String name, String id, List<SheetExercise> sheetExercises, List<String> days, String date) {
         this.name = name;
         this.id = id;
         this.sheetExercises = sheetExercises;
         this.date = date;
+        this.days = days;
     }
 
     public String getName() {
@@ -42,16 +44,47 @@ public class Sheet {
     public void setSheetExercises(List<SheetExercise> sheetExercises) {
         this.sheetExercises = sheetExercises;
     }
-    public List<String>getDays(){
+
+    public List<String> getDays() {
         return this.days;
     }
 
-    public void setDate(String date){
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public String getDate(){
+    public String getDate() {
         return date;
 
+    }
+
+    public List<String> getNamesExercises() {
+        List<String> exercises = new ArrayList<>();
+        for (int i = 0; i < sheetExercises.size(); i++) {
+            exercises.add(sheetExercises.get(i).getNameExercise());
+
+
+        }
+        return exercises;
+    }
+
+    public List<String> getSeries() {
+        List<String> series = new ArrayList<>();
+        for (int i = 0; i < sheetExercises.size(); i++) {
+            series.add(sheetExercises.get(i).getSerie());
+
+
+        }
+        return series;
+    }
+
+    public List<String> getReps() {
+        List<String> reps = new ArrayList<>();
+        for (int i = 0; i < sheetExercises.size(); i++) {
+            reps.add(sheetExercises.get(i).getRep());
+
+
+        }
+        return reps;
     }
 }

@@ -127,8 +127,8 @@ public class ShowSheetsFragment extends Fragment {
                                 String repsString = repsJsonArray.getString(j);
                                 String seriesString = seriesJsonArray.getString(j);
 
-                                int reps = Integer.valueOf(repsString);
-                                int series = Integer.valueOf(seriesString);
+                                String reps = repsString;
+                                String series = seriesString;
 
                                 SheetExercise sheetExercise = new SheetExercise(exercise, reps, series);
                                 sheetExerciseList.add(sheetExercise);

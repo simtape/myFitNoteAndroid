@@ -28,6 +28,11 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/schede" />
         <item
+            android:id="@+id/nav_scheda"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/crea_scheda" />
+
+        <item
             android:id="@+id/nav_obbiettivi"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/obbiettivi"/>
