@@ -2,11 +2,15 @@ package com.example.myfitnoteandroid.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -40,6 +44,7 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
     EditText email;
     EditText password;
     Button login;
+    CheckBox showpassword;
     float v = 0;
     private JSONObject postData, userJsonObject;
     List<SheetExercise> sheetExerciseList = new ArrayList<>();
@@ -59,10 +64,22 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
         email = root.findViewById(R.id.email);
         password = root.findViewById(R.id.password);
         login = root.findViewById(R.id.login);
+        showpassword = root.findViewById(R.id.showpassword);
+        showpassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
 
         email.setTranslationX(800);
         password.setTranslationX(800);
         login.setTranslationX(800);
+        showpassword.setTranslationX(800);
 
         email.setAlpha(v);
         password.setAlpha(v);
@@ -73,7 +90,7 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
         email.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
         password.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
         login.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();
-
+        showpassword.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();
         return root;
     }
 

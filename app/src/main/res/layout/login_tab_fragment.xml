@@ -32,6 +32,7 @@
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias=".5"
@@ -39,6 +40,17 @@
         app:layout_constraintTop_toBottomOf="@+id/email"
         app:layout_constraintVertical_bias="0"
         app:layout_constraintWidth_percent=".8" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Controlla Password"
+        android:id="@+id/showpassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password">
+
+    </CheckBox>
 
     <Button
         android:id="@+id/login"
