@@ -15,7 +15,7 @@ public class SessionManager {
     String REGISTRATION_PASSWORD = "session_password";
     String REGISTRATION_PESO = "registration_peso";
     String REGISTRATION_ALTEZZA = "registration_altezza";
-
+    String REGISTRATION_DATA = "registration_data";
 
     public SessionManager(Context context) {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -114,6 +114,13 @@ public class SessionManager {
         editor.putString(REGISTRATION_ALTEZZA, altezza).commit();
     }
 
+    public String getData(){
+        return  sharedPreferences.getString(REGISTRATION_DATA,null);
+    }
+
+    public void setData(String data){
+        editor.putString(REGISTRATION_DATA, data).commit();
+    }
 
 
 }
