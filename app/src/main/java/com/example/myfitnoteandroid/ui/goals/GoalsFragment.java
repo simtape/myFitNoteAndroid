@@ -1,5 +1,7 @@
 package com.example.myfitnoteandroid.ui.goals;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +10,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +41,7 @@ import java.util.Arrays;
 public class GoalsFragment extends Fragment {
 
     String mTitle[] = {"Acqua", "Grassi Bruciati"};
-    Button conferma;
+    Button conferma,conferma2;
     String id_user;
     Goal water_goal = new Goal();
     Goal kcal_goal = new Goal();
@@ -60,6 +63,8 @@ public class GoalsFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         getGoals();
         root = (ViewGroup) inflater.inflate(R.layout.goals_fragment, container, false);
+        conferma = root.findViewById(R.id.conferma);
+        conferma.setEnabled(false);
         water = root.findViewById(R.id.tvWater);
         kcal = root.findViewById(R.id.tvKcal);
         kcal_value = root.findViewById(R.id.kcal_value_num);
@@ -68,6 +73,8 @@ public class GoalsFragment extends Fragment {
         kcalSwitch = root.findViewById(R.id.switchKcal);
         water.setText(mTitle[0]);
         kcal.setText(mTitle[1]);
+        water_value.addTextChangedListener(edit_text);
+        kcal_value.addTextChangedListener(edit_text);
         water_switchLst();
         kcal_switchLst();
         confermaButton();
@@ -135,7 +142,6 @@ public class GoalsFragment extends Fragment {
         queue.add(jsonObjectRequest);
 
     }
-
     public void createGoals() {
         Boolean[] status_array = new Boolean[]{false,false};
         JSONArray status_jarray = new JSONArray(Arrays.asList(status_array));
@@ -242,6 +248,7 @@ public class GoalsFragment extends Fragment {
                     JSONObject res = response.getJSONObject("goal");
                     Log.d("Post",res.toString());
                     Toast.makeText(getContext(), "Modifica effettuata", Toast.LENGTH_LONG).show();
+                    conferma.setEnabled(false);
                 } catch (JSONException e) {
                     e.printStackTrace();
 
@@ -309,6 +316,7 @@ public class GoalsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 setWaterView();
+                conferma.setEnabled(true);
             }
         });
     }
@@ -318,10 +326,29 @@ public class GoalsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 setKcalView();
+                conferma.setEnabled(true);
             }
         });
     }
+    public TextWatcher edit_text = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            String wat = water_value.getText().toString().trim();
+            String kal = kcal_value.getText().toString().trim();
+            conferma.setEnabled((wat.isEmpty())||(kal.isEmpty()));
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+
+    };
     public void setWaterView() {
         CardView water_value = (CardView) root.findViewById(R.id.water_value);
         setWaterHint();
