@@ -122,6 +122,7 @@ public class SignUpTwoActivity extends AppCompatActivity implements View.OnClick
                     SessionManager sessionManager = new SessionManager(this);
                     sessionManager.setPeso(pesotext.getText().toString());
                     sessionManager.setAltezza(altezzatext.getText().toString());
+                    sessionManager.setData(datetxt.getText().toString());
                     Intent intent = new Intent(this, SignUpThreeActivity.class);
                     startActivity(intent);
                 }
