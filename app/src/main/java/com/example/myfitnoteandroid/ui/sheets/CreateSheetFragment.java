@@ -30,6 +30,7 @@ import com.example.myfitnoteandroid.data.SessionManager;
 import com.example.myfitnoteandroid.data.sheets_data.Sheet;
 import com.example.myfitnoteandroid.data.sheets_data.SheetExercise;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -143,14 +144,34 @@ public class CreateSheetFragment extends Fragment implements View.OnClickListene
         newSheet = new Sheet(name, id, exercises, days, date);
 
         getExercises();
+        JSONArray exercisesJSONArray = new JSONArray();
+        for(int i = 0; i<newSheet.getSheetExercises().size(); i++){
+
+            exercisesJSONArray.put(newSheet.getSheetExercises().get(i).getNameExercise());
+        }
+
+        JSONArray repsJSONArray = new JSONArray();
+        for(int i = 0; i<newSheet.getSheetExercises().size(); i++){
+
+            repsJSONArray.put(newSheet.getSheetExercises().get(i).getRep());
+        }
+
+        JSONArray seriesJSONArray = new JSONArray();
+        for(int i = 0; i<newSheet.getSheetExercises().size(); i++){
+
+            seriesJSONArray.put(newSheet.getSheetExercises().get(i).getSerie());
+        }
+
+
 
         try {
             newSheetJO.put("name_sheet", newSheet.getName());
             newSheetJO.put("days", newSheet.getDays());
             newSheetJO.put("user_id", newSheet.getId());
-            newSheetJO.put("exercises", newSheet.getNamesExercises());
-            newSheetJO.put("reps", newSheet.getReps());
-            newSheetJO.put("series", newSheet.getSeries());
+            //newSheetJO.put("exercises", newSheet.getNamesExercises());
+            newSheetJO.put("exercises", exercisesJSONArray);
+            newSheetJO.put("reps", repsJSONArray);
+            newSheetJO.put("series", seriesJSONArray);
             //newSheetJO.put("date", newSheet.getDate());
 
         } catch (JSONException e) {

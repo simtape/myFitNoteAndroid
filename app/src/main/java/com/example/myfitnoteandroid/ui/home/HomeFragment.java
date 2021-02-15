@@ -35,7 +35,8 @@ public class HomeFragment extends Fragment {
     SensorManager sensorManager;
     double MagnitudePrevius = 0;
     private Integer stepCount = 0;
-    float metrespass, kcalpass , kcalConvert;
+    float metrespass  , kcalConvert;
+    double kcalpass;
     String peso, KcalString;
     int pesoInt;
 
@@ -84,8 +85,8 @@ public class HomeFragment extends Fragment {
 
                     //Da sistemare le cifre dopo la virgola
                     KcalString= String.valueOf(kcalpass);
-                    String.format(KcalString, "%.2f");
-                    kcaltxt.setText(String.valueOf(KcalString));
+                    //String.format(KcalString, "%.2f");
+                    kcaltxt.setText(KcalString);
                     //////////////////////////////////////
 
 

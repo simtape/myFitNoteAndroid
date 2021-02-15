@@ -46,7 +46,7 @@ import java.util.List;
 
 public class ShowSheetsFragment extends Fragment {
 
-    List<SheetExercise> sheetExerciseList = new ArrayList<>();
+    //List<SheetExercise> sheetExerciseList = new ArrayList<>();
     List<String> days = new ArrayList<>();
     JSONArray jsonArrayResponse;
     ViewGroup root;
@@ -79,6 +79,15 @@ public class ShowSheetsFragment extends Fragment {
                 ShowSheetsAdapter showSheetsAdapter;
                 showSheetsAdapter = new ShowSheetsAdapter(getContext(), names, SheetsHandler.getInstance().getUserSheets());
                 listView.setAdapter(showSheetsAdapter);
+
+         /*       for(int i = 0; i<SheetsHandler.getInstance().getUserSheets().size(); i++){
+                    Sheet sheet = SheetsHandler.getInstance().getUserSheets().get(i);
+                    Log.d("SCHEDA NUMERO", String.valueOf(i));
+                    Log.d("nome", sheet.getName());
+                    Log.d("esercizi", sheet.getNamesExercises().toString());
+
+
+                }*/
 
             }
         }, 1500);
@@ -114,11 +123,15 @@ public class ShowSheetsFragment extends Fragment {
                     if (jsonArrayResponse.length() == 0) {
 
                     } else {
-                        for (int i = 0; i < jsonArrayResponse.length(); i++) {
 
+                        for (int i = 0; i < jsonArrayResponse.length(); i++) {
+                            List<SheetExercise> sheetExerciseList = new ArrayList<>();
+                            //sheetExerciseList.clear();
                             JSONObject jsonObject = jsonArrayResponse.getJSONObject(i);
-                            sheetExerciseList.clear();
+                            Log.d("scheda", jsonObject.toString());
+
                             for (int j = 0; j < jsonObject.getJSONArray("exercises").length(); j++) {
+
                                 JSONArray exerciseJsonArray = jsonObject.getJSONArray("exercises");
                                 JSONArray repsJsonArray = jsonObject.getJSONArray("reps");
                                 JSONArray seriesJsonArray = jsonObject.getJSONArray("series");
@@ -126,12 +139,15 @@ public class ShowSheetsFragment extends Fragment {
                                 String exercise = exerciseJsonArray.getString(j);
                                 String repsString = repsJsonArray.getString(j);
                                 String seriesString = seriesJsonArray.getString(j);
-
+                               /* Log.d("SCHEDA NOME ", jsonObject.getString("name_sheet"));
+                                Log.d("reps", repsString);
+                                Log.d("esercizio", exercise);*/
                                 String reps = repsString;
                                 String series = seriesString;
 
                                 SheetExercise sheetExercise = new SheetExercise(exercise, reps, series);
                                 sheetExerciseList.add(sheetExercise);
+
                             }
 
                             String name = jsonObject.getString("name_sheet");
@@ -144,9 +160,10 @@ public class ShowSheetsFragment extends Fragment {
                                 days.add(daysJsonArray.getString(k));
 
                             }
+
                             Sheet sheet = new Sheet(name, id, sheetExerciseList, days, splittedDate);
-                            for (int m = 0; i < sheetExerciseList.size(); i++) {
-                                Log.d("esercizi", String.valueOf(sheetExerciseList.size()));
+                           for (int m = 0; m < sheetExerciseList.size(); m++) {
+                               Log.d("esercizi", sheetExerciseList.get(m).getNameExercise());
 
                             }
 
@@ -167,6 +184,8 @@ public class ShowSheetsFragment extends Fragment {
 
 
         queue.add(jsonObjectRequest);
+
+
 
     }
 

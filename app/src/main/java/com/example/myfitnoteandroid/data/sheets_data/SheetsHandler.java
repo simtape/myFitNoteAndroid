@@ -12,7 +12,7 @@ public class SheetsHandler {
     }
 
     public void resetSheetsHandler() {
-        userSheets = new ArrayList<>();
+        userSheets.clear();
 
     }
 

@@ -34,7 +34,7 @@ public class SheetDetailsActivity extends AppCompatActivity {
 
             objs[i] = sheet.getSheetExercises().get(i).getNameExercise();
         }
-
+        Log.d("esercizi: ", sheet.getNamesExercises().toString());
         SheetDetailsAdapter sheetDetailsAdapter;
         sheetDetailsAdapter = new SheetDetailsAdapter(this, objs, sheet);
         listView.setAdapter(sheetDetailsAdapter);
