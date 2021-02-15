@@ -117,14 +117,13 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/kcal_value"
                     android:layout_width="match_parent"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/transparent"
                     app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                    >
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -140,7 +139,9 @@
                                 android:id="@+id/kcal_value_tit"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:text="TextView"
+                                android:text="Kcal da bruciare:"
+                                android:gravity="center"
+                                android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.0"
@@ -157,8 +158,11 @@
                                 android:id="@+id/kcal_value_num"
                                 android:layout_width="114dp"
                                 android:layout_height="match_parent"
+                                android:background="@drawable/text_view_bg"
                                 android:ems="10"
+                                android:hint="@+id/kcal_hint"
                                 android:inputType="number"
+                                android:padding="10dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.03"
@@ -172,12 +176,14 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginRight="16dp"
-                                android:text="TextView"
+                                android:text="Kcal"
+                                android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.59"
+                                app:layout_constraintHorizontal_bias="0.22"
                                 app:layout_constraintStart_toEndOf="@+id/kcal_value_num"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.64" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -256,14 +262,13 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/water_value"
                     android:layout_width="match_parent"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/transparent"
+                    app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-                    android:backgroundTint="@android:color/transparent"
-                    app:cardElevation="0dp"
-                    >
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
                     <LinearLayout
                         android:id="@+id/linearLayout5"
@@ -280,7 +285,9 @@
                                 android:id="@+id/water_value_tit"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:text="Ciao"
+                                android:text="Acqua da bere:"
+                                android:textStyle="bold"
+                                android:gravity="center"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.388"
@@ -297,8 +304,10 @@
                                 android:id="@+id/water_value_num"
                                 android:layout_width="114dp"
                                 android:layout_height="match_parent"
+                                android:background="@drawable/text_view_bg"
                                 android:ems="10"
                                 android:inputType="number"
+                                android:padding="10dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.03"
@@ -312,12 +321,14 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginRight="16dp"
-                                android:text="TextView"
+                                android:text="Litri"
+                                android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.59"
+                                app:layout_constraintHorizontal_bias="0.207"
                                 app:layout_constraintStart_toEndOf="@+id/water_value_num"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.64" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </LinearLayout>
