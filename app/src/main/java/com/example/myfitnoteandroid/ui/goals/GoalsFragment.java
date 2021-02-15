@@ -52,11 +52,9 @@ public class GoalsFragment extends Fragment {
     int arraySize;
     TextView water, kcal;
     EditText kcal_value,water_value;
-    JSONObject up;
     public static GoalsFragment newInstance() {
         return new GoalsFragment();
     }
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -251,10 +249,7 @@ public class GoalsFragment extends Fragment {
                     conferma.setEnabled(false);
                 } catch (JSONException e) {
                     e.printStackTrace();
-
                 }
-
-
             }
         }, new Response.ErrorListener() {
             public void onErrorResponse(VolleyError error) {
@@ -278,7 +273,6 @@ public class GoalsFragment extends Fragment {
 
             }
         });
-
         queue.add(jsonObjectRequest);
     }
 
@@ -294,6 +288,7 @@ public class GoalsFragment extends Fragment {
                     w = Integer.parseInt(water_value.getText().toString());
                 if(w>3){
                     Toast.makeText(getContext(), "MAX 3 Litri", Toast.LENGTH_LONG).show();
+                    return;
                 }else if(w!=0){
                     water_goal.setValue_goal(w);
                 }}
@@ -302,6 +297,7 @@ public class GoalsFragment extends Fragment {
                     k = Integer.parseInt(kcal_value.getText().toString());
                 if(k>4000){
                     Toast.makeText(getContext(), "MAX 4000 Kcal", Toast.LENGTH_LONG).show();
+                    return;
                 }else if(k!=0){
                     kcal_goal.setValue_goal(k);
                 }}
@@ -376,6 +372,4 @@ public class GoalsFragment extends Fragment {
         String kcal = String.valueOf(kcal_goal.getValue_goal());
         kcal_value.setHint(kcal);
     }
-
-
 }
