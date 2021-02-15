@@ -7,11 +7,13 @@ import android.os.Looper;
 import android.provider.DocumentsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.SearchEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -51,6 +53,8 @@ public class ShowSheetsFragment extends Fragment {
     JSONArray jsonArrayResponse;
     ViewGroup root;
     ListView listView;
+    SearchView searchView;
+    ShowSheetsAdapter showSheetsAdapter;
     int img;
 
 
@@ -67,17 +71,17 @@ public class ShowSheetsFragment extends Fragment {
         this.getSheets();
         root = (ViewGroup) inflater.inflate(R.layout.show_sheets_fragment, container, false);
         listView = root.findViewById(R.id.list_view);
-
+        searchView = root.findViewById(R.id.searchViewSheets);
 
         Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                String[] names = SheetsHandler.getInstance().nameSheets();
 
+                List<String> dates = SheetsHandler.getInstance().datesList();
+                List<String> names = SheetsHandler.getInstance().namesList();
 
-                ShowSheetsAdapter showSheetsAdapter;
-                showSheetsAdapter = new ShowSheetsAdapter(getContext(), names, SheetsHandler.getInstance().getUserSheets());
+                showSheetsAdapter = new ShowSheetsAdapter(getContext(), names, dates);
                 listView.setAdapter(showSheetsAdapter);
 
          /*       for(int i = 0; i<SheetsHandler.getInstance().getUserSheets().size(); i++){
@@ -91,6 +95,20 @@ public class ShowSheetsFragment extends Fragment {
 
             }
         }, 1500);
+
+        searchView.setOnQueryTextListener(
+                new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        showSheetsAdapter.getFilter().filter(newText);
+                        return false;
+                    }
+                });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -155,15 +173,16 @@ public class ShowSheetsFragment extends Fragment {
                             String date = jsonObject.getString("date");
                             String splittedDate = date.substring(0, 10);
                             JSONArray daysJsonArray = jsonObject.getJSONArray("days");
-
+                            days.clear();
+                            
                             for (int k = 0; k < daysJsonArray.length(); k++) {
                                 days.add(daysJsonArray.getString(k));
 
                             }
 
                             Sheet sheet = new Sheet(name, id, sheetExerciseList, days, splittedDate);
-                           for (int m = 0; m < sheetExerciseList.size(); m++) {
-                               Log.d("esercizi", sheetExerciseList.get(m).getNameExercise());
+                            for (int m = 0; m < sheetExerciseList.size(); m++) {
+                                Log.d("esercizi", sheetExerciseList.get(m).getNameExercise());
 
                             }
 
@@ -184,7 +203,6 @@ public class ShowSheetsFragment extends Fragment {
 
 
         queue.add(jsonObjectRequest);
-
 
 
     }

@@ -19,6 +19,7 @@
             android:padding="15dp">
 
             <TextView
+                android:id="@+id/name_sheetTV"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
@@ -42,11 +43,42 @@
                     android:src="@drawable/ic_date" />
 
                 <TextView
+                    android:id = "@+id/date_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:text="18/11/2020"
+
                     android:textAlignment="textEnd" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp">
+
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="Giorni di allenamento: "
+                    android:layout_marginRight="10dp"
+
+                    android:textAlignment="textEnd" />
+
+                <TextView
+                    android:id="@+id/training_days"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:textStyle="bold"
+
+                    android:textAlignment="textEnd"
+
+                    />
             </LinearLayout>
 
             <ListView

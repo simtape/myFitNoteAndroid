@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,23 +16,29 @@ import androidx.annotation.Nullable;
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.sheets_data.Sheet;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ShowSheetsAdapter extends ArrayAdapter<String> {
+public class ShowSheetsAdapter extends ArrayAdapter<String> implements Filterable {
 
     Context context;
     String rTitle[];
     String rDescription[];
-    List<Sheet> sheets;
+    List<Sheet> sheets, sheetsFull;
+    List<String> names, namesFull, dates;
 
-    ShowSheetsAdapter(Context c, String title[], /*String description[], */List<Sheet> sheets) {
+    ShowSheetsAdapter(Context c,  /*String description[], List<Sheet> sheets,*/ List<String> names, List<String> dates) {
 
-        super(c, R.layout.row, R.id.textView1, title);
+        super(c, R.layout.row, R.id.textView1, names);
 
         this.context = c;
-        this.rTitle = title;
+
         //this.rDescription = description;
-        this.sheets = sheets;
+        //this.sheetsFull = new ArrayList<>(sheets);
+        //this.sheets = sheets;
+        this.names = names;
+        this.namesFull = new ArrayList<>(names);
+        this.dates = dates;
 
 
     }
@@ -48,8 +56,13 @@ public class ShowSheetsAdapter extends ArrayAdapter<String> {
         // now set our resources on views
         //images.setImageResource(rImgs);
         //myTitle.setText(rTitle[position]);
-        myTitle.setText(sheets.get(position).getName());
-        myDescription.setText(sheets.get(position).getDate());
+        //myTitle.setText(sheets.get(position).getName());
+        //myDescription.setText(sheets.get(position).getDate());
+
+        myTitle.setText(names.get(position));
+        myDescription.setText(dates.get(position));
+
+
         //myDescription.setText(rDescription[position]);
         Log.d("prova schede", "ok");
 
@@ -57,4 +70,42 @@ public class ShowSheetsAdapter extends ArrayAdapter<String> {
         return row;
 
     }
+
+    @NonNull
+    @Override
+    public Filter getFilter() {
+        return customFilter;
+
+
+    }
+
+    private Filter customFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<String> filteredList = namesFull;
+
+            if (!(constraint == null || constraint.length() == 0)) {
+                filteredList = new ArrayList<>();
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (String item : namesFull) {
+                    if (item.toLowerCase().contains(filterPattern))
+                        filteredList.add(item);
+                }
+
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            names.clear();
+            names.addAll((List) results.values);
+            notifyDataSetChanged();
+
+        }
+    };
+
+
 }

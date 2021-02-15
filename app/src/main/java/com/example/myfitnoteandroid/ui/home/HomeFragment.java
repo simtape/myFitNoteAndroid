@@ -79,14 +79,14 @@ public class HomeFragment extends Fragment {
                     }
                     stepCountertxt.setText(String.valueOf(StepCounterHandler.getInstance().getCounter()));
                     metrespass = cMetres();
-                    metrestxt.setText(String.valueOf(metrespass));
+                    metrestxt.setText(metrespass + "   " + "m" );
                     kcalpass = cKcal();
 
 
                     //Da sistemare le cifre dopo la virgola
                     KcalString= String.valueOf(kcalpass);
-                    //String.format(KcalString, "%.2f");
-                    kcaltxt.setText(KcalString);
+                    String.format(KcalString, "%.2f");
+                    kcaltxt.setText(KcalString + "   " + "Kcal");
                     //////////////////////////////////////
 
 

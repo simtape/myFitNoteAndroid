@@ -55,4 +55,25 @@ public class SheetsHandler {
         return dates;
 
     }
+
+    public List<String>datesList(){
+        List<String>dates = new ArrayList<>();
+
+        for(Sheet sheet: userSheets){
+            dates.add(sheet.getDate());
+
+        }
+        return dates;
+    }
+
+    public List<String>namesList(){
+        List<String>names = new ArrayList<>();
+
+        for(Sheet sheet: userSheets){
+            names.add(sheet.getName());
+
+        }
+        return names;
+
+    }
 }
