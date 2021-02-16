@@ -110,8 +110,6 @@
                 android:layout_marginTop="4dp"
                 app:layout_constraintStart_toEndOf="@+id/glass4"
                 app:layout_constraintTop_toTopOf="parent"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="false"
                 app:lottie_rawRes="@raw/water_fill" />
 
             <com.airbnb.lottie.LottieAnimationView
@@ -123,8 +121,6 @@
                 android:layout_marginRight="2dp"
                 app:layout_constraintStart_toEndOf="@+id/glass5"
                 app:layout_constraintTop_toTopOf="parent"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="false"
                 app:lottie_rawRes="@raw/water_fill" />
 
             <com.airbnb.lottie.LottieAnimationView
@@ -136,8 +132,6 @@
                 android:layout_marginTop="4dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/glass1"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="false"
                 app:lottie_rawRes="@raw/water_fill" />
 
             <com.airbnb.lottie.LottieAnimationView
@@ -147,8 +141,6 @@
                 android:layout_marginTop="4dp"
                 app:layout_constraintStart_toEndOf="@+id/glass7"
                 app:layout_constraintTop_toBottomOf="@+id/glass2"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="false"
                 app:lottie_rawRes="@raw/water_fill" />
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/glass9"
@@ -157,8 +149,6 @@
                 android:layout_marginTop="4dp"
                 app:layout_constraintStart_toEndOf="@+id/glass8"
                 app:layout_constraintTop_toBottomOf="@+id/glass3"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="false"
                 app:lottie_rawRes="@raw/water_fill" />
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/glass10"
@@ -167,8 +157,6 @@
                 android:layout_marginTop="4dp"
                 app:layout_constraintStart_toEndOf="@+id/glass9"
                 app:layout_constraintTop_toBottomOf="@+id/glass4"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="false"
                 app:lottie_rawRes="@raw/water_fill" />
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/glass11"
@@ -177,8 +165,6 @@
                 android:layout_marginTop="4dp"
                 app:layout_constraintStart_toEndOf="@+id/glass10"
                 app:layout_constraintTop_toBottomOf="@+id/glass5"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="false"
                 app:lottie_rawRes="@raw/water_fill" />
 
             <com.airbnb.lottie.LottieAnimationView
@@ -190,8 +176,6 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/glass11"
                 app:layout_constraintTop_toBottomOf="@+id/glass6"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="false"
                 app:lottie_rawRes="@raw/water_fill" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
