@@ -6,17 +6,18 @@
     android:layout_height="match_parent"
     android:layout_weight="1"
     tools:context=".ui.ViewProfile"
-    android:background="#9c64a6"
+    android:background="#ee98fb"
     >
 
 
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:src="@drawable/logo_transparent2"
+        android:background="#ee98fb"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_marginTop="36dp"
-        android:src="@mipmap/users"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,13 +27,14 @@
         android:id="@+id/textViewname"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="196dp"
         android:gravity="center_horizontal"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="30dp"
+        android:textSize="35dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,23 +42,24 @@
         android:id="@+id/textViewSurname"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="240dp"
         android:gravity="center_horizontal"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="30dp"
+        android:textSize="35dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="411dp"
-        android:layout_height="493dp"
+        android:layout_width="match_parent"
+        android:layout_height="430dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:orientation="vertical"
-        android:weightSum="3"
+        android:weightSum="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,8 +78,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="#B7FF9078"
-                app:cardMaxElevation="5dp"
+                app:cardBackgroundColor="#A63F51B5"
+                app:cardElevation="0dp"
                 app:cardCornerRadius="10dp"
                 >
                 <LinearLayout
@@ -123,8 +126,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="#B7FF9078"
-                app:cardMaxElevation="5dp"
+                app:cardBackgroundColor="#AE4CAF50"
+                app:cardElevation="0dp"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout
@@ -180,8 +183,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="#CBFF9078"
-                app:cardMaxElevation="5dp"
+                app:cardBackgroundColor="#889C27B0"
+                app:cardElevation="0dp"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout
@@ -227,8 +230,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                app:cardBackgroundColor="#B7FF9078"
-                app:cardMaxElevation="5dp"
+                app:cardBackgroundColor="#BEFFC107"
+                app:cardElevation="0dp"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout
@@ -268,62 +271,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="2">
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                app:cardBackgroundColor="#CBFF9078"
-                app:cardMaxElevation="5dp"
-                app:cardCornerRadius="10dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:padding="20dp"
-                    android:orientation="vertical">
-
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Numero di schede:"
-                        android:textColor="#FFFFFF"></TextView>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="50dp"
-                            android:id="@+id/schedeTxt"
-                            android:gravity="center"
-                            android:textColor="#FFFFFF"
-                            >
-
-                        </TextView>
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-
-        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
