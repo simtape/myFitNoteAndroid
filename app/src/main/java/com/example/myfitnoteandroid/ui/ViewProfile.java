@@ -15,14 +15,14 @@ public class ViewProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile);
-        mailTxt.findViewById(R.id.mailTxt);
-        nameTxt.findViewById(R.id.textViewname);
-        surnameTxt.findViewById(R.id.textViewSurname);
-        dateTxt.findViewById(R.id.dataTxt);
-        weightTxt.findViewById(R.id.pesotxt);
-        heightTxt.findViewById(R.id.altezzaTxt);
-        sheetsTxt.findViewById(R.id.schedeTxt);
 
+        mailTxt = findViewById(R.id.mailTxt);
+        nameTxt = findViewById(R.id.textViewname);
+        surnameTxt = findViewById(R.id.textViewSurname);
+        dateTxt = findViewById(R.id.dataTxt);
+        weightTxt = findViewById(R.id.pesotxt);
+        heightTxt = findViewById(R.id.altezzaTxt);
+        sheetsTxt = findViewById(R.id.schedeTxt);
         SessionManager sessionManager = new SessionManager(this);
 
         nameTxt.setText(sessionManager.getName());

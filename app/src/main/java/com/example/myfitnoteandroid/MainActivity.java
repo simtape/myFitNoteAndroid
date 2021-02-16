@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.widget.TextView;
 
 import com.example.myfitnoteandroid.data.SessionManager;
+import com.example.myfitnoteandroid.ui.ViewProfile;
 import com.example.myfitnoteandroid.ui.login.LoginActivity;
 import com.google.android.material.navigation.NavigationView;
 
@@ -20,15 +21,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private AppBarConfiguration mAppBarConfiguration;
+    TextView nome, navMail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -37,12 +38,14 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
-        TextView nome = headerView.findViewById(R.id.nav_nome_cognome);
-        TextView navMail = (TextView) headerView.findViewById(R.id.menuMail);
+        nome = headerView.findViewById(R.id.nav_nome_cognome);
+         navMail = (TextView) headerView.findViewById(R.id.menuMail);
         SessionManager sessionManager = new SessionManager(this);
 
         navMail.setText(sessionManager.getMail());
         nome.setText(sessionManager.getName() + " " + sessionManager.getSurname());
+
+        nome.setOnClickListener(this);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -62,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         //return true;
         return super.onCreateOptionsMenu(menu);
     }
-
 
 
     @Override
@@ -97,5 +99,18 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finishAffinity();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == nome.getId() || v.getId() == navMail.getId()  ){
+
+            Intent intent = new Intent(this, ViewProfile.class);
+            startActivity(intent);
+
+        }
+
+
+
     }
 }
