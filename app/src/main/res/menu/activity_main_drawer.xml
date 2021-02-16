@@ -36,5 +36,10 @@
             android:id="@+id/nav_obbiettivi"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/obbiettivi"/>
+
+        <item
+            android:id="@+id/nav_kcal"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/kcal"/>
     </group>
 </menu>
