@@ -136,14 +136,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="257dp"
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardKcal"
-            android:layout_width="150dp"
-            android:layout_height="140dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_marginRight="5dp"
             app:cardBackgroundColor="#8AFB8C00"
             app:cardCornerRadius="20dp"
@@ -161,9 +161,14 @@
             app:cardBackgroundColor="#D0BBDEFB"
             app:cardCornerRadius="20dp"
 
-            app:cardElevation="0dp">
+            app:cardElevation="0dp" >
 
-
+            <fragment
+                android:id="@+id/fragment2"
+                android:name="com.example.myfitnoteandroid.ui.goals.WaterFragment"
+                android:layout_width="242dp"
+                android:layout_gravity="center"
+                android:layout_height="257dp" />
         </androidx.cardview.widget.CardView>
 
 
