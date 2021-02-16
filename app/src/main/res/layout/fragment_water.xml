@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="239dp"
+    android:layout_height="255dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="282dp"
+        android:layout_width="239dp"
         android:layout_height="255dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -13,16 +14,209 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_width="147dp"
-            android:layout_height="45dp"
+            android:id="@+id/Acqua"
+            android:layout_width="111dp"
+            android:layout_height="48dp"
             android:layout_gravity="center"
             android:text="Acqua"
+            android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="36dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintHorizontal_bias="0.007"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/water_goal"
+            android:layout_width="111dp"
+            android:layout_height="23dp"
+            android:gravity="center"
+            android:text="Obiettivo: 0 Litri"
+            android:textColor="#ffffff"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.007"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Acqua" />
+
+        <TextView
+            android:id="@+id/water_value"
+            android:layout_width="126dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center"
+            android:text="2,25L"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/Acqua"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="238dp"
+            android:layout_height="184dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/glass1"
+                android:layout_width="39dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_rawRes="@raw/water_fill" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/glass2"
+                android:layout_width="39dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toEndOf="@+id/glass1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_rawRes="@raw/water_fill" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/glass3"
+                android:layout_width="39dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toEndOf="@+id/glass2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_rawRes="@raw/water_fill" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/glass4"
+                android:layout_width="39dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                app:lottie_fallbackRes="@raw/water_fill"
+                app:layout_constraintStart_toEndOf="@+id/glass3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_rawRes="@raw/water_fill" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/glass5"
+                android:layout_width="39dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toEndOf="@+id/glass4"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"
+                app:lottie_rawRes="@raw/water_fill" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/glass6"
+                android:layout_width="39dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                app:layout_constraintStart_toEndOf="@+id/glass5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"
+                app:lottie_rawRes="@raw/water_fill" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/glass7"
+                android:layout_width="39dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/glass1"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"
+                app:lottie_rawRes="@raw/water_fill" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/glass8"
+                android:layout_width="39dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toEndOf="@+id/glass7"
+                app:layout_constraintTop_toBottomOf="@+id/glass2"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"
+                app:lottie_rawRes="@raw/water_fill" />
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/glass9"
+                android:layout_width="39dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toEndOf="@+id/glass8"
+                app:layout_constraintTop_toBottomOf="@+id/glass3"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"
+                app:lottie_rawRes="@raw/water_fill" />
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/glass10"
+                android:layout_width="39dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toEndOf="@+id/glass9"
+                app:layout_constraintTop_toBottomOf="@+id/glass4"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"
+                app:lottie_rawRes="@raw/water_fill" />
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/glass11"
+                android:layout_width="39dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toEndOf="@+id/glass10"
+                app:layout_constraintTop_toBottomOf="@+id/glass5"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"
+                app:lottie_rawRes="@raw/water_fill" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/glass12"
+                android:layout_width="39dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/glass11"
+                app:layout_constraintTop_toBottomOf="@+id/glass6"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"
+                app:lottie_rawRes="@raw/water_fill" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/but_layout"
+                android:layout_width="39dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.01"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:id="@+id/button_plus"
+                    android:layout_width="35dp"
+                    android:layout_height="56dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:src="@drawable/ic_baseline_add_circle_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>

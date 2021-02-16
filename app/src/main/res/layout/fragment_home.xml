@@ -160,15 +160,14 @@
             android:layout_marginLeft="5dp"
             app:cardBackgroundColor="#D0BBDEFB"
             app:cardCornerRadius="20dp"
-
             app:cardElevation="0dp" >
 
             <fragment
                 android:id="@+id/fragment2"
                 android:name="com.example.myfitnoteandroid.ui.goals.WaterFragment"
-                android:layout_width="242dp"
-                android:layout_gravity="center"
-                android:layout_height="257dp" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
         </androidx.cardview.widget.CardView>
 
 
