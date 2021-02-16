@@ -5,11 +5,11 @@ public class Goal{
 
     boolean status_goal;
     int value_goal;
-    int progress_goal;
+    double progress_goal;
 
 
 
-    public void setGoal(boolean status_in,int value_in,int progress_in){
+    public void setGoal(boolean status_in,int value_in,double progress_in){
         setStatus_goal(status_in);
         setValue_goal(value_in);
         setProgress_goal(progress_in);
@@ -22,7 +22,7 @@ public class Goal{
     public void setValue_goal(int value_in){
         value_goal = value_in;
     }
-    public void setProgress_goal(int progress_in){
+    public void setProgress_goal(double progress_in){
         progress_goal = progress_in;
     }
 
@@ -32,7 +32,7 @@ public class Goal{
     public int getValue_goal(){
         return value_goal;
     }
-    public int getProgress_goal(){
+    public double getProgress_goal(){
         return progress_goal;
     }
 

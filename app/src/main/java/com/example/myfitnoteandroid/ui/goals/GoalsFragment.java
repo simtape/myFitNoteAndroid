@@ -145,7 +145,7 @@ public class GoalsFragment extends Fragment {
         JSONArray status_jarray = new JSONArray(Arrays.asList(status_array));
         Integer[] value_array = new Integer[]{3,4000};
         JSONArray value_jarray = new JSONArray(Arrays.asList(value_array));
-        Integer[] prog_array = new Integer[]{0,0};
+        Double[] prog_array = new Double[]{0.00,0.00};
         JSONArray prog_jarray = new JSONArray(Arrays.asList(prog_array));
         try {
             postData.put("status",status_jarray);
@@ -225,7 +225,7 @@ public class GoalsFragment extends Fragment {
         JSONArray status_jarray = new JSONArray(Arrays.asList(status_array));
         Integer[] value_array = new Integer[]{water_goal.getValue_goal(),kcal_goal.getValue_goal()};
         JSONArray value_jarray = new JSONArray(Arrays.asList(value_array));
-        Integer[] prog_array = new Integer[]{water_goal.getProgress_goal(),kcal_goal.getProgress_goal()};
+        Double[] prog_array = new Double[]{water_goal.getProgress_goal(),kcal_goal.getProgress_goal()};
         JSONArray prog_jarray = new JSONArray(Arrays.asList(prog_array));
         try {
             postData.put("status",status_jarray);
@@ -301,11 +301,60 @@ public class GoalsFragment extends Fragment {
                 }else if(k!=0){
                     kcal_goal.setValue_goal(k);
                 }}
-                updateGoals();
+                removeGoals();
             }
         });
     }
 
+    public void removeGoals(){
+        postData = new JSONObject();
+        SessionManager sessionManager = new SessionManager(getContext());
+        try {
+            postData.put("id_user", sessionManager.getSession());
+            id_user = sessionManager.getSession();
+            Log.d("user_id", id_user);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String url = "https://myfitnote.herokuapp.com/goals/remove_goals";
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Log.d("Post",response.getString("message"));
+                    updateGoals();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+
+        });
+        jsonObjectRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
+
+        queue.add(jsonObjectRequest);
+    }
     public void water_switchLst() {
         Button water = (Button) root.findViewById(R.id.switchWater);
         water.setOnClickListener(new View.OnClickListener() {
