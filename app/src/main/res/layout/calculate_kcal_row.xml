@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="70dp"
+
+    android:orientation="horizontal"
+    >
+
+    <AutoCompleteTextView
+        android:id="@+id/food_name"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/text_view_bg"
+        android:gravity="center_horizontal"
+        android:hint="Alimento"
+        android:completionThreshold="1"
+        android:paddingTop="10dp"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/quantity"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:background="@drawable/text_view_bg"
+        android:gravity="center_horizontal"
+        android:hint="grammi"
+        android:paddingTop="10dp"
+        android:textAlignment="center" />
+
+    <!--    <Button
+            android:id="@+id/button_add"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/plus_button"
+
+            />-->
+
+
+</LinearLayout>

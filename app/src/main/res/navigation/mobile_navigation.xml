@@ -71,4 +71,10 @@
         android:label="@string/crea_scheda"
         tools:layout="@layout/create_sheet_fragment" />
 
+    <fragment
+        android:id="@+id/nav_kcal"
+        android:name="com.example.myfitnoteandroid.ui.calculator.KcalCalculator"
+        android:label="@string/kcal"
+        tools:layout="@layout/kcal_calculator_fragment" />
+
 </navigation>
