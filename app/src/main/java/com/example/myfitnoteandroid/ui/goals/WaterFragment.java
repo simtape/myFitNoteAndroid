@@ -43,8 +43,9 @@ public class WaterFragment extends Fragment {
         return new WaterFragment();
     }
     ImageButton button_plus;
-    LottieAnimationView glass;
+    LottieAnimationView glass,complete;
     ConstraintLayout but_layout;
+    CardView card_total;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,6 +54,8 @@ public class WaterFragment extends Fragment {
         water_value = root.findViewById(R.id.water_value);
         button_plus = root.findViewById(R.id.button_plus);
         but_layout = root.findViewById(R.id.but_layout);
+        card_total = root.findViewById(R.id.card_total);
+        complete = root.findViewById(R.id.complete_goal);
         button_plus_lst();
         getGoals();
         return root;
@@ -81,6 +84,8 @@ public class WaterFragment extends Fragment {
                         kcal.setGoal(status.getBoolean(1),value.getInt(1),progress.getDouble(1));
                         set_obiettivo();
                         set_valore();
+                        set_glasses();
+                        set_card();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -113,6 +118,18 @@ public class WaterFragment extends Fragment {
         queue.add(jsonObjectRequest);
     }
 
+    public void set_card(){
+        if((water.getValue_goal()==0)){
+            card_total.setVisibility(View.VISIBLE);
+        }else
+        if(water.getProgress_goal()!=water.getValue_goal()){
+            card_total.setVisibility(View.GONE);
+        }else{
+            card_total.setVisibility(View.GONE);
+            button_plus.setVisibility(View.GONE);
+        }
+    }
+
     public void button_plus_lst(){
         button_plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +137,8 @@ public class WaterFragment extends Fragment {
                 double value = water.getProgress_goal();
                 value += 0.25;
                 water.setProgress_goal(value);
+                if(value<=water.getValue_goal()){
+                    card_total.setVisibility(View.GONE);
                 if(value==1.5){
                     ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
                     params.leftMargin = params.leftMargin - (103*5);
@@ -171,13 +190,18 @@ public class WaterFragment extends Fragment {
                         set_glasses2(12);
                         break;
                 }
+                    if (value == water.getValue_goal()) {
+                        card_total.setVisibility(View.VISIBLE);
+                        set_glasses2(0);
+                        complete.setMinAndMaxFrame(0,50);
+                        complete.playAnimation();
+                    }}
             }
         });
     }
 
     public void set_obiettivo(){
         water_goal.setText("Obiettivo: "+water.getValue_goal()+" Litri");
-        set_glasses();
     }
 
     public void set_valore(){
@@ -483,6 +507,32 @@ public class WaterFragment extends Fragment {
         int value = water.getValue_goal();
         double progress = water.getProgress_goal();
         switch(i){
+            case 0:
+                glass = root.findViewById(R.id.glass1);
+                glass.setVisibility(View.GONE);
+                glass = root.findViewById(R.id.glass2);
+                glass.setVisibility(View.GONE);
+                glass = root.findViewById(R.id.glass3);
+                glass.setVisibility(View.GONE);
+                glass = root.findViewById(R.id.glass4);
+                glass.setVisibility(View.GONE);
+                glass = root.findViewById(R.id.glass5);
+                glass.setVisibility(View.GONE);
+                glass = root.findViewById(R.id.glass6);
+                glass.setVisibility(View.GONE);
+                glass = root.findViewById(R.id.glass7);
+                glass.setVisibility(View.GONE);
+                glass = root.findViewById(R.id.glass8);
+                glass.setVisibility(View.GONE);
+                glass = root.findViewById(R.id.glass9);
+                glass.setVisibility(View.GONE);
+                glass = root.findViewById(R.id.glass10);
+                glass.setVisibility(View.GONE);
+                glass = root.findViewById(R.id.glass11);
+                glass.setVisibility(View.GONE);
+                glass = root.findViewById(R.id.glass12);
+                glass.setVisibility(View.GONE);
+                break;
             case 1:
                 glass = root.findViewById(R.id.glass1);
                 glass.setVisibility(View.VISIBLE);
