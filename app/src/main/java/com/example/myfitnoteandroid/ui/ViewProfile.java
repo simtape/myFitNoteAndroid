@@ -22,7 +22,6 @@ public class ViewProfile extends AppCompatActivity {
         dateTxt = findViewById(R.id.dataTxt);
         weightTxt = findViewById(R.id.pesotxt);
         heightTxt = findViewById(R.id.altezzaTxt);
-        sheetsTxt = findViewById(R.id.schedeTxt);
         SessionManager sessionManager = new SessionManager(this);
 
         nameTxt.setText(sessionManager.getName());
