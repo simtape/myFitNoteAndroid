@@ -16,11 +16,16 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <Button
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:id="@+id/updateProfilebutton"
+            android:layout_width="52dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/button_edit"
-            android:padding="5dp"
-            app:layout_constraintEnd_toEndOf="parent"></Button>
+            android:drawableLeft="@drawable/ic_baseline_mode_edit_24"
+            android:paddingLeft="15dp"
+            android:paddingRight="20dip"
+            android:clickable="true">
+
+        </Button>
 
     </LinearLayout>
 

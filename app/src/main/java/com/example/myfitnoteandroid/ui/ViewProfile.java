@@ -1,8 +1,15 @@
 package com.example.myfitnoteandroid.ui;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myfitnoteandroid.R;
@@ -11,6 +18,8 @@ import com.example.myfitnoteandroid.data.SessionManager;
 public class ViewProfile extends AppCompatActivity {
 
     TextView mailTxt, dateTxt, weightTxt, heightTxt, sheetsTxt, nameTxt, surnameTxt;
+    Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +31,9 @@ public class ViewProfile extends AppCompatActivity {
         dateTxt = findViewById(R.id.dataTxt);
         weightTxt = findViewById(R.id.pesotxt);
         heightTxt = findViewById(R.id.altezzaTxt);
+        button = findViewById(R.id.updateProfilebutton);
+
+
         SessionManager sessionManager = new SessionManager(this);
 
         nameTxt.setText(sessionManager.getName());
@@ -31,5 +43,15 @@ public class ViewProfile extends AppCompatActivity {
         weightTxt.setText(sessionManager.getPeso());
         heightTxt.setText(sessionManager.getAltezza());
 
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewProfile.this, UpdateProfile.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
 }
