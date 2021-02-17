@@ -291,6 +291,7 @@ public class WaterFragmentSecond extends Fragment {
                                 if(value == water_second.getValue_goal()){
                                     plus_second.setVisibility(View.GONE);
                                     glass_second.setVisibility(View.GONE);
+                                    complete_goal.setVisibility(View.VISIBLE);
                                     complete_goal.setMinAndMaxFrame(0,50);
                                     complete_goal.playAnimation();
                                 }
@@ -311,6 +312,7 @@ public class WaterFragmentSecond extends Fragment {
                                 if(value == water_second.getValue_goal()){
                                     plus_second.setVisibility(View.GONE);
                                     glass_second.setVisibility(View.GONE);
+                                    complete_goal.setVisibility(View.VISIBLE);
                                     complete_goal.setMinAndMaxFrame(0,50);
                                     complete_goal.playAnimation();
                                 }
@@ -331,6 +333,7 @@ public class WaterFragmentSecond extends Fragment {
                                 if(value == water_second.getValue_goal()){
                                     plus_second.setVisibility(View.GONE);
                                     glass_second.setVisibility(View.GONE);
+                                    complete_goal.setVisibility(View.VISIBLE);
                                     complete_goal.setMinAndMaxFrame(0,50);
                                     complete_goal.playAnimation();
                                 }
@@ -484,7 +487,15 @@ public class WaterFragmentSecond extends Fragment {
         reset_second.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(water_second.getProgress_goal()==water_second.getValue_goal()){
+                    complete_goal.setVisibility(View.GONE);
+                    plus_second.setVisibility(View.VISIBLE);
+                    glass_second.setVisibility(View.VISIBLE);
+                }
                 unset_glass();
+                water_second.setProgress_goal(0.0);
+                set_valore2();
+                set_glass();
             }
         });
     }

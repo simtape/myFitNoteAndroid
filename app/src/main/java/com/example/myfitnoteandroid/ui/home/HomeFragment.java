@@ -29,6 +29,9 @@ import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
 import com.example.myfitnoteandroid.data.StepCounterHandler;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
 
@@ -39,7 +42,7 @@ public class HomeFragment extends Fragment {
     double MagnitudePrevius = 0;
     private Integer stepCount = 0;
     float metrespass, kcalConvert;
-    double kcalpass;
+    float kcalpass;
     String peso, KcalString;
     int pesoInt;
     LinearLayout control;
@@ -81,7 +84,7 @@ public class HomeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         SessionManager sessionManager = new SessionManager(getContext());
         peso = sessionManager.getPeso();
-        //pesoInt = Integer.parseInt(peso);
+        pesoInt = Integer.parseInt(peso);
 
 
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
@@ -98,7 +101,7 @@ public class HomeFragment extends Fragment {
                     double Magnitude = Math.sqrt(x_acceleration * x_acceleration + y_acceleration * y_acceleration + z_acceleration * z_acceleration);
                     double MagnitudeDelta = Magnitude - MagnitudePrevius;
                     MagnitudePrevius = Magnitude;
-
+                    DecimalFormat df = new DecimalFormat("0.00");
                     if (MagnitudeDelta > 6) {
                         StepCounterHandler.getInstance().increase();
                     }
@@ -107,11 +110,8 @@ public class HomeFragment extends Fragment {
                     metrestxt.setText(metrespass + "   " + "m");
                     kcalpass = cKcal();
 
-
                     //Da sistemare le cifre dopo la virgola
-                    KcalString = String.valueOf(kcalpass);
-                    String.format(KcalString, "%.2f");
-                    kcaltxt.setText(KcalString + "   " + "Kcal");
+                    kcaltxt.setText(df.format(cKcal())+ "   " + "Kcal");
                     //////////////////////////////////////
 
 
@@ -125,6 +125,13 @@ public class HomeFragment extends Fragment {
         };
         sensorManager.registerListener(stepDetector, stepCounter, SensorManager.SENSOR_DELAY_NORMAL);
 
+    }
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = BigDecimal.valueOf(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
     public void set_water(){
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)control.getLayoutParams();
@@ -194,7 +201,7 @@ public class HomeFragment extends Fragment {
     }
 
     public float cKcal() {
-        float kcal = (float) ((0.50) * (pesoInt) * (metrespass * 1000));
+        float kcal = (float) ((0.0005) * (pesoInt) * (cMetres()));
         return kcal;
     }
 
