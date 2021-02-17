@@ -20,7 +20,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="70dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp">
 
@@ -38,13 +38,15 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:layout_gravity="start"
-                        android:background="#575E5E56">
+                        >
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
-                            android:text="Nome:  ">
+                            android:textColor="#B22196F3"
+                            android:text="Nome:  "
+                            android:layout_marginLeft="10dp">
 
                         </TextView>
 
@@ -79,7 +81,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="70dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp">
 
@@ -97,12 +99,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_gravity="start"
-                    android:background="#575E5E56">
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cognome:  ">
+                        android:text="Cognome:  "
+                        android:textStyle="bold"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#B22196F3">
 
                     </TextView>
 
@@ -137,7 +142,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="70dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp">
 
@@ -155,12 +160,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_gravity="start"
-                    android:background="#575E5E56">
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Data di mascita:  ">
+                        android:text="Data di mascita:  "
+                        android:textStyle="bold"
+                        android:textColor="#B22196F3"
+                        android:layout_marginLeft="10dp">
 
                     </TextView>
 
@@ -195,7 +203,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="70dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp">
 
@@ -213,12 +221,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_gravity="start"
-                    android:background="#575E5E56">
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Peso:  "
+                        android:textStyle="bold"
+                        android:textColor="#B22196F3"
+                        android:layout_marginLeft="10dp"
                         >
 
                     </TextView>
@@ -255,7 +266,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="70dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp">
 
@@ -273,12 +284,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_gravity="start"
-                    android:background="#575E5E56">
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Altezza: ">
+                        android:text="Altezza: "
+                        android:textStyle="bold"
+                        android:textColor="#B22196F3"
+                        android:layout_marginLeft="10dp">
 
                     </TextView>
 
@@ -317,7 +331,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="110dp">
+            android:layout_height="80dp">
 
         </LinearLayout>
 
@@ -325,6 +339,7 @@
             android:layout_gravity="center"
             android:text="Modifica Profilo"
             android:textSize="20dp"
+            android:clickable="true"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:layout_width="350dp"
