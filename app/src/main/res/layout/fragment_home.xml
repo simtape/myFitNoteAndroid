@@ -135,6 +135,7 @@
 
 
     <LinearLayout
+        android:id="@+id/control"
         android:layout_width="match_parent"
         android:layout_height="257dp"
         android:layout_marginTop="10dp"
@@ -160,14 +161,37 @@
             android:layout_marginLeft="5dp"
             app:cardBackgroundColor="#D0BBDEFB"
             app:cardCornerRadius="20dp"
-            app:cardElevation="0dp" >
+            app:cardElevation="0dp">
 
-            <fragment
-                android:id="@+id/fragment2"
-                android:name="com.example.myfitnoteandroid.ui.goals.WaterFragment"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/glass"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center" />
+                android:backgroundTint="@android:color/transparent"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp">
+
+                <fragment
+                    android:id="@+id/fragment1"
+                    android:name="com.example.myfitnoteandroid.ui.goals.WaterFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/pluss"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@android:color/transparent"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp" >
+                <fragment
+                    android:id="@+id/fragment2"
+                    android:name="com.example.myfitnoteandroid.ui.goals.WaterFragmentSecond"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.cardview.widget.CardView>
         </androidx.cardview.widget.CardView>
 
 

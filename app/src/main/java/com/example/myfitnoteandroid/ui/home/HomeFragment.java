@@ -15,10 +15,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -40,7 +42,8 @@ public class HomeFragment extends Fragment {
     double kcalpass;
     String peso, KcalString;
     int pesoInt;
-
+    LinearLayout control;
+    CardView glass,pluss,kcalCard;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -49,6 +52,11 @@ public class HomeFragment extends Fragment {
         stepCountertxt = root.findViewById(R.id.stepcounter);
         metrestxt = root.findViewById(R.id.metri);
         kcaltxt = root.findViewById(R.id.kcal);
+        glass = root.findViewById(R.id.glass);
+        pluss = root.findViewById(R.id.pluss);
+        kcalCard = root.findViewById(R.id.cardKcal);
+        control = root.findViewById(R.id.control);
+        set_water();
         //resetstep();
 
       /*  SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
@@ -117,6 +125,20 @@ public class HomeFragment extends Fragment {
         };
         sensorManager.registerListener(stepDetector, stepCounter, SensorManager.SENSOR_DELAY_NORMAL);
 
+    }
+    public void set_water(){
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)control.getLayoutParams();
+        LinearLayout.LayoutParams kcal = (LinearLayout.LayoutParams)kcalCard.getLayoutParams();
+        if(params.height<600){
+            params.height = kcal.height;
+            control.setLayoutParams(params);
+            glass.setVisibility(View.GONE);
+            pluss.setVisibility(View.VISIBLE);
+        }else
+        {
+            glass.setVisibility(View.VISIBLE);
+            pluss.setVisibility(View.GONE);
+        }
     }
 
     public void onPause() {
