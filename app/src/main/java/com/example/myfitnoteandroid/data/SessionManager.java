@@ -2,6 +2,10 @@ package com.example.myfitnoteandroid.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
+
+import java.util.Calendar;
+import java.util.TimeZone;
 
 public class SessionManager {
     SharedPreferences sharedPreferences;
@@ -16,6 +20,8 @@ public class SessionManager {
     String REGISTRATION_PESO = "registration_peso";
     String REGISTRATION_ALTEZZA = "registration_altezza";
     String REGISTRATION_DATA = "registration_data";
+    String LAST_ACCESS = "last_access_user";
+
 
     public SessionManager(Context context) {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -24,6 +30,9 @@ public class SessionManager {
     }
 
     public void saveSession(User user) {
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+
+        editor.putInt(LAST_ACCESS, calendar.DATE);
         this.user = user;
         editor.putString(SESSION_KEY, this.user.getId()).commit();
         editor.putString(SESSION_NAME, this.user.getName()).commit();
@@ -33,6 +42,9 @@ public class SessionManager {
     }
 
     public void updateUser() {
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+
+        editor.putInt(LAST_ACCESS, calendar.DATE);
         this.user = new User(getName(), getSurname(), getMail());
         this.user.setId(getSession());
     }
@@ -114,13 +126,33 @@ public class SessionManager {
         editor.putString(REGISTRATION_ALTEZZA, altezza).commit();
     }
 
-    public String getData(){
-        return  sharedPreferences.getString(REGISTRATION_DATA,null);
+    public String getData() {
+        return sharedPreferences.getString(REGISTRATION_DATA, null);
     }
 
-    public void setData(String data){
+    public void setData(String data) {
         editor.putString(REGISTRATION_DATA, data).commit();
     }
 
+    public void setLastAccess(int newAccess) {
+        Log.d("datas attuale salvata", String.valueOf(sharedPreferences.getInt(LAST_ACCESS, 0)));
+        if (newAccess != sharedPreferences.getInt(LAST_ACCESS, 0)) {
+            editor.putInt(LAST_ACCESS, newAccess).commit();
+            Log.d("datas AC", String.valueOf(sharedPreferences.getInt(LAST_ACCESS, 0)));
+        }
+    }
+
+
+    public void setLastAccessNoControl(int newAccess) {
+        Log.d("datas attuale salvata", String.valueOf(sharedPreferences.getInt(LAST_ACCESS, 0)));
+        editor.putInt(LAST_ACCESS, newAccess).commit();
+        Log.d("datas NoAC", String.valueOf(sharedPreferences.getInt(LAST_ACCESS, 0)));
+
+    }
+
+    public int getAccess() {
+
+        return sharedPreferences.getInt(LAST_ACCESS, 0);
+    }
 
 }

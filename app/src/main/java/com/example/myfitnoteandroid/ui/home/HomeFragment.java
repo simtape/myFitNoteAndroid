@@ -28,6 +28,7 @@ import com.example.myfitnoteandroid.data.SessionManager;
 import com.example.myfitnoteandroid.data.StepCounterHandler;
 
 import java.util.Calendar;
+import java.util.TimeZone;
 
 public class HomeFragment extends Fragment {
 
@@ -35,10 +36,12 @@ public class HomeFragment extends Fragment {
     SensorManager sensorManager;
     double MagnitudePrevius = 0;
     private Integer stepCount = 0;
-    float metrespass  , kcalConvert;
+    float metrespass, kcalConvert;
     double kcalpass;
     String peso, KcalString;
     int pesoInt;
+
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,64 +49,77 @@ public class HomeFragment extends Fragment {
         stepCountertxt = root.findViewById(R.id.stepcounter);
         metrestxt = root.findViewById(R.id.metri);
         kcaltxt = root.findViewById(R.id.kcal);
-        resetstep();
+        //resetstep();
 
+      /*  SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        SessionManager sessionManager = new SessionManager(getContext());
+        if (sessionManager.getAccess() != 16) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.putInt("stepCount", 0);
+            editor.apply();
 
+            sessionManager.setLastAccessNoControl(16);
+        }
+*/
+        //StepCounterHandler.getInstance().setCounter(sharedPreferences.getInt("stepCount", 0));
 
 
         return root;
     }
 
-       public void onActivityCreated (Bundle savedInstanceState){
-           super.onActivityCreated(savedInstanceState);
-           SessionManager sessionManager = new SessionManager(getContext());
-           peso = sessionManager.getPeso();
-           //pesoInt = Integer.parseInt(peso);
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        SessionManager sessionManager = new SessionManager(getContext());
+        peso = sessionManager.getPeso();
+        //pesoInt = Integer.parseInt(peso);
 
 
-            sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
-            Sensor stepCounter = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-           SensorEventListener stepDetector = new SensorEventListener() {
-               @Override
-               public void onSensorChanged(SensorEvent sensorEvent) {
-                if (sensorEvent!=null){
+        sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+        Sensor stepCounter = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        StepCounterHandler.getInstance().setCounter(StepCounterHandler.getInstance().getCounter() - 1);
+
+        SensorEventListener stepDetector = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent sensorEvent) {
+                if (sensorEvent != null) {
                     float x_acceleration = sensorEvent.values[0];
                     float y_acceleration = sensorEvent.values[1];
                     float z_acceleration = sensorEvent.values[2];
-                    double Magnitude = Math.sqrt(x_acceleration*x_acceleration + y_acceleration*y_acceleration + z_acceleration*z_acceleration);
+                    double Magnitude = Math.sqrt(x_acceleration * x_acceleration + y_acceleration * y_acceleration + z_acceleration * z_acceleration);
                     double MagnitudeDelta = Magnitude - MagnitudePrevius;
                     MagnitudePrevius = Magnitude;
 
-                    if(MagnitudeDelta > 6){
+                    if (MagnitudeDelta > 6) {
                         StepCounterHandler.getInstance().increase();
                     }
                     stepCountertxt.setText(String.valueOf(StepCounterHandler.getInstance().getCounter()));
                     metrespass = cMetres();
-                    metrestxt.setText(metrespass + "   " + "m" );
+                    metrestxt.setText(metrespass + "   " + "m");
                     kcalpass = cKcal();
 
 
                     //Da sistemare le cifre dopo la virgola
-                    KcalString= String.valueOf(kcalpass);
+                    KcalString = String.valueOf(kcalpass);
                     String.format(KcalString, "%.2f");
                     kcaltxt.setText(KcalString + "   " + "Kcal");
                     //////////////////////////////////////
 
 
-
                 }
-               }
+            }
 
-               @Override
-               public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
-               }
-           };
-           sensorManager.registerListener(stepDetector, stepCounter, SensorManager.SENSOR_DELAY_NORMAL);
+            }
+        };
+        sensorManager.registerListener(stepDetector, stepCounter, SensorManager.SENSOR_DELAY_NORMAL);
 
     }
 
-    public void onPause(){
+    public void onPause() {
         super.onPause();
         SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -111,9 +127,14 @@ public class HomeFragment extends Fragment {
         editor.putInt("stepCount", StepCounterHandler.getInstance().getCounter());
         editor.apply();
 
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        SessionManager sessionManager = new SessionManager(getContext());
+        sessionManager.setLastAccess(calendar.DATE);
+
+
     }
 
-    public void onStop(){
+    public void onStop() {
         super.onStop();
         SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -121,21 +142,37 @@ public class HomeFragment extends Fragment {
         editor.putInt("stepCount", StepCounterHandler.getInstance().getCounter());
         editor.apply();
 
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        SessionManager sessionManager = new SessionManager(getContext());
+        sessionManager.setLastAccess(calendar.DATE);
+
+
     }
+
     public void onResume() {
 
         super.onResume();
         SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        SessionManager sessionManager = new SessionManager(getContext());
+        if (sessionManager.getAccess() != calendar.DATE) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.putInt("stepCount", 0);
+            editor.apply();
+
+            sessionManager.setLastAccess(calendar.DATE);
+        }
         StepCounterHandler.getInstance().setCounter(sharedPreferences.getInt("stepCount", 0));
     }
 
-    public float cMetres(){
-        float metres = (float) (0.762*StepCounterHandler.getInstance().getCounter());
+    public float cMetres() {
+        float metres = (float) (0.762 * StepCounterHandler.getInstance().getCounter());
         return metres;
     }
 
-    public float cKcal(){
-        float kcal = (float) ((0.50)*(pesoInt)*(metrespass*1000));
+    public float cKcal() {
+        float kcal = (float) ((0.50) * (pesoInt) * (metrespass * 1000));
         return kcal;
     }
 
@@ -151,9 +188,8 @@ public class HomeFragment extends Fragment {
         AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
         if (now.before(cal)) {
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-        }
-        else {
-            cal.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR) +1);
+        } else {
+            cal.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR) + 1);
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         }
     }
