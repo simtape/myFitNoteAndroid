@@ -13,10 +13,10 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_foods" />
 
-        <item
-            android:id="@+id/nav_mis_battito"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/misura_battito" />
+        <!--        <item
+                    android:id="@+id/nav_mis_battito"
+                    android:icon="@drawable/ic_menu_gallery"
+                    android:title="@string/misura_battito" />-->
 
         <item
             android:id="@+id/nav_esercizi"
@@ -35,11 +35,26 @@
         <item
             android:id="@+id/nav_obbiettivi"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/obbiettivi"/>
+            android:title="@string/obbiettivi" />
+        
 
         <item
-            android:id="@+id/nav_kcal"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/kcal"/>
+
+
+            android:title="tools">
+            <menu>
+                <item
+                    android:id="@+id/nav_kcal"
+                    android:icon="@drawable/ic_menu_slideshow"
+                    android:title="@string/kcal" />
+                <item
+                    android:id="@+id/nav_bmi"
+                    android:icon="@drawable/ic_menu_slideshow"
+                    android:title="@string/bmi" />
+
+
+            </menu>
+
+        </item>
     </group>
 </menu>

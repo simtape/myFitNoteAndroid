@@ -77,4 +77,10 @@
         android:label="@string/kcal"
         tools:layout="@layout/kcal_calculator_fragment" />
 
+    <fragment
+        android:id="@+id/nav_bmi"
+        android:name="com.example.myfitnoteandroid.ui.bmi.BodyMassFragment"
+        android:label="@string/bmi"
+        tools:layout="@layout/body_mass_fragment" />
+
 </navigation>
