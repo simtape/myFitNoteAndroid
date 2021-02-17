@@ -84,7 +84,7 @@ public class HomeFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         SessionManager sessionManager = new SessionManager(getContext());
         peso = sessionManager.getPeso();
-        pesoInt = Integer.parseInt(peso);
+       pesoInt = Integer.parseInt(peso);
 
 
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);

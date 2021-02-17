@@ -225,7 +225,7 @@ public class GoalsFragment extends Fragment {
         JSONArray status_jarray = new JSONArray(Arrays.asList(status_array));
         Integer[] value_array = new Integer[]{water_goal.getValue_goal(),kcal_goal.getValue_goal()};
         JSONArray value_jarray = new JSONArray(Arrays.asList(value_array));
-        Double[] prog_array = new Double[]{water_goal.getProgress_goal(),kcal_goal.getProgress_goal()};
+        Double[] prog_array = new Double[]{0.0,0.0};
         JSONArray prog_jarray = new JSONArray(Arrays.asList(prog_array));
         try {
             postData.put("status",status_jarray);

@@ -90,8 +90,8 @@ public class WaterFragment extends Fragment {
                         kcal.setGoal(status.getBoolean(1),value.getInt(1),progress.getDouble(1));
                         set_obiettivo();
                         set_valore();
-                        set_glasses();
                         set_card();
+                        set_glasses();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -133,6 +133,7 @@ public class WaterFragment extends Fragment {
         }else{
             card_total.setVisibility(View.VISIBLE);
             button_plus.setVisibility(View.GONE);
+            complete.setVisibility(View.GONE);
         }
     }
 
@@ -199,6 +200,7 @@ public class WaterFragment extends Fragment {
                 }
                     if (value == water.getValue_goal()) {
                         card_total.setVisibility(View.VISIBLE);
+                        button_plus.setVisibility(View.GONE);
                         set_glasses2(0);
                         complete.setVisibility(View.VISIBLE);
                         complete.setMinAndMaxFrame(0,50);
@@ -211,15 +213,9 @@ public class WaterFragment extends Fragment {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(water.getValue_goal()==water.getProgress_goal()){
-                    complete.setVisibility(View.GONE);
-                }
                 unset_glasses();
-                button_plus.setVisibility(View.GONE);
                 water.setProgress_goal(0.0);
-                removeGoals();
-                set_valore();
-                set_glasses();
+                removeGoals2();
             }
         });
     }
@@ -301,6 +297,7 @@ public class WaterFragment extends Fragment {
                         but_layout.setLayoutParams(params);
                         break;
                 }
+                break;
             case 2:
                 switch (value_sw){
                     case "2.0":
@@ -525,6 +522,7 @@ public class WaterFragment extends Fragment {
                         but_layout.setLayoutParams(params);
                         break;
                 }
+                break;
             case 3:
                 switch (value_sw){
                     case "3.0":
@@ -984,6 +982,7 @@ public class WaterFragment extends Fragment {
                         but_layout.setLayoutParams(params);
                         break;
                 }
+                break;
     }}
     public void set_obiettivo(){
         water_goal.setText("Obiettivo: "+water.getValue_goal()+" Litri");
@@ -1150,7 +1149,6 @@ public class WaterFragment extends Fragment {
                     but_layout.setLayoutParams(params);
                     glass.setMinAndMaxFrame(0,27);
                     glass.playAnimation();
-                    card_total.setVisibility(View.VISIBLE);
                     set_glasses2(0);
                     complete.setVisibility(View.VISIBLE);
                     complete.setMinAndMaxFrame(0,50);
@@ -1166,7 +1164,6 @@ public class WaterFragment extends Fragment {
                 glass.setVisibility(View.GONE);
                 break;
             case 3:
-
                 glass = root.findViewById(R.id.glass1);
                 glass.setVisibility(View.VISIBLE);
                 if(progress<0.25){
@@ -1475,6 +1472,55 @@ public class WaterFragment extends Fragment {
 
         queue.add(jsonObjectRequest);
     }
+    public void removeGoals2(){
+        postData = new JSONObject();
+        SessionManager sessionManager = new SessionManager(getContext());
+        try {
+            postData.put("id_user", sessionManager.getSession());
+            id_user = sessionManager.getSession();
+            Log.d("user_id", id_user);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String url = "https://myfitnote.herokuapp.com/goals/remove_goals";
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Log.d("Post", response.getString("message"));
+                    updateGoals2();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+
+        });
+        jsonObjectRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
+
+        queue.add(jsonObjectRequest);
+    }
     public void updateGoals() {
         postData = new JSONObject();
         Boolean[] status_array = new Boolean[]{water.getStatus_goal(),kcal.getStatus_goal()};
@@ -1500,6 +1546,60 @@ public class WaterFragment extends Fragment {
             public void onResponse(JSONObject response) {
                 try {
                     JSONObject res = response.getJSONObject("goal");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+
+        });
+        jsonObjectRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
+        queue.add(jsonObjectRequest);
+    }
+    public void updateGoals2() {
+        postData = new JSONObject();
+        Boolean[] status_array = new Boolean[]{water.getStatus_goal(),kcal.getStatus_goal()};
+        JSONArray status_jarray = new JSONArray(Arrays.asList(status_array));
+        Integer[] value_array = new Integer[]{water.getValue_goal(),kcal.getValue_goal()};
+        JSONArray value_jarray = new JSONArray(Arrays.asList(value_array));
+        Double[] prog_array = new Double[]{water.getProgress_goal(),kcal.getProgress_goal()};
+        JSONArray prog_jarray = new JSONArray(Arrays.asList(prog_array));
+        try {
+            postData.put("status",status_jarray);
+            postData.put("obiettivo",value_jarray);
+            postData.put("valore_attuale",prog_jarray);
+            postData.put("id_user", id_user);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String url = "https://myfitnote.herokuapp.com/goals/update_goals";
+        Log.d("PostDAta",postData.toString());
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject res = response.getJSONObject("goal");
+                    getGoals();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
