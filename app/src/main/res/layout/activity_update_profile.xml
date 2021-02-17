@@ -168,7 +168,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Data di mascita:  "
+                        android:text="Data di nascita:  "
                         android:textStyle="bold"
                         android:textColor="#B22196F3"
                         android:layout_marginLeft="10dp">
