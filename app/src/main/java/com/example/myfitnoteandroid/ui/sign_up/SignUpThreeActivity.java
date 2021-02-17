@@ -22,7 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class SignUpThreeActivity extends AppCompatActivity implements View.OnClickListener {
-    TextView label, name, surname, mail, password, peso, altezza;
+    TextView label, name, surname, mail, password, peso, altezza, dataN;
     Button button;
 
     private JSONObject postData, userJsonObject;
@@ -39,6 +39,7 @@ public class SignUpThreeActivity extends AppCompatActivity implements View.OnCli
         password = findViewById(R.id.password);
         peso = findViewById(R.id.Peso);
         altezza = findViewById(R.id.Altezza);
+        dataN = findViewById(R.id.Datan);
         button = findViewById(R.id.reg3);
 
 
@@ -51,6 +52,7 @@ public class SignUpThreeActivity extends AppCompatActivity implements View.OnCli
         password.setText(sessionManager.getPassword());
         peso.setText(sessionManager.getPeso());
         altezza.setText(sessionManager.getAltezza());
+        dataN.setText(sessionManager.getData());
 
         button.setOnClickListener((View.OnClickListener) this);
 
@@ -67,6 +69,7 @@ public class SignUpThreeActivity extends AppCompatActivity implements View.OnCli
                 postData.put("surname", surname.getText().toString().trim());
                 postData.put("height", altezza.getText().toString().trim());
                 postData.put("weight", peso.getText().toString().trim());
+                postData.put("date", dataN.getText().toString().trim());
                 postData.put("password", password.getText().toString().trim());
 
             } catch (JSONException e) {
