@@ -147,7 +147,7 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
                         //getSheets();
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        getActivity().finish();
+                        //getActivity().finish();
                         startActivity(intent);
 
                     } else {

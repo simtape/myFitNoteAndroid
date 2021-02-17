@@ -6,11 +6,11 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_menu_home"
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_foods"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_menu_food"
             android:title="@string/menu_foods" />
 
         <!--        <item
@@ -20,23 +20,23 @@
 
         <item
             android:id="@+id/nav_esercizi"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_menu_exercise"
             android:title="@string/esercizi" />
 
         <item
             android:id="@+id/nav_schede"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_menu_all_sheets"
             android:title="@string/schede" />
         <item
             android:id="@+id/nav_scheda"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_menu_create_sheet"
             android:title="@string/crea_scheda" />
 
         <item
             android:id="@+id/nav_obbiettivi"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/obbiettivi" />
-        
+            android:icon="@drawable/ic_menu_goals"
+            android:title="@string/obiettivi" />
+
 
         <item
 
@@ -45,11 +45,11 @@
             <menu>
                 <item
                     android:id="@+id/nav_kcal"
-                    android:icon="@drawable/ic_menu_slideshow"
+                    android:icon="@drawable/ic_menu_kcal"
                     android:title="@string/kcal" />
                 <item
                     android:id="@+id/nav_bmi"
-                    android:icon="@drawable/ic_menu_slideshow"
+                    android:icon="@drawable/ic_menu_bmi"
                     android:title="@string/bmi" />
 
 

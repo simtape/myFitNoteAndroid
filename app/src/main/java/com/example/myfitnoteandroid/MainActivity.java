@@ -98,11 +98,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 || super.onSupportNavigateUp();
     }
 
-    @Override
+/*    @Override
     public void onBackPressed() {
         super.onBackPressed();
         finishAffinity();
-    }
+    }*/
 
     @Override
     public void onClick(View v) {
