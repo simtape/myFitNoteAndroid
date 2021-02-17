@@ -8,17 +8,20 @@
 
     <Button
         android:id="@+id/conferma"
-        android:layout_width="329dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="512dp"
+        android:layout_marginBottom="48dp"
         android:background="@drawable/button_grey"
         android:text="Conferma Modifiche"
         android:textColor="@color/cardview_light_background"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.06"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintWidth_percent="0.8" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
@@ -138,8 +141,8 @@
                                 android:id="@+id/kcal_value_tit"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:text="Kcal da bruciare:"
                                 android:gravity="center"
+                                android:text="Kcal da bruciare:"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -284,9 +287,9 @@
                                 android:id="@+id/water_value_tit"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:text="Acqua da bere:"
                                 android:textStyle="bold"
-                                android:gravity="center"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.388"

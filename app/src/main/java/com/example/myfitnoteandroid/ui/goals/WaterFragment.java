@@ -36,7 +36,6 @@ public class WaterFragment extends Fragment {
     ViewGroup root;
     Goal water = new Goal();
     Goal kcal = new Goal();
-    Button test;
     private JSONObject postData;
     TextView water_goal,water_value;
     public static WaterFragment newInstance() {
@@ -504,8 +503,6 @@ public class WaterFragment extends Fragment {
         }
     }
     public void set_glasses2(int i){
-        int value = water.getValue_goal();
-        double progress = water.getProgress_goal();
         switch(i){
             case 0:
                 glass = root.findViewById(R.id.glass1);

@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -28,11 +30,13 @@ import org.json.JSONObject;
 
 public class WaterFragmentSecond extends Fragment {
     ViewGroup root;
-    LottieAnimationView glass_second;
+    LottieAnimationView glass_second,complete_goal,glass_second_reset;
     Goal water_second = new Goal();
     Goal kcal_second = new Goal();
     private JSONObject postData;
     TextView water_goal_second,water_value_second;
+    ImageButton plus_second;
+    Button reset_second;
     public static WaterFragmentSecond newInstance() { return new WaterFragmentSecond(); }
 
     @Override
@@ -42,7 +46,12 @@ public class WaterFragmentSecond extends Fragment {
         glass_second = root.findViewById(R.id.glass_second);
         water_goal_second = root.findViewById(R.id.water_goal_second);
         water_value_second = root.findViewById(R.id.water_value_second);
+        complete_goal = root.findViewById(R.id.water_complete);
+        reset_second = root.findViewById(R.id.reset_second);
+        plus_second= root.findViewById(R.id.plus_second);
         getGoals();
+        button_plus_lst();
+        reset_lst();
         return root;
     }
 
@@ -134,26 +143,349 @@ public class WaterFragmentSecond extends Fragment {
                     glass_second.setMinAndMaxFrame(24,32);
                     glass_second.playAnimation();
                     cont+=0.25;
+                    plus_second.setVisibility(View.GONE);
+                    glass_second.setVisibility(View.GONE);
+                    complete_goal.setMinAndMaxFrame(0,50);
+                    complete_goal.playAnimation();
                 }
                 break;
             case 2:
                 cont=0;
-                for(int i=0;i<=7;i++){
-                    if(progress>cont+0.25){
-                        glass_second.setMinAndMaxFrame(0,27);
-                        glass_second.playAnimation();
-                    }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(0,4);
+                    glass_second.playAnimation();
+                    cont+=0.25;
                 }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(4,8);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(8,12);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(12,16);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(16,20);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(20,24);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(24,28);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(28,32);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                    plus_second.setVisibility(View.GONE);
+                    glass_second.setVisibility(View.GONE);
+                    complete_goal.setMinAndMaxFrame(0,50);
+                    complete_goal.playAnimation();
+                }
+                break;
             case 3:
                 cont=0;
-                for(int i=0;i<=11;i++){
-                    if(progress>cont+0.25){
-                        glass_second.setMinAndMaxFrame(0,27);
-                        glass_second.playAnimation();
-                    }
+                if(progress>=cont+0.25){
+                glass_second.setMinAndMaxFrame(0,2);
+                glass_second.playAnimation();
+                cont+=0.25;
                 }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(2,5);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(5,7);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(7,10);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(10,12);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(12,15);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(15,17);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(17,20);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(20,22);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(22,25);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(25,28);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                }
+                if(progress>=cont+0.25){
+                    glass_second.setMinAndMaxFrame(28,36);
+                    glass_second.playAnimation();
+                    cont+=0.25;
+                    plus_second.setVisibility(View.GONE);
+                    glass_second.setVisibility(View.GONE);
+                    complete_goal.setMinAndMaxFrame(0,50);
+                    complete_goal.playAnimation();
+                }
+                break;
         }
     }
 
-
-}
+    public void button_plus_lst(){
+        plus_second.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                double value = water_second.getProgress_goal();
+                value += 0.25;
+                water_second.setProgress_goal(value);
+                if(value<=water_second.getValue_goal()){
+                    set_valore2();
+                    int sec1;
+                    int sec2;
+                    double cont;
+                    switch (water_second.getValue_goal()){
+                        case 1:
+                            sec1 = 0;
+                            sec2 = 9;
+                            cont=0.25;
+                            for(int i=0; i<=3; i++){
+                                if(value == cont){
+                                    glass_second.setMinAndMaxFrame(sec1,sec2);
+                                    glass_second.playAnimation();
+                                }
+                                if(value == water_second.getValue_goal()){
+                                    plus_second.setVisibility(View.GONE);
+                                    glass_second.setVisibility(View.GONE);
+                                    complete_goal.setMinAndMaxFrame(0,50);
+                                    complete_goal.playAnimation();
+                                }
+                                cont+=0.25;
+                                sec1+=9;
+                                sec2+=9;
+                            }
+                            break;
+                        case 2:
+                            sec1 = 0;
+                            sec2 = 4;
+                            cont=0.25;
+                            for(int i=0; i<=7; i++){
+                                if(value == cont){
+                                    glass_second.setMinAndMaxFrame(sec1,sec2);
+                                    glass_second.playAnimation();
+                                }
+                                if(value == water_second.getValue_goal()){
+                                    plus_second.setVisibility(View.GONE);
+                                    glass_second.setVisibility(View.GONE);
+                                    complete_goal.setMinAndMaxFrame(0,50);
+                                    complete_goal.playAnimation();
+                                }
+                                cont+=0.25;
+                                sec1+=4;
+                                sec2+=4;
+                            }
+                            break;
+                        case 3:
+                            sec1 = 0;
+                            sec2 = 3;
+                            cont=0.25;
+                            for(int i=0; i<=11; i++){
+                                if(value == cont){
+                                    glass_second.setMinAndMaxFrame(sec1,sec2);
+                                    glass_second.playAnimation();
+                                }
+                                if(value == water_second.getValue_goal()){
+                                    plus_second.setVisibility(View.GONE);
+                                    glass_second.setVisibility(View.GONE);
+                                    complete_goal.setMinAndMaxFrame(0,50);
+                                    complete_goal.playAnimation();
+                                }
+                                cont+=0.25;
+                                sec1+=3;
+                                sec2+=3;
+                            }
+                            break;
+                    }
+                }
+            }
+        });
+        }
+    public void unset_glass(){
+        int value = water_second.getValue_goal();
+        double progress = water_second.getProgress_goal();
+        String value_sw = Double.toString(progress);
+        switch(value) {
+            case 1:
+                switch (value_sw){
+                    case "1.0":
+                        glass_second.setMinAndMaxFrame(0,8);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "0.75":
+                        glass_second.setMinAndMaxFrame(0,16);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "0.5":
+                        glass_second.setMinAndMaxFrame(0,24);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "0.25":
+                        glass_second.setMinAndMaxFrame(0,32);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                }
+            case 2:
+                switch (value_sw){
+                    case "2.0":
+                        glass_second.setMinAndMaxFrame(0,32);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "1.75":
+                        glass_second.setMinAndMaxFrame(0,28);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "1.5":
+                        glass_second.setMinAndMaxFrame(0,24);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "1.25":
+                        glass_second.setMinAndMaxFrame(0,20);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "1.0":
+                        glass_second.setMinAndMaxFrame(0,16);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "0.75":
+                        glass_second.setMinAndMaxFrame(0,12);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "0.5":
+                        glass_second.setMinAndMaxFrame(0,8);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                        case "0.25":
+                        glass_second.setMinAndMaxFrame(0,4);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                }
+            case 3:
+                switch (value_sw){
+                    case "3.0":
+                        glass_second.setMinAndMaxFrame(0,36);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "2.75":
+                        glass_second.setMinAndMaxFrame(0,33);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "2.5":
+                        glass_second.setMinAndMaxFrame(0,30);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "2.25":
+                        glass_second.setMinAndMaxFrame(0,27);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "2.0":
+                        glass_second.setMinAndMaxFrame(0,24);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "1.75":
+                        glass_second.setMinAndMaxFrame(0,21);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "1.5":
+                        glass_second.setMinAndMaxFrame(0,18);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "1.25":
+                        glass_second.setMinAndMaxFrame(0,15);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "1.0":
+                        glass_second.setMinAndMaxFrame(0,12);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "0.75":
+                        glass_second.setMinAndMaxFrame(0,9);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "0.5":
+                        glass_second.setMinAndMaxFrame(0,6);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                    case "0.25":
+                        glass_second.setMinAndMaxFrame(0,3);
+                        glass_second.setSpeed(-1);
+                        glass_second.playAnimation();
+                        break;
+                }
+        }
+    }
+    public void reset_lst() {
+        reset_second.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                unset_glass();
+            }
+        });
+    }
+    }
