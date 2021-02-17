@@ -40,8 +40,8 @@ public class UpdateProfile extends AppCompatActivity implements View.OnClickList
         nameEdit = findViewById(R.id.nomeEdit);
         surnameEdit = findViewById(R.id.cognomeEdit);
         dtnEdit = findViewById(R.id.datadiNascitaEdit);
-        heightEdit = findViewById(R.id.PesoEdit);
-        weightEdit = findViewById(R.id.altezzaEdit);
+        heightEdit = findViewById(R.id.altezzaEdit);
+        weightEdit = findViewById(R.id.PesoEdit);
         btnUpdate = findViewById(R.id.bottoneUpdate);
         btnUpdate.setOnClickListener(this);
         SessionManager sessionManager = new SessionManager(this);
@@ -87,7 +87,7 @@ public class UpdateProfile extends AppCompatActivity implements View.OnClickList
     }
 
 
-    public void updateProfile(){
+    public void updateProfile() {
         RequestQueue queue = Volley.newRequestQueue(this.getApplicationContext());
         String url = "https://myfitnote.herokuapp.com/users/update_user";
         final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,
@@ -95,19 +95,18 @@ public class UpdateProfile extends AppCompatActivity implements View.OnClickList
             @Override
             public void onResponse(JSONObject response) {
 
+
                 try {
-                    userJsonObject = response.getJSONObject("user");
+                    if (!response.getBoolean("error")) {
+                        Toast.makeText(getApplication().getBaseContext(), "Utente modificato correttamente", Toast.LENGTH_LONG).show();
+
+
+                    } else {
+                        Toast.makeText(getApplication().getBaseContext(), "Nessuna modifica esegiuta", Toast.LENGTH_LONG).show();
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
-
-
-                if (userJsonObject != null) {
-                    Toast.makeText(getApplication().getBaseContext(), "Utente modificato correttamente", Toast.LENGTH_LONG).show();
-
-
-                } else {
-                    Toast.makeText(getApplication().getBaseContext(), "Nessuna modifica esegiuta", Toast.LENGTH_LONG).show();
                 }
 
 
