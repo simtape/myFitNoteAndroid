@@ -1,13 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.bmi.BodyMassFragment">
+    tools:context=".ui.bmi.BodyMassFragment"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:text="Indice Di Massa Corporea">
+
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="74dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="100dp"
+            android:textSize="25dp"
+            android:id="@+id/textSesso"
+            ></TextView>
+
+        <Spinner
+            android:id="@+id/spinnersesso"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="end"
+            android:layout_marginLeft="200dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="137dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/indice"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Calcola Indice"
+            android:clickable="true"
+            android:background="@drawable/button_bg">
+
+        </Button>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="191dp"
+        >
+
+        <TextView
+            android:id="@+id/resultIndex"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:textStyle="bold">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/descrL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="271dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:text="L'Indice di Massa Corporea (IMC o BMI dall'inglese Body Mass Index) è uno strumento importante per la misurazione del peso corretto. Il BMI mette in correlazione il peso con l'altezza: viene calcolato dividendo il peso corporeo (kg) per la statura (metri) al quadrato.">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="373dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="313dp"
+        android:layout_marginBottom="2dp"
+        android:padding="20dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bmi"></ImageView>
+
+    </LinearLayout>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="-1dp"
+        android:layout_marginLeft="-1dp"
+        android:layout_marginTop="50dp"
+        android:text="Seleziona sesso"
+        android:textSize="20dp"
+        android:textStyle="bold">
 
-</FrameLayout>
+    </TextView>
+</RelativeLayout>
