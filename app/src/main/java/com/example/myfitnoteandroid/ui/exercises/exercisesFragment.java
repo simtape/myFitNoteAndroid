@@ -1,5 +1,6 @@
 package com.example.myfitnoteandroid.ui.exercises;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -45,6 +46,7 @@ public class exercisesFragment extends Fragment {
     private List<String> nameGear = new ArrayList<>();
     SearchView searchViewExe;
     ShowExercisesAdapter adapter;
+    ProgressDialog progressBar;
 
 
 
@@ -62,6 +64,13 @@ public class exercisesFragment extends Fragment {
 
         listView = root.findViewById(R.id.list_viewExe);
         searchViewExe = root.findViewById(R.id.searchViewexe);
+        progressBar = new ProgressDialog(getContext());
+        progressBar.setCancelable(true);
+        progressBar.setMessage("Stiamo caricando gli esercizi");
+        progressBar.setProgressStyle(R.drawable.circle);
+        progressBar.setProgress(0);
+        progressBar.setMax(100);
+        progressBar.show();
 
         searchViewExe.setOnQueryTextListener(
                 new SearchView.OnQueryTextListener() {
@@ -85,6 +94,8 @@ public class exercisesFragment extends Fragment {
             public void run() {
                 adapter = new ShowExercisesAdapter(getContext(), nameExercises, nameGear);
                 listView.setAdapter(adapter);
+                progressBar.dismiss();
+
             }
         }, 1500);
 

@@ -1,5 +1,6 @@
 package com.example.myfitnoteandroid.ui.foods;
 
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -54,6 +55,7 @@ public class FoodsViewFragment extends Fragment {
     ListView listView;
     SearchView searchViewfood;
     ShowFoodAdapter adapter;
+    ProgressDialog progressBar;
 
     @Override
     public void onStart() {
@@ -66,6 +68,13 @@ public class FoodsViewFragment extends Fragment {
         View root = inflater.inflate(R.layout.foods_view_fragment, container, false);
         listView = root.findViewById(R.id.list_viewFood);
         searchViewfood = root.findViewById(R.id.searchView2);
+        progressBar = new ProgressDialog(getContext());
+        progressBar.setCancelable(true);
+        progressBar.setMessage("Stiamo caricando i cibi");
+        progressBar.setProgressStyle(R.drawable.circle);
+        progressBar.setProgress(0);
+        progressBar.setMax(100);
+        progressBar.show();
 
         searchViewfood.setOnQueryTextListener(
                 new SearchView.OnQueryTextListener() {
@@ -87,6 +96,7 @@ public class FoodsViewFragment extends Fragment {
             public void run() {
                 adapter = new ShowFoodAdapter(getContext(), nameFoods, nameKcal);
                 listView.setAdapter(adapter);
+                progressBar.dismiss();
             }
         }, 1500);
 //

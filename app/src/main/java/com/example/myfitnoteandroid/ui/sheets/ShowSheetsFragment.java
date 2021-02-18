@@ -1,5 +1,6 @@
 package com.example.myfitnoteandroid.ui.sheets;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -57,6 +58,9 @@ public class ShowSheetsFragment extends Fragment {
     SearchView searchView;
     ShowSheetsAdapter showSheetsAdapter;
     ProgressBar progress;
+    Thread thread;
+    ProgressDialog progressBar;
+    int progressCounter = 0;
     int img;
 
 
@@ -74,8 +78,21 @@ public class ShowSheetsFragment extends Fragment {
         root = (ViewGroup) inflater.inflate(R.layout.show_sheets_fragment, container, false);
         listView = root.findViewById(R.id.list_view);
         searchView = root.findViewById(R.id.searchViewSheets);
-        progress = root.findViewById(R.id.circleb);
+        /*progress = root.findViewById(R.id.circleb);
         progress.setVisibility(View.VISIBLE);
+        //setProgressValue(progressCounter);
+        progress.setIndeterminate(true);
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);*/
+
+        progressBar = new ProgressDialog(getContext());
+        progressBar.setCancelable(true);
+        progressBar.setMessage("Stiamo caricando le schede");
+        progressBar.setProgressStyle(R.drawable.circle);
+        progressBar.setProgress(0);
+        progressBar.setMax(100);
+        progressBar.show();
+        //progressBarStatus = 0;
+
 
         Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
@@ -84,9 +101,11 @@ public class ShowSheetsFragment extends Fragment {
 
                 List<String> dates = SheetsHandler.getInstance().datesList();
                 List<String> names = SheetsHandler.getInstance().namesList();
-                progress.setVisibility(View.INVISIBLE);
+                //progress.setVisibility(View.INVISIBLE);
                 showSheetsAdapter = new ShowSheetsAdapter(getContext(), names, dates);
                 listView.setAdapter(showSheetsAdapter);
+                progressBar.dismiss();
+                //thread.interrupt();
 
          /*       for(int i = 0; i<SheetsHandler.getInstance().getUserSheets().size(); i++){
                     Sheet sheet = SheetsHandler.getInstance().getUserSheets().get(i);
@@ -209,6 +228,27 @@ public class ShowSheetsFragment extends Fragment {
         queue.add(jsonObjectRequest);
 
 
+    }
+
+    private void setProgressValue(final int progress) {
+
+        // set the progress
+        this.progress.setProgress(progress);
+        // thread is used to change the progress value
+        this.thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+
+                    Thread.sleep(20);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                setProgressValue(progress + 10);
+            }
+        });
+        this.thread.start();
     }
 
 }

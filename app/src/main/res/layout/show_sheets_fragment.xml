@@ -23,7 +23,7 @@
 
     </SearchView>
 
-    <ProgressBar
+<!--    <ProgressBar
         android:layout_width="150dp"
         android:layout_height="150dp"
         style="?android:progressBarStyleHorizontal"
@@ -36,7 +36,7 @@
         android:id="@+id/circleb"
         android:layout_marginTop="300dp"
         android:layout_marginLeft="130dp"
-        android:layout_marginRight="13dp"/>
+        android:layout_marginRight="13dp"/>-->
 
     <ListView
         android:id="@+id/list_view"
