@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -55,6 +56,7 @@ public class ShowSheetsFragment extends Fragment {
     ListView listView;
     SearchView searchView;
     ShowSheetsAdapter showSheetsAdapter;
+    ProgressBar progress;
     int img;
 
 
@@ -72,6 +74,8 @@ public class ShowSheetsFragment extends Fragment {
         root = (ViewGroup) inflater.inflate(R.layout.show_sheets_fragment, container, false);
         listView = root.findViewById(R.id.list_view);
         searchView = root.findViewById(R.id.searchViewSheets);
+        progress = root.findViewById(R.id.circleb);
+        progress.setVisibility(View.VISIBLE);
 
         Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
@@ -80,7 +84,7 @@ public class ShowSheetsFragment extends Fragment {
 
                 List<String> dates = SheetsHandler.getInstance().datesList();
                 List<String> names = SheetsHandler.getInstance().namesList();
-
+                progress.setVisibility(View.INVISIBLE);
                 showSheetsAdapter = new ShowSheetsAdapter(getContext(), names, dates);
                 listView.setAdapter(showSheetsAdapter);
 

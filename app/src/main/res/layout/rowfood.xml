@@ -33,7 +33,7 @@
             <TextView
                 android:layout_width="87dp"
                 android:layout_height="30dp"
-                android:text="KCAL"
+                android:text="KCAL x 100g"
                 android:textSize="15dp"
                 android:textAlignment="textStart"
                 android:gravity="start" />

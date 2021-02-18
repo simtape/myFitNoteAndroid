@@ -5,14 +5,19 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:myapp="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.foods.FoodsViewFragment">
+    tools:context=".ui.foods.FoodsViewFragment"
+   >
 
     <SearchView
         android:id="@+id/searchView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#9AACA8B5"
+        android:background="@drawable/search_back"
         myapp:showAsAction="always|collapseActionView"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         myapp:actionViewClass="android.support.v7.widget.SearchView">
 
     </SearchView>

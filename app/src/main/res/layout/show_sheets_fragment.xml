@@ -12,11 +12,31 @@
         android:id="@+id/searchViewSheets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#9AACA8B5"
+        android:background="@drawable/search_back"
         app:showAsAction="always|collapseActionView"
-        app:actionViewClass="android.support.v7.widget.SearchView">
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        >
 
     </SearchView>
+
+    <ProgressBar
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        style="?android:progressBarStyleHorizontal"
+        android:progress="80"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:progressDrawable="@drawable/circle"
+        android:id="@+id/circleb"
+        android:layout_marginTop="300dp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginRight="13dp"/>
 
     <ListView
         android:id="@+id/list_view"
