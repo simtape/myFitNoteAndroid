@@ -77,6 +77,7 @@ public class WaterFragmentSecond extends Fragment {
         menu_an_second.setAnimation(R.raw.menu2);
         menu_an_second.setMinAndMaxFrame(0,130);
         menu_an_second.setSpeed(-1);
+        menu_an_second.setVisibility(View.VISIBLE);
         menu_an_second.playAnimation();
         menu_an_second.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
@@ -112,7 +113,7 @@ public class WaterFragmentSecond extends Fragment {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                activate_menu();
+                menu_an_second.setVisibility(View.GONE);
             }
 
             @Override

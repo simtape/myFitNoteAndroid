@@ -186,7 +186,7 @@ public class WaterFragment extends Fragment {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                activate_menu();
+                menu_an.setVisibility(View.GONE);
             }
 
             @Override
