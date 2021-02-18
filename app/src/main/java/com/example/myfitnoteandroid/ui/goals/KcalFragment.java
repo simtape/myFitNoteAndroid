@@ -37,6 +37,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.List;
 
 public class KcalFragment extends Fragment {
@@ -58,6 +59,7 @@ public class KcalFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getGoals();
         SessionManager sessionManager = new SessionManager(getContext());
         peso = Integer.parseInt(sessionManager.getPeso());
         SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
@@ -74,7 +76,6 @@ public class KcalFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        getGoals();
         root = (ViewGroup) inflater.inflate(R.layout.kcal_fragment, container, false);
         kcal_an = root.findViewById(R.id.kcal_an);
         percentual = root.findViewById(R.id.percentual);
@@ -156,6 +157,7 @@ public class KcalFragment extends Fragment {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    createGoals();
                 }
 
 
@@ -183,5 +185,60 @@ public class KcalFragment extends Fragment {
             }
         });
         queue.add(jsonObjectRequest);
+    }
+    public void createGoals() {
+        Boolean[] status_array = new Boolean[]{false,false};
+        JSONArray status_jarray = new JSONArray(Arrays.asList(status_array));
+        Integer[] value_array = new Integer[]{3,4000};
+        JSONArray value_jarray = new JSONArray(Arrays.asList(value_array));
+        Double[] prog_array = new Double[]{0.00,0.00};
+        JSONArray prog_jarray = new JSONArray(Arrays.asList(prog_array));
+        SessionManager sessionManager = new SessionManager(getContext());
+        try {
+            postData.put("status",status_jarray);
+            postData.put("obiettivo",value_jarray);
+            postData.put("valore_attuale",prog_jarray);
+            postData.put("id_user", sessionManager.getSession());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String url = "https://myfitnote.herokuapp.com/goals/create_goals";
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject res = response.getJSONObject("goal");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+
+        });
+        jsonObjectRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
+
+        queue.add(jsonObjectRequest);
+        getGoals();
     }
 }
