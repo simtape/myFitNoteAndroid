@@ -2,6 +2,7 @@ package com.example.myfitnoteandroid.ui.sign_up;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
+import com.example.myfitnoteandroid.ui.login.LoginActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -99,6 +101,9 @@ public class SignUpThreeActivity extends AppCompatActivity implements View.OnCli
 
                 if (userJsonObject != null) {
                     Toast.makeText(getApplication().getBaseContext(), "Utente registrato correttamente", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
+
 
 
                 } else {

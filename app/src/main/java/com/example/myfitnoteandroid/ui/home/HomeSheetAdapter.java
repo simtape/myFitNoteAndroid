@@ -38,7 +38,7 @@ public class HomeSheetAdapter extends ArrayAdapter<String> {
         TextView seriesAndReps = row.findViewById(R.id.tvSeriesRepsHome);
         String repetition = String.valueOf(sheet.getSheetExercises().get(position).getRep());
         String serie = String.valueOf(sheet.getSheetExercises().get(position).getSerie());
-        String concRepSeries = serie.concat(" ").concat(repetition);
+        String concRepSeries = serie.concat(" serie").concat(" ").concat(repetition).concat(" reps");
         seriesAndReps.setText(concRepSeries);
 
 

@@ -10,7 +10,7 @@ public class Sheet {
     private String name;
     private String id;
     private List<String> days;
-    private List<SheetExercise> sheetExercises;
+    private List<SheetExercise> sheetExercises ;
     private String date;
 
     public Sheet(String name, String id, List<SheetExercise> sheetExercises, List<String> days, String date) {

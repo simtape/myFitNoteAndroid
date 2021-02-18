@@ -41,12 +41,12 @@ public class HomeSheetFragment extends Fragment {
     ViewGroup view;
     ListView listView;
     HomeSheetAdapter homeSheetAdapter;
+    Boolean result = false;
 
 
     public HomeSheetFragment() {
 
     }
-
 
 
     @Override
@@ -65,18 +65,27 @@ public class HomeSheetFragment extends Fragment {
         getLastSheet();
         //Log.d("fragment creato", "homesheet");
 
+/*
 
         Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                List<String> names = lastSheet.getNamesExercises();
+                if (result) {
+                    List<String> names = lastSheet.getNamesExercises();
 
-                homeSheetAdapter = new HomeSheetAdapter(getContext(), names, lastSheet);
-                listView.setAdapter(homeSheetAdapter);
+                    homeSheetAdapter = new HomeSheetAdapter(getContext(), names, lastSheet);
+                    listView.setAdapter(homeSheetAdapter);
+
+
+                } else {
+
+                }
+
             }
-        }, 2000);
+        }, 2500);
 
+*/
 
         return view;
     }
@@ -100,7 +109,7 @@ public class HomeSheetFragment extends Fragment {
                         Log.d("fragment creato", response.toString());
                         try {
                             if (!response.getBoolean("error")) {
-
+                                result = true;
                                 JSONObject sheet = response.getJSONArray("last_sheet").getJSONObject(0);
                                 String name = sheet.getString("name_sheet");
                                 Log.d("nome scheda", name);
@@ -127,7 +136,7 @@ public class HomeSheetFragment extends Fragment {
                                 String splittedDate = date.substring(0, 10);
                                 lastSheet = new Sheet(name, id, sheetExercises, days, splittedDate);
                             } else {
-
+                                result = false;
 
                             }
                         } catch (JSONException e) {
