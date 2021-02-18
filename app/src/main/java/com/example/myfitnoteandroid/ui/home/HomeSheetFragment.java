@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -39,6 +40,7 @@ import java.util.List;
 public class HomeSheetFragment extends Fragment {
     Sheet lastSheet;
     ViewGroup view;
+    TextView titleFragment;
     ListView listView;
     HomeSheetAdapter homeSheetAdapter;
     Boolean result = false;
@@ -61,17 +63,20 @@ public class HomeSheetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = (ViewGroup) inflater.inflate(R.layout.fragment_home_sheet, container, false);
+
+        titleFragment = view.findViewById(R.id.title_sheet_home);
         listView = view.findViewById(R.id.list_sheet_home);
         getLastSheet();
         //Log.d("fragment creato", "homesheet");
 
-/*
+
 
         Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (result) {
+                    titleFragment.setText("Il tuo allenamento");
                     List<String> names = lastSheet.getNamesExercises();
 
                     homeSheetAdapter = new HomeSheetAdapter(getContext(), names, lastSheet);
@@ -79,13 +84,13 @@ public class HomeSheetFragment extends Fragment {
 
 
                 } else {
-
+                    titleFragment.setText("Non hai allenamenti!");
                 }
 
             }
         }, 2500);
 
-*/
+
 
         return view;
     }
@@ -110,7 +115,7 @@ public class HomeSheetFragment extends Fragment {
                         try {
                             if (!response.getBoolean("error")) {
                                 result = true;
-                                JSONObject sheet = response.getJSONArray("last_sheet").getJSONObject(0);
+                                JSONObject sheet = response.getJSONArray("result").getJSONObject(0);
                                 String name = sheet.getString("name_sheet");
                                 Log.d("nome scheda", name);
                                 int numOfDays = sheet.getJSONArray("days").length();
