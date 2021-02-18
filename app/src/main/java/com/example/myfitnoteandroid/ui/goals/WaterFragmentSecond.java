@@ -1,7 +1,9 @@
 package com.example.myfitnoteandroid.ui.goals;
 
+import android.animation.Animator;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
@@ -28,15 +30,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+
 public class WaterFragmentSecond extends Fragment {
     ViewGroup root;
-    LottieAnimationView glass_second,complete_goal,glass_second_reset;
+    LottieAnimationView glass_second,complete_goal,menu_an_second;
     Goal water_second = new Goal();
     Goal kcal_second = new Goal();
     private JSONObject postData;
     TextView water_goal_second,water_value_second;
     ImageButton plus_second;
     Button reset_second;
+    String id_user;
+    CardView card_switch_second;
     public static WaterFragmentSecond newInstance() { return new WaterFragmentSecond(); }
 
     @Override
@@ -48,19 +54,85 @@ public class WaterFragmentSecond extends Fragment {
         water_value_second = root.findViewById(R.id.water_value_second);
         complete_goal = root.findViewById(R.id.water_complete);
         reset_second = root.findViewById(R.id.reset_second);
+        card_switch_second = root.findViewById(R.id.card_switch_second);
+        menu_an_second = root.findViewById(R.id.menu_an_second);
         plus_second= root.findViewById(R.id.plus_second);
         getGoals();
         button_plus_lst();
         reset_lst();
         return root;
     }
+    public void set_card(){
+        if(!water_second.getStatus_goal()){
+            card_switch_second.setVisibility(View.VISIBLE);
+            reset_second.setVisibility(View.GONE);
+            activate_menu();
+        }
+        if(water_second.getStatus_goal()){
+            card_switch_second.setVisibility(View.GONE);
+            reset_second.setVisibility(View.VISIBLE);
+        }
+    }
+    public void activate_menu(){
+        menu_an_second.setAnimation(R.raw.menu2);
+        menu_an_second.setMinAndMaxFrame(0,130);
+        menu_an_second.setSpeed(-1);
+        menu_an_second.setVisibility(View.VISIBLE);
+        menu_an_second.playAnimation();
+        menu_an_second.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+            }
 
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                activate_switch();
+            }
 
+            @Override
+            public void onAnimationCancel(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
+    }
+    public void activate_switch() {
+        menu_an_second.setAnimation(R.raw.switch_an);
+        menu_an_second.setMinAndMaxFrame(0,170);
+        menu_an_second.setSpeed(1);
+        menu_an_second.playAnimation();
+        menu_an_second.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                menu_an_second.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
+    }
     public void getGoals() {
         postData = new JSONObject();
         SessionManager sessionManager = new SessionManager(getContext());
         try {
             postData.put("id_user", sessionManager.getSession());
+            id_user = sessionManager.getSession();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -77,6 +149,7 @@ public class WaterFragmentSecond extends Fragment {
                         JSONArray progress = res.getJSONArray("valore_attuale");
                         water_second.setGoal(status.getBoolean(0),value.getInt(0),progress.getDouble(0));
                         kcal_second.setGoal(status.getBoolean(1),value.getInt(1),progress.getDouble(1));
+                        set_card();
                         set_obiettivo2();
                         set_valore2();
                     }
@@ -270,6 +343,7 @@ public class WaterFragmentSecond extends Fragment {
         plus_second.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                glass_second.setSpeed(1);
                 double value = water_second.getProgress_goal();
                 value += 0.25;
                 water_second.setProgress_goal(value);
@@ -344,6 +418,7 @@ public class WaterFragmentSecond extends Fragment {
                             break;
                     }
                 }
+                removeGoals();
             }
         });
         }
@@ -494,9 +569,110 @@ public class WaterFragmentSecond extends Fragment {
                 }
                 unset_glass();
                 water_second.setProgress_goal(0.0);
+                removeGoals();
                 set_valore2();
-                set_glass();
             }
         });
+    }
+
+    public void removeGoals(){
+        postData = new JSONObject();
+        SessionManager sessionManager = new SessionManager(getContext());
+        try {
+            postData.put("id_user", sessionManager.getSession());
+            id_user = sessionManager.getSession();
+            Log.d("user_id", id_user);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String url = "https://myfitnote.herokuapp.com/goals/remove_goals";
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Log.d("Post", response.getString("message"));
+                    updateGoals();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+
+        });
+        jsonObjectRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
+
+        queue.add(jsonObjectRequest);}
+    public void updateGoals() {
+        postData = new JSONObject();
+        Boolean[] status_array = new Boolean[]{water_second.getStatus_goal(),kcal_second.getStatus_goal()};
+        JSONArray status_jarray = new JSONArray(Arrays.asList(status_array));
+        Integer[] value_array = new Integer[]{water_second.getValue_goal(),kcal_second.getValue_goal()};
+        JSONArray value_jarray = new JSONArray(Arrays.asList(value_array));
+        Double[] prog_array = new Double[]{water_second.getProgress_goal(),kcal_second.getProgress_goal()};
+        JSONArray prog_jarray = new JSONArray(Arrays.asList(prog_array));
+        try {
+            postData.put("status",status_jarray);
+            postData.put("obiettivo",value_jarray);
+            postData.put("valore_attuale",prog_jarray);
+            postData.put("id_user", id_user);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String url = "https://myfitnote.herokuapp.com/goals/update_goals";
+        Log.d("PostDAta",postData.toString());
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject res = response.getJSONObject("goal");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+
+        });
+        jsonObjectRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
+        queue.add(jsonObjectRequest);
     }
     }

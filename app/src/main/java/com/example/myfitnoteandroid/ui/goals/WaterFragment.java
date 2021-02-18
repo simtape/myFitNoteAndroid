@@ -1,5 +1,6 @@
 package com.example.myfitnoteandroid.ui.goals;
 
+import android.animation.Animator;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -33,6 +34,7 @@ import org.json.JSONObject;
 
 import java.sql.Struct;
 import java.util.Arrays;
+import java.util.logging.Handler;
 
 public class WaterFragment extends Fragment {
     ViewGroup root;
@@ -45,9 +47,9 @@ public class WaterFragment extends Fragment {
     }
     ImageButton button_plus;
     Button reset;
-    LottieAnimationView glass,complete;
+    LottieAnimationView glass,complete,menu_an;
     ConstraintLayout but_layout;
-    CardView card_total;
+    CardView card_total,card_switch;
     String id_user;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,6 +61,8 @@ public class WaterFragment extends Fragment {
         but_layout = root.findViewById(R.id.but_layout);
         card_total = root.findViewById(R.id.card_total);
         complete = root.findViewById(R.id.complete_goal);
+        card_switch = root.findViewById(R.id.card_switch);
+        menu_an = root.findViewById(R.id.menu_an);
         reset = root.findViewById(R.id.reset);
         button_plus_lst();
         button_reset_lst();
@@ -125,19 +129,79 @@ public class WaterFragment extends Fragment {
     }
 
     public void set_card(){
+        if(!water.getStatus_goal()){
+            card_switch.setVisibility(View.VISIBLE);
+            activate_menu();
+        }else
         if((water.getValue_goal()==0)){
+            card_switch.setVisibility(View.VISIBLE);
             card_total.setVisibility(View.GONE);
         }else
         if(water.getProgress_goal()!=water.getValue_goal()){
+            card_switch.setVisibility(View.GONE);
             card_total.setVisibility(View.GONE);
         }else{
             card_total.setVisibility(View.VISIBLE);
+            card_switch.setVisibility(View.GONE);
             button_plus.setVisibility(View.GONE);
             complete.setVisibility(View.GONE);
         }
     }
+    public void activate_menu(){
+        menu_an.setAnimation(R.raw.menu2);
+        menu_an.setMinAndMaxFrame(0,130);
+        menu_an.setSpeed(-1);
+        menu_an.playAnimation();
+        menu_an.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+            }
 
-    public void button_plus_lst(){
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                activate_switch();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
+    }
+    public void activate_switch() {
+        menu_an.setAnimation(R.raw.switch_an);
+        menu_an.setMinAndMaxFrame(0,170);
+        menu_an.setSpeed(1);
+        menu_an.playAnimation();
+        menu_an.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                menu_an.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
+    }
+
+        public void button_plus_lst(){
         button_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -213,6 +277,9 @@ public class WaterFragment extends Fragment {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(water.getProgress_goal()==water.getValue_goal()){
+                    complete.setVisibility(View.GONE);
+                }
                 unset_glasses();
                 water.setProgress_goal(0.0);
                 removeGoals2();
