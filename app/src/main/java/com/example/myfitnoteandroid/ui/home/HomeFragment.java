@@ -1,5 +1,6 @@
 package com.example.myfitnoteandroid.ui.home;
 
+import android.animation.Animator;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -21,10 +22,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
 import com.example.myfitnoteandroid.data.StepCounterHandler;
@@ -47,7 +50,8 @@ public class HomeFragment extends Fragment {
     int pesoInt;
     LinearLayout control;
     CardView glass,pluss,kcalCard;
-
+    LottieAnimationView walker;
+    ConstraintLayout wal_layout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -59,7 +63,10 @@ public class HomeFragment extends Fragment {
         pluss = root.findViewById(R.id.pluss);
         kcalCard = root.findViewById(R.id.cardKcal);
         control = root.findViewById(R.id.control);
+        walker = root.findViewById(R.id.walker_an);
+        wal_layout = root.findViewById(R.id.walk_layout);
         set_water();
+        set_walker();
         //resetstep();
 
       /*  SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
@@ -113,8 +120,6 @@ public class HomeFragment extends Fragment {
                     //Da sistemare le cifre dopo la virgola
                     kcaltxt.setText(df.format(cKcal())+ "   " + "Kcal");
                     //////////////////////////////////////
-
-
                 }
             }
 
@@ -204,7 +209,31 @@ public class HomeFragment extends Fragment {
         float kcal = (float) ((0.0005) * (pesoInt) * (cMetres()));
         return kcal;
     }
+    public void set_walker(){
+        walker.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
 
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+                ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)wal_layout.getLayoutParams();
+                params.leftMargin = params.leftMargin + 75;
+                wal_layout.setLayoutParams(params);
+            }
+        });
+    }
     public void resetstep() {
         //reset steps every 24 hours
         Calendar now = Calendar.getInstance();

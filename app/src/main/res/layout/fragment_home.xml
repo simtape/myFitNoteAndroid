@@ -21,114 +21,140 @@
 
         >
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="10dp"
-                android:paddingTop="10dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/walk_layout"
+                android:layout_width="50dp"
+                android:layout_height="97dp"
+                android:layout_marginBottom="26dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                >
-
-                <TextView
-                    android:id="@+id/stepcounter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="0"
-                    android:textColor="#ffffff"
-                    android:textSize="45dp"></TextView>
-
-
-                <TextView
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/walker_an"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Passi"
-                    android:textAlignment="center"
-                    android:textColor="#ffffff"
-                    android:textSize="16dp"></TextView>
-
-                <!--Card view header Layout-->
-            </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/walk_layout"
+                    app:layout_constraintEnd_toEndOf="@id/walk_layout"
+                    app:layout_constraintStart_toStartOf="@id/walk_layout"
+                    app:layout_constraintTop_toTopOf="@id/walk_layout"
+                    app:lottie_loop="true"
+                    app:lottie_autoPlay="true"
+                    app:lottie_rawRes="@raw/walking" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:weightSum="2">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:paddingBottom="10dp">
+                    android:orientation="vertical"
+                    android:paddingHorizontal="10dp"
+                    android:paddingTop="10dp"
 
-                    <ImageView
-                        android:paddingLeft="10dp"
-                        android:id="@+id/imageMeters"
-                        android:layout_width="42dp"
-                        android:layout_height="42dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/walking_man" />
+                    >
 
                     <TextView
-                        android:id="@+id/metri"
+                        android:id="@+id/stepcounter"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="0"
+                        android:textColor="#ffffff"
+                        android:textSize="45dp"></TextView>
 
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:text="Passi"
+                        android:textAlignment="center"
                         android:textColor="#ffffff"
                         android:textSize="16dp"></TextView>
 
-
-
+                    <!--Card view header Layout-->
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:paddingBottom="10dp">
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:weightSum="2">
 
-                    <ImageView
-                        android:paddingLeft="10dp"
-                        android:id="@+id/imageKcal"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_kcal" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp">
 
-                    <TextView
-                        android:id="@+id/kcal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        <ImageView
+                            android:id="@+id/imageMeters"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:layout_gravity="center"
+                            android:paddingLeft="10dp"
+                            android:src="@drawable/walking_man" />
 
-                        android:gravity="center"
-                        android:textColor="#ffffff"
-                        android:textSize="16dp"></TextView>
+                        <TextView
+                            android:id="@+id/metri"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+
+                            android:gravity="center"
+                            android:textColor="#ffffff"
+                            android:textSize="16dp"></TextView>
 
 
+                    </LinearLayout>
 
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp">
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/kcal_an"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
+                            app:lottie_rawRes="@raw/fire2" />
+
+                        <TextView
+                            android:id="@+id/kcal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+
+                            android:gravity="center"
+                            android:textColor="#ffffff"
+                            android:textSize="16dp"></TextView>
+
+
+                    </LinearLayout>
+
+
+                    <!--Card view bottom Layout-->
                 </LinearLayout>
 
 
-                <!--Card view bottom Layout-->
+                <!--Card view Layout-->
             </LinearLayout>
-
-
-            <!--Card view Layout-->
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.cardview.widget.CardView>
@@ -148,10 +174,14 @@
             android:layout_marginRight="5dp"
             app:cardBackgroundColor="#8AFB8C00"
             app:cardCornerRadius="20dp"
-
             app:cardElevation="0dp">
 
 
+            <fragment
+                android:id="@+id/fragment3"
+                android:name="com.example.myfitnoteandroid.ui.goals.KcalFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
