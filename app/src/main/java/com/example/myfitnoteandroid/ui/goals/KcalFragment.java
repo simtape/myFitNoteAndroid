@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,12 +30,14 @@ import com.android.volley.toolbox.Volley;
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
 import com.example.myfitnoteandroid.data.StepCounterHandler;
+import com.example.myfitnoteandroid.ui.home.HomeSheetAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 public class KcalFragment extends Fragment {
     JSONObject postData;
@@ -42,7 +46,7 @@ public class KcalFragment extends Fragment {
     int peso;
     int counter;
     int peso_cont;
-    float percentage;
+    int percentage;
     String passi;
     Goal kcal_goal=new Goal();
     float kcal;
@@ -59,15 +63,22 @@ public class KcalFragment extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         counter=sharedPreferences.getInt("stepCount", 0);
         kcal = cKcal();
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                set_percentage();
+            }
+        }, 2000);
     }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        getGoals();
         root = (ViewGroup) inflater.inflate(R.layout.kcal_fragment, container, false);
         kcal_an = root.findViewById(R.id.kcal_an);
         percentual = root.findViewById(R.id.percentual);
         card_switch = root.findViewById(R.id.card_switch_off);
-        getGoals();
         return root;
     }
     public float cKcal() {
@@ -90,9 +101,8 @@ public class KcalFragment extends Fragment {
             kcal_an.setMinAndMaxFrame(0,60);
             kcal_an.setSpeed(1);
             kcal_an.playAnimation();
+            percentual.setVisibility(View.GONE);
         }else{
-            DecimalFormat df = new DecimalFormat("0");
-            percentual.setText(df.format(percentage)+"%");
             do{
             if(percentage>=perc_control){
                 kcal_an.setMinAndMaxFrame(sec1,sec2);
@@ -110,21 +120,18 @@ public class KcalFragment extends Fragment {
     public  void set_card(){
         if(!kcal_goal.getStatus_goal()){
             card_switch.setVisibility(View.VISIBLE);
-
+            percentual.setVisibility(View.GONE);
         }else
         {
             card_switch.setVisibility(View.GONE);
-
+            set_animation_kcal();
+            percentual.setText(percentage+"%");
         }
     }
 
     public void set_percentage(){
-        percentage =(kcal*100)/kcal_goal.getValue_goal();
-        DecimalFormat df = new DecimalFormat("0.0");
-        percentage = Float.parseFloat(df.format(percentage));
-        Log.d("perc","perc"+percentage);
+        percentage =(int) (kcal*100)/kcal_goal.getValue_goal();
         set_card();
-        set_animation_kcal();
     }
     public void getGoals() {
         postData = new JSONObject();
@@ -146,8 +153,6 @@ public class KcalFragment extends Fragment {
                         JSONArray value = res.getJSONArray("obiettivo");
                         JSONArray progress = res.getJSONArray("valore_attuale");
                         kcal_goal.setGoal(status.getBoolean(1),value.getInt(1),progress.getDouble(1));
-                        set_percentage();
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
