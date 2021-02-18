@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ public class BodyMassFragment extends Fragment implements View.OnClickListener {
     TextView sessoTxt, resultIndexTxt;
     Button indiceC;
     String yourSesso;
+    EditText pesoEdit, altezzaEdit;
     final double meter = 0.01;
     double result;
 
@@ -50,6 +52,8 @@ public class BodyMassFragment extends Fragment implements View.OnClickListener {
         resultIndexTxt = view.findViewById(R.id.resultIndex);
         indiceC = view.findViewById(R.id.indice);
         indiceC.setOnClickListener(this);
+        pesoEdit = view.findViewById(R.id.editpeso);
+        altezzaEdit = view.findViewById(R.id.editaltezza);
         sessoSp = view.findViewById(R.id.spinnersesso);
         return view;
     }
@@ -94,10 +98,9 @@ public class BodyMassFragment extends Fragment implements View.OnClickListener {
         if (v.getId() == indiceC.getId()) {
             switch (yourSesso){
                 case "M":
-                    SessionManager sessionManager = new SessionManager(getContext());
-                    String pesoString = sessionManager.getPeso();
+                    String pesoString = pesoEdit.getText().toString();
                     int pesoInt = Integer.parseInt(pesoString);
-                    String altezzaStr = sessionManager.getAltezza();
+                    String altezzaStr = altezzaEdit.getText().toString();
                     double aletzzaInt = Integer.parseInt(altezzaStr);
                     aletzzaInt = aletzzaInt*meter;
                     result = cBMI(pesoInt, aletzzaInt);
@@ -111,6 +114,7 @@ public class BodyMassFragment extends Fragment implements View.OnClickListener {
                  }else if(25.00<result && result<= 30.00){
                      resultIndexTxt.setText("SOVRAPPESO");
                      resultIndexTxt.setBackgroundColor(Color.YELLOW);
+                     resultIndexTxt.setTextColor(Color.BLACK);
                  }else if(30.00<result && result<= 40.00){
                      resultIndexTxt.setText("ADIPOSITA'");
                      resultIndexTxt.setBackgroundColor(Color.RED);
@@ -121,10 +125,9 @@ public class BodyMassFragment extends Fragment implements View.OnClickListener {
                  break;
 
                 case "F":
-                    sessionManager = new SessionManager(getContext());
-                    String pesoStringF = sessionManager.getPeso();
+                    String pesoStringF = pesoEdit.getText().toString();
                     int pesoIntF = Integer.parseInt(pesoStringF);
-                    String altezzaStrF = sessionManager.getAltezza();
+                    String altezzaStrF = altezzaEdit.getText().toString();
                     double aletzzaIntF = Integer.parseInt(altezzaStrF);
                     aletzzaIntF = aletzzaIntF*meter;
                     result = cBMI(pesoIntF, aletzzaIntF);
@@ -138,6 +141,7 @@ public class BodyMassFragment extends Fragment implements View.OnClickListener {
                     }else if(24.00<result && result<= 30.00){
                         resultIndexTxt.setText("SOVRAPPESO");
                         resultIndexTxt.setBackgroundColor(Color.YELLOW);
+                        resultIndexTxt.setTextColor(Color.BLACK);
                     }else if(30.00<result && result<= 40.00){
                         resultIndexTxt.setText("ADIPOSITA'");
                         resultIndexTxt.setBackgroundColor(Color.RED);

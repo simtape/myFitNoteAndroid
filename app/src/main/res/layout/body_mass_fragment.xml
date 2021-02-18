@@ -4,11 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.bmi.BodyMassFragment"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/gradient_profile"
         >
 
         <TextView
@@ -22,28 +24,94 @@
         </TextView>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="74dp"
-        android:gravity="center">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="53dp"
+        android:paddingLeft="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inserisci Peso (kg):"
+            android:textSize="13dp"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <EditText
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:textSize="20dp"
+            android:id="@+id/editpeso"
+            android:inputType="number">
+
+        </EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="100dp"
-            android:textSize="25dp"
+            android:text="Inserisci Altezza (cm):"
+            android:textSize="13dp"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/editaltezza"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:inputType="number">
+
+        </EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layoutsesso"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="145dp"
+        android:gravity="center"
+        android:paddingLeft="80dp"
+        android:background="#226C6666">
+
+        <TextView
             android:id="@+id/textSesso"
-            ></TextView>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="100dp"
+            android:textSize="25dp"></TextView>
 
         <Spinner
             android:id="@+id/spinnersesso"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="end"
-            android:layout_marginLeft="200dp" />
+            android:layout_marginLeft="100dp" />
 
     </LinearLayout>
 
@@ -51,16 +119,18 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="137dp"
+        android:layout_marginTop="209dp"
         android:gravity="center">
 
         <Button
             android:id="@+id/indice"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Calcola Indice"
+            android:background="@drawable/button_bg"
             android:clickable="true"
-            android:background="@drawable/button_bg">
+            android:text="Calcola Indice"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF">
 
         </Button>
 
@@ -70,7 +140,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="191dp"
+        android:layout_marginTop="260dp"
         >
 
         <TextView
@@ -92,33 +162,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="271dp">
+        android:layout_marginTop="320dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textAlignment="center"
             android:gravity="center_horizontal"
-            android:text="L'Indice di Massa Corporea (IMC o BMI dall'inglese Body Mass Index) è uno strumento importante per la misurazione del peso corretto. Il BMI mette in correlazione il peso con l'altezza: viene calcolato dividendo il peso corporeo (kg) per la statura (metri) al quadrato.">
+            android:text="L'Indice di Massa Corporea (IMC o BMI dall'inglese Body Mass Index) è uno strumento importante per la misurazione del peso corretto. Il BMI mette in correlazione il peso con l'altezza: viene calcolato dividendo il peso corporeo (kg) per la statura (metri) al quadrato."
+            android:textAlignment="center">
 
         </TextView>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="373dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="313dp"
-        android:layout_marginBottom="2dp"
-        android:padding="20dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/bmi"></ImageView>
-
-    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -127,12 +183,32 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_gravity="center"
-        android:layout_marginStart="-1dp"
-        android:layout_marginLeft="-1dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="271dp"
+        android:layout_marginLeft="271dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginBottom="-1dp"
         android:text="Seleziona sesso"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:textStyle="bold">
 
     </TextView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="430dp"
+        android:gravity="center">
+
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp"
+            android:src="@mipmap/schema">
+
+        </ImageView>
+    </LinearLayout>
 </RelativeLayout>
