@@ -8,10 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -29,11 +32,13 @@ import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
 import com.example.myfitnoteandroid.data.sheets_data.Sheet;
 import com.example.myfitnoteandroid.data.sheets_data.SheetExercise;
+import com.example.myfitnoteandroid.ui.exercises.ShowExercisesAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +46,8 @@ public class CreateSheetFragment extends Fragment implements View.OnClickListene
 
     private CreateSheetViewModel mViewModel;
 
-    private EditText[] exercises = new EditText[4];
+    private AutoCompleteTextView[] exercises = new AutoCompleteTextView[4];
+    //private List<AutoCompleteTextView> exercises = new ArrayList<>();
     private EditText[] reps = new EditText[4];
     private EditText[] series = new EditText[4];
     private EditText nameSheet;
@@ -49,6 +55,8 @@ public class CreateSheetFragment extends Fragment implements View.OnClickListene
     private Button createSheetBtn;
     Boolean allFull = true, atLeastOneChecked = true;
     JSONObject newSheetJO;
+    String[] names;
+    ArrayAdapter<String> adapter;
 
     private Sheet newSheet;
     ViewGroup root;
@@ -63,11 +71,12 @@ public class CreateSheetFragment extends Fragment implements View.OnClickListene
                              @Nullable Bundle savedInstanceState) {
 
         root = (ViewGroup) inflater.inflate(R.layout.create_sheet_fragment, container, false);
-
+        getNameExercises();
         exercises[0] = root.findViewById(R.id.exercises_tv);
         exercises[1] = root.findViewById(R.id.exercises_tv2);
         exercises[2] = root.findViewById(R.id.exercises_tv3);
         exercises[3] = root.findViewById(R.id.exercises_tv4);
+
 
         reps[0] = root.findViewById(R.id.editTextReps1);
         reps[1] = root.findViewById(R.id.editTextReps2);
@@ -93,6 +102,18 @@ public class CreateSheetFragment extends Fragment implements View.OnClickListene
         nameSheet = root.findViewById(R.id.name_sheet);
 
         createSheetBtn.setOnClickListener(this);
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                adapter = new ArrayAdapter<>(getContext(),
+                        R.layout.custom_list_advices_foods, R.id.text_view_list_item, names);
+                for (int i = 0; i < 4; i++)
+                    exercises[i].setAdapter(adapter);
+
+            }
+        }, 2500);
 
         return root;
 
@@ -275,5 +296,61 @@ public class CreateSheetFragment extends Fragment implements View.OnClickListene
 
 
     }
+
+    private void getNameExercises() {
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        String url = "https://myfitnote.herokuapp.com/esercizi_2/get";
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+
+                            JSONArray jsonArray = response.getJSONArray("exercises");
+                            names = new String[jsonArray.length()];
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject esercizio = jsonArray.getJSONObject(i);
+
+                                String nameExercise = esercizio.getString("nome");
+
+                                names[i] = nameExercise;
+                                Log.d("es", names[i]);
+                                //exercisesView.append(nameExercise + ", " + gearExercise + "\n\n");
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        jsonObjectRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
+        queue.add(jsonObjectRequest);
+    }
+
 
 }
