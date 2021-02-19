@@ -197,13 +197,15 @@ public class ShowSheetsFragment extends Fragment {
                             String splittedDate = date.substring(0, 10);
                             JSONArray daysJsonArray = jsonObject.getJSONArray("days");
                             days.clear();
-                            
+                            List<String>daysNew = new ArrayList<>();
                             for (int k = 0; k < daysJsonArray.length(); k++) {
                                 days.add(daysJsonArray.getString(k));
+                                daysNew.add(daysJsonArray.getString(k));
+                                Log.d("Giorno", daysNew.get(k));
 
                             }
 
-                            Sheet sheet = new Sheet(name, id, sheetExerciseList, days, splittedDate);
+                            Sheet sheet = new Sheet(name, id, sheetExerciseList, daysNew, splittedDate);
                             for (int m = 0; m < sheetExerciseList.size(); m++) {
                                 Log.d("esercizi", sheetExerciseList.get(m).getNameExercise());
 
@@ -230,25 +232,6 @@ public class ShowSheetsFragment extends Fragment {
 
     }
 
-    private void setProgressValue(final int progress) {
 
-        // set the progress
-        this.progress.setProgress(progress);
-        // thread is used to change the progress value
-        this.thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                try {
-
-                    Thread.sleep(20);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                setProgressValue(progress + 10);
-            }
-        });
-        this.thread.start();
-    }
 
 }

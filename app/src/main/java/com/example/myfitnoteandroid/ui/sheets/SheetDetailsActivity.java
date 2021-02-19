@@ -11,6 +11,8 @@ import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.sheets_data.Sheet;
 import com.example.myfitnoteandroid.data.sheets_data.SheetsHandler;
 
+import java.util.List;
+
 public class SheetDetailsActivity extends AppCompatActivity {
     int position;
     ListView listView;
@@ -24,10 +26,12 @@ public class SheetDetailsActivity extends AppCompatActivity {
         position = extras.getInt("sheet_position");
 
 
-        Log.d("posizione activity:", String.valueOf(position));
+        //Log.d("posizione activity:", String.valueOf(position));
 
         Sheet sheet = SheetsHandler.getInstance().getUserSheets().get(position);
-        Log.d("dimensione esercizi", String.valueOf(sheet.getSheetExercises().size()));
+        // Log.d("giorni", sheet.getDays().toString());
+        List<String> days = sheet.getDays();
+        //Log.d("dimensione esercizi", String.valueOf(sheet.getSheetExercises().size()));
         listView = findViewById(R.id.list_view_details);
         nameSheet = findViewById(R.id.name_sheetTV);
         dateSheet = findViewById(R.id.date_tv);
@@ -35,6 +39,10 @@ public class SheetDetailsActivity extends AppCompatActivity {
 
         nameSheet.setText(sheet.getName());
         dateSheet.setText(sheet.getDate());
+        for (int i = 0; i < days.size(); i++) {
+            trainingDays.append(days.get(i) + " ");
+
+        }
 
 
         String[] objs = new String[sheet.getSheetExercises().size()];

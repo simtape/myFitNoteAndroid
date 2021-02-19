@@ -19,7 +19,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -52,6 +54,7 @@ public class KcalCalculator extends Fragment implements View.OnClickListener {
     List<Integer> kcal;
     ArrayAdapter<String> adapter;
     TextView totKcal;
+    LinearLayout rowsLayout;
     int tot = 0;
 
 
@@ -71,11 +74,15 @@ public class KcalCalculator extends Fragment implements View.OnClickListener {
         //view.addView(R.layout.calculate_kcal_row);
         layoutInflater = inflater;
         this.container = container;
+
+        rowsLayout = view.findViewById(R.id.rows_layout);
+
         View row = inflater.inflate(R.layout.calculate_kcal_row, container, false);
-        view.addView(row);
+        rowsLayout.addView(row);
 
         AutoCompleteTextView food = row.findViewById(R.id.food_name);
         EditText gramValue = row.findViewById(R.id.quantity);
+
 
         totKcal = view.findViewById(R.id.newKcal);
         totKcal.setText(String.valueOf(tot));
@@ -128,23 +135,56 @@ public class KcalCalculator extends Fragment implements View.OnClickListener {
     private void calculateKcal() {
 
         List<Integer> kcalForGrams = new ArrayList<>();
+        Boolean isEmpty = false, allEquals = true;
+        Boolean[] equalWords = new Boolean[foodsACList.size()];
         tot = 0;
+
+        for (int q = 0; q < foodsACList.size(); q++) {
+            equalWords[q] = false;
+        }
+
         for (int i = 0; i < foods.length; i++) {
 
             int j = 0;
+            Log.d("dimensione foods", String.valueOf(foodsACList.size()));
             for (AutoCompleteTextView food : foodsACList) {
-                Log.d("valore inserito", food.getText().toString());
-                if (food.getText().toString().equals(foods[i])) {
-                    Log.d("grammi inseriti", gramsACList.get(j).getText().toString());
-                    int value = kcal.get(i) * (Integer.valueOf(gramsACList.get(j).getText().toString())) / 100;
+
+                if (food.getText().toString().toLowerCase().equals(foods[i]) &&
+                        !food.getText().toString().isEmpty() &&
+                        !gramsACList.get(j).getText().toString().isEmpty()) {
+
+                    int value = kcal.get(i) * (Integer.valueOf(gramsACList.get(j).getText().toString()))
+                            / 100;
                     kcalForGrams.add(value);
+                    equalWords[j] = true;
+
+
+                } else if (food.getText().toString().isEmpty() || gramsACList.get(j).getText().toString().isEmpty()) {
+                    isEmpty = true;
+
                 }
-                j++;
+
             }
+
+            j++;
         }
-        Log.d("valore kcal: ", String.valueOf(kcalForGrams.get(0)));
-        for (int result : kcalForGrams) {
+ /* for (int result : kcalForGrams) {
             tot = result + tot;
+
+        }*/
+
+        for (int l = 0; l < equalWords.length; l++) {
+            if (!equalWords[l])
+                allEquals = false;
+            if(!kcalForGrams.isEmpty())
+            tot = kcalForGrams.get(l) + tot;
+        }
+
+        if (isEmpty) {
+            Toast.makeText(this.getContext(), "Devi riempire tutti i campi!", Toast.LENGTH_LONG).show();
+
+        } else if (!allEquals) {
+            Toast.makeText(this.getContext(), "Il cibo inserito non è present nel db!", Toast.LENGTH_LONG).show();
 
         }
         totKcal.setText(String.valueOf(tot));
@@ -157,8 +197,11 @@ public class KcalCalculator extends Fragment implements View.OnClickListener {
 
     private void addNewRow() {
 
+
         View row = this.layoutInflater.inflate(R.layout.calculate_kcal_row, container, false);
-        view.addView(row);
+        //view.addView(row);
+        rowsLayout.addView(row);
+
         AutoCompleteTextView food = row.findViewById(R.id.food_name);
         foodsACList.add(food);
         foodsACList.get(foodsACList.size() - 1).setAdapter(adapter);
@@ -188,7 +231,7 @@ public class KcalCalculator extends Fragment implements View.OnClickListener {
 
                                 //exercisesView.append(nameExercise + ", " + gearExercise + "\n\n");
 
-                                foods[i] = nomeAlimento;
+                                foods[i] = nomeAlimento.toLowerCase();
                                 Log.d("food", foods[i]);
                                 kcal.add(kcalAlimento);
 

@@ -5,14 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="50dp"
+    android:paddingLeft="50dp"
+    android:paddingTop="50dp"
+    android:paddingRight="50dp"
     tools:context=".ui.calculator.KcalCalculator">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/button_add"
@@ -28,9 +30,9 @@
             android:layout_width="100dp"
             android:layout_height="35dp"
             android:layout_marginLeft="20dp"
+            android:background="@drawable/button_bg"
             android:text="calcola"
             android:textColor="#ffffff"
-            android:background="@drawable/button_bg"
 
 
             />
@@ -52,14 +54,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="kcal totali"
-            android:textSize="16sp"
-           >
-
+            android:text="calorie"
+            android:textSize="16sp">
 
 
         </TextView>
 
     </LinearLayout>
 
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/rows_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

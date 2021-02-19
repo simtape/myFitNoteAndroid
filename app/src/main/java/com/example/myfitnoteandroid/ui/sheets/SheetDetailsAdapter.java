@@ -39,7 +39,7 @@ public class SheetDetailsAdapter extends ArrayAdapter<String> {
         Log.d("nome es adapter", sheet.getSheetExercises().get(position).getNameExercise());
         String repetition = String.valueOf(sheet.getSheetExercises().get(position).getRep());
         String serie = String.valueOf(sheet.getSheetExercises().get(position).getSerie());
-        String concRepSeries = serie.concat(" ").concat(repetition);
+        String concRepSeries = serie.concat(" serie").concat(" ").concat(repetition).concat(" reps");
         myDescription.setText(concRepSeries);
         return row;
 

@@ -47,7 +47,8 @@ public class CreateSheetFragment extends Fragment implements View.OnClickListene
     private EditText nameSheet;
     private CheckBox[] checkBoxes = new CheckBox[7];
     private Button createSheetBtn;
-
+    Boolean allFull = true, atLeastOneChecked = true;
+    JSONObject newSheetJO;
 
     private Sheet newSheet;
     ViewGroup root;
@@ -103,8 +104,14 @@ public class CreateSheetFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
         if (v.getId() == createSheetBtn.getId()) {
             //postData = createSheet();
-            insertSheet();
+            createSheet();
+            if (allFull && atLeastOneChecked) {
 
+                insertSheet();
+            } else if (!allFull)
+                Toast.makeText(this.getContext(), "Devi riempire tutti i campi", Toast.LENGTH_LONG).show();
+            else if (!atLeastOneChecked)
+                Toast.makeText(this.getContext(), "Devi scegliere almeno un giorno!", Toast.LENGTH_LONG).show();
         }
 
     }
@@ -117,8 +124,9 @@ public class CreateSheetFragment extends Fragment implements View.OnClickListene
     }
 
     //@RequiresApi(api = Build.VERSION_CODES.O)
-    public JSONObject createSheet() {
-        JSONObject newSheetJO = new JSONObject();
+    public void createSheet() {
+        allFull = true;
+        newSheetJO = new JSONObject();
         SessionManager sessionManager = new SessionManager(getContext());
 
         //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -128,9 +136,12 @@ public class CreateSheetFragment extends Fragment implements View.OnClickListene
         // newSheet.setDate("dtf.format(now)");
         List<String> days = new ArrayList<>();
         String name, date, id;
+        if (nameSheet.getText().toString().isEmpty())
+            allFull = false;
         name = nameSheet.getText().toString().trim();
         date = "prova";
         id = sessionManager.getSession();
+
 
         for (int i = 0; i < 7; i++) {
             if (checkBoxes[i].isChecked()) {
@@ -138,30 +149,39 @@ public class CreateSheetFragment extends Fragment implements View.OnClickListene
 //                Log.d("checked", days.get(i));
             }
 
+
+        }
+        int checked = 0;
+        atLeastOneChecked = true;
+        for (int j = 0; j < 7; j++) {
+            if (checkBoxes[j].isChecked())
+                checked++;
+            if (checked == 0 && j == 6)
+                atLeastOneChecked = false;
+
         }
 
         List<SheetExercise> exercises = getExercises();
         newSheet = new Sheet(name, id, exercises, days, date);
 
-        getExercises();
+        //getExercises();
         JSONArray exercisesJSONArray = new JSONArray();
-        for(int i = 0; i<newSheet.getSheetExercises().size(); i++){
+        for (int i = 0; i < newSheet.getSheetExercises().size(); i++) {
 
             exercisesJSONArray.put(newSheet.getSheetExercises().get(i).getNameExercise());
         }
 
         JSONArray repsJSONArray = new JSONArray();
-        for(int i = 0; i<newSheet.getSheetExercises().size(); i++){
+        for (int i = 0; i < newSheet.getSheetExercises().size(); i++) {
 
             repsJSONArray.put(newSheet.getSheetExercises().get(i).getRep());
         }
 
         JSONArray seriesJSONArray = new JSONArray();
-        for(int i = 0; i<newSheet.getSheetExercises().size(); i++){
+        for (int i = 0; i < newSheet.getSheetExercises().size(); i++) {
 
             seriesJSONArray.put(newSheet.getSheetExercises().get(i).getSerie());
         }
-
 
 
         try {
@@ -180,21 +200,29 @@ public class CreateSheetFragment extends Fragment implements View.OnClickListene
         }
 
         Log.d("json object created", newSheetJO.toString());
-        return newSheetJO;
+
     }
 
 
     public List<SheetExercise> getExercises() {
         SheetExercise exercise;
+        allFull = true;
         List<SheetExercise> exerciseList = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
 
-            String nameExercise = exercises[i].getText().toString().trim();
-            String seriesExercise = series[i].getText().toString().trim();
-            String repsExercise = reps[i].getText().toString().trim();
+            if (exercises[i].getText().toString().isEmpty() ||
+                    series[i].getText().toString().isEmpty() ||
+                    reps[i].getText().toString().isEmpty())
+                allFull = false;
+            else {
+                String nameExercise = exercises[i].getText().toString().trim();
+                String seriesExercise = series[i].getText().toString().trim();
+                String repsExercise = reps[i].getText().toString().trim();
 
-            exercise = new SheetExercise(nameExercise, seriesExercise, repsExercise);
-            exerciseList.add(exercise);
+                exercise = new SheetExercise(nameExercise, seriesExercise, repsExercise);
+                exerciseList.add(exercise);
+            }
+
 
         }
         return exerciseList;
@@ -205,7 +233,7 @@ public class CreateSheetFragment extends Fragment implements View.OnClickListene
 
         RequestQueue queue = Volley.newRequestQueue(getContext());
         JSONObject postData;
-        postData = createSheet();
+        postData = newSheetJO;
 
         Log.d("dichiarato postdata", "ok");
         String url = "https://myfitnote.herokuapp.com/sheets/create_sheet";
