@@ -14,7 +14,7 @@
 
         android:id="@+id/cardsteps"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="145dp"
         app:cardBackgroundColor="#AB4BB873"
         app:cardCornerRadius="20dp"
         app:cardElevation="0dp"
@@ -27,8 +27,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/walk_layout"
-                android:layout_width="50dp"
-                android:layout_height="97dp"
+                android:layout_width="100dp"
+                android:layout_height="130dp"
+                android:layout_marginLeft="40dp"
                 android:layout_marginBottom="26dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +46,7 @@
                     app:layout_constraintTop_toTopOf="@id/walk_layout"
                     app:lottie_loop="true"
                     app:lottie_autoPlay="true"
-                    app:lottie_rawRes="@raw/walking" />
+                    app:lottie_rawRes="@raw/flex" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
@@ -99,13 +100,13 @@
                         android:orientation="horizontal"
                         android:paddingBottom="10dp">
 
-                        <ImageView
-                            android:id="@+id/imageMeters"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:layout_gravity="center"
-                            android:paddingLeft="10dp"
-                            android:src="@drawable/walking_man" />
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginBottom="0dp"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
+                            app:lottie_rawRes="@raw/walking" />
 
                         <TextView
                             android:id="@+id/metri"

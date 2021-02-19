@@ -11,6 +11,8 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,10 +54,15 @@ public class HomeFragment extends Fragment {
     CardView glass,pluss,kcalCard;
     LottieAnimationView walker;
     ConstraintLayout wal_layout;
-
+    int[] animation = new int[4];
+    int cont=0;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
+        animation[0]=R.raw.flex;
+        animation[1]=R.raw.flex2;
+        animation[2]=R.raw.flex3;
+        animation[3]=R.raw.flex4;
         stepCountertxt = root.findViewById(R.id.stepcounter);
         metrestxt = root.findViewById(R.id.metri);
         kcaltxt = root.findViewById(R.id.kcal);
@@ -210,7 +217,6 @@ public class HomeFragment extends Fragment {
         return kcal;
     }
     public void set_walker(){
-
         walker.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
@@ -221,7 +227,6 @@ public class HomeFragment extends Fragment {
             public void onAnimationEnd(Animator animator) {
 
             }
-
             @Override
             public void onAnimationCancel(Animator animator) {
 
@@ -229,13 +234,19 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onAnimationRepeat(Animator animator) {
-                ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)wal_layout.getLayoutParams();
-                params.leftMargin = params.leftMargin + 75;
-                wal_layout.setLayoutParams(params);
-                if(params.leftMargin>13*75){
-                    ConstraintLayout.LayoutParams params_reset = (ConstraintLayout.LayoutParams)wal_layout.getLayoutParams();
-                    params_reset.leftMargin = 0;
-                    wal_layout.setLayoutParams(params_reset);
+                walker.setVisibility(View.GONE);
+                cont++;
+                walker.setAnimation(animation[cont]);
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        walker.setVisibility(View.VISIBLE);
+                        walker.playAnimation();
+                    }
+                }, 2000);
+                if(cont==3){
+                    cont=0;
                 }
             }
         });
