@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 R.id.nav_home, R.id.nav_foods, R.id.nav_esercizi,
                 R.id.nav_schede, R.id.nav_mis_battito,
                 R.id.sheet_details, R.id.nav_obbiettivi,
-                R.id.nav_kcal)
+                R.id.nav_kcal, R.id.nav_bmi, R.id.nav_scheda)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

@@ -54,12 +54,15 @@ public class ShowSheetsFragment extends Fragment {
     List<String> days = new ArrayList<>();
     JSONArray jsonArrayResponse;
     ViewGroup root;
+    TextView noSheets;
     ListView listView;
     SearchView searchView;
     ShowSheetsAdapter showSheetsAdapter;
     ProgressBar progress;
     Thread thread;
     ProgressDialog progressBar;
+    Boolean thereAreSheets = true;
+    LinearLayout layout;
     int progressCounter = 0;
     int img;
 
@@ -77,12 +80,14 @@ public class ShowSheetsFragment extends Fragment {
         this.getSheets();
         root = (ViewGroup) inflater.inflate(R.layout.show_sheets_fragment, container, false);
         listView = root.findViewById(R.id.list_view);
+
         searchView = root.findViewById(R.id.searchViewSheets);
-        /*progress = root.findViewById(R.id.circleb);
-        progress.setVisibility(View.VISIBLE);
-        //setProgressValue(progressCounter);
-        progress.setIndeterminate(true);
-        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);*/
+        searchView.setVisibility(View.INVISIBLE);
+
+        noSheets = root.findViewById(R.id.no_sheets);
+        noSheets.setVisibility(View.INVISIBLE);
+
+        layout = root.findViewById(R.id.tv_layout);
 
         progressBar = new ProgressDialog(getContext());
         progressBar.setCancelable(true);
@@ -91,30 +96,26 @@ public class ShowSheetsFragment extends Fragment {
         progressBar.setProgress(0);
         progressBar.setMax(100);
         progressBar.show();
-        //progressBarStatus = 0;
 
 
         Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                if (!thereAreSheets) {
+                    noSheets.setVisibility(View.VISIBLE);
 
-                List<String> dates = SheetsHandler.getInstance().datesList();
-                List<String> names = SheetsHandler.getInstance().namesList();
-                //progress.setVisibility(View.INVISIBLE);
-                showSheetsAdapter = new ShowSheetsAdapter(getContext(), names, dates);
-                listView.setAdapter(showSheetsAdapter);
-                progressBar.dismiss();
-                //thread.interrupt();
+                    progressBar.dismiss();
+                } else {
+                    layout.setVisibility(View.INVISIBLE);
+                    List<String> dates = SheetsHandler.getInstance().datesList();
+                    List<String> names = SheetsHandler.getInstance().namesList();
+                    searchView.setVisibility(View.VISIBLE);
+                    showSheetsAdapter = new ShowSheetsAdapter(getContext(), names, dates);
+                    listView.setAdapter(showSheetsAdapter);
+                    progressBar.dismiss();
+                }
 
-         /*       for(int i = 0; i<SheetsHandler.getInstance().getUserSheets().size(); i++){
-                    Sheet sheet = SheetsHandler.getInstance().getUserSheets().get(i);
-                    Log.d("SCHEDA NUMERO", String.valueOf(i));
-                    Log.d("nome", sheet.getName());
-                    Log.d("esercizi", sheet.getNamesExercises().toString());
-
-
-                }*/
 
             }
         }, 1500);
@@ -137,7 +138,6 @@ public class ShowSheetsFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(getContext(), SheetDetailsActivity.class);
-                Bundle bundle = new Bundle();
                 intent.putExtra("sheet_position", position);
                 startActivity(intent);
 
@@ -160,16 +160,16 @@ public class ShowSheetsFragment extends Fragment {
             public void onResponse(JSONObject response) {
 
                 try {
-                    jsonArrayResponse = response.getJSONArray("sheet");
-                    if (jsonArrayResponse.length() == 0) {
+
+                    if (response.getBoolean("error")) {
+                        thereAreSheets = false;
 
                     } else {
-
+                        jsonArrayResponse = response.getJSONArray("sheet");
                         for (int i = 0; i < jsonArrayResponse.length(); i++) {
                             List<SheetExercise> sheetExerciseList = new ArrayList<>();
-                            //sheetExerciseList.clear();
                             JSONObject jsonObject = jsonArrayResponse.getJSONObject(i);
-                            Log.d("scheda", jsonObject.toString());
+
 
                             for (int j = 0; j < jsonObject.getJSONArray("exercises").length(); j++) {
 
@@ -180,9 +180,7 @@ public class ShowSheetsFragment extends Fragment {
                                 String exercise = exerciseJsonArray.getString(j);
                                 String repsString = repsJsonArray.getString(j);
                                 String seriesString = seriesJsonArray.getString(j);
-                               /* Log.d("SCHEDA NOME ", jsonObject.getString("name_sheet"));
-                                Log.d("reps", repsString);
-                                Log.d("esercizio", exercise);*/
+
                                 String reps = repsString;
                                 String series = seriesString;
 
@@ -197,17 +195,17 @@ public class ShowSheetsFragment extends Fragment {
                             String splittedDate = date.substring(0, 10);
                             JSONArray daysJsonArray = jsonObject.getJSONArray("days");
                             days.clear();
-                            List<String>daysNew = new ArrayList<>();
+                            List<String> daysNew = new ArrayList<>();
                             for (int k = 0; k < daysJsonArray.length(); k++) {
                                 days.add(daysJsonArray.getString(k));
                                 daysNew.add(daysJsonArray.getString(k));
-                                Log.d("Giorno", daysNew.get(k));
+
 
                             }
 
                             Sheet sheet = new Sheet(name, id, sheetExerciseList, daysNew, splittedDate);
                             for (int m = 0; m < sheetExerciseList.size(); m++) {
-                                Log.d("esercizi", sheetExerciseList.get(m).getNameExercise());
+
 
                             }
 
@@ -231,7 +229,6 @@ public class ShowSheetsFragment extends Fragment {
 
 
     }
-
 
 
 }

@@ -25,6 +25,7 @@
         android:background="@drawable/text_view_bg"
         android:gravity="center_horizontal"
         android:hint="grammi"
+        android:inputType="number"
         android:paddingTop="10dp"
         android:textAlignment="center" />
 

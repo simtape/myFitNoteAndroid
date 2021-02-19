@@ -163,21 +163,22 @@ public class KcalCalculator extends Fragment implements View.OnClickListener {
                     isEmpty = true;
 
                 }
+                j++;
 
             }
 
-            j++;
+
         }
- /* for (int result : kcalForGrams) {
+        for (int result : kcalForGrams) {
             tot = result + tot;
 
-        }*/
+        }
 
         for (int l = 0; l < equalWords.length; l++) {
             if (!equalWords[l])
                 allEquals = false;
-            if(!kcalForGrams.isEmpty())
-            tot = kcalForGrams.get(l) + tot;
+            Log.d("boolean", equalWords[l].toString());
+
         }
 
         if (isEmpty) {
