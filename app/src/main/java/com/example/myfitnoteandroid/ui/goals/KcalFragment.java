@@ -111,7 +111,7 @@ public class KcalFragment extends Fragment {
             if(percentage>=perc_control){
                 kcal_an.setAnimation(R.raw.kcal2);
                 kcal_an.setMinAndMaxFrame(sec1,sec2);
-                kcal_an.setSpeed(3);
+                kcal_an.setSpeed(2);
                 kcal_an.playAnimation();
                 sec1+=2;
                 sec2+=2;
