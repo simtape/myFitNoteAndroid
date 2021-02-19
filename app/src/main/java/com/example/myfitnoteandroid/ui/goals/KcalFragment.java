@@ -37,6 +37,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,12 +48,14 @@ public class KcalFragment extends Fragment {
     int peso;
     int counter;
     int peso_cont;
+    float percentage_cont;
     int percentage;
     String passi;
-    Goal kcal_goal=new Goal();
     float kcal;
     TextView percentual;
     CardView card_switch;
+    int kcal_goal;
+    boolean status_goal;
     public static KcalFragment newInstance() {
         return new KcalFragment();
     }
@@ -93,7 +96,7 @@ public class KcalFragment extends Fragment {
     }
 
     public void set_animation_kcal(){
-        int i=0;
+        int i;
         int perc_control=0;
         int sec1=0;
         int sec2=2;
@@ -106,12 +109,14 @@ public class KcalFragment extends Fragment {
         }else{
             do{
             if(percentage>=perc_control){
+                kcal_an.setAnimation(R.raw.kcal2);
                 kcal_an.setMinAndMaxFrame(sec1,sec2);
                 kcal_an.setSpeed(3);
+                kcal_an.playAnimation();
                 sec1+=2;
                 sec2+=2;
                 perc_control+=1;
-                kcal_an.playAnimation();
+                i=0;
             }else{
                 i=1;
             }
@@ -119,20 +124,33 @@ public class KcalFragment extends Fragment {
     }
 
     public  void set_card(){
-        if(!kcal_goal.getStatus_goal()){
+        if(!status_goal){
             card_switch.setVisibility(View.VISIBLE);
             percentual.setVisibility(View.GONE);
         }else
         {
-            card_switch.setVisibility(View.GONE);
-            set_animation_kcal();
-            percentual.setText(percentage+"%");
+            Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    card_switch.setVisibility(View.GONE);
+                    percentual.setText(percentage+"%");
+                    set_animation_kcal();
+                }
+            }, 500);
         }
     }
 
     public void set_percentage(){
-        percentage =(int) (kcal*100)/kcal_goal.getValue_goal();
-        set_card();
+        percentage_cont = (kcal*100)/kcal_goal;
+        percentage = (int) percentage_cont;
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                set_card();
+            }
+        }, 500);
     }
     public void getGoals() {
         postData = new JSONObject();
@@ -149,12 +167,10 @@ public class KcalFragment extends Fragment {
             public void onResponse(JSONObject response) {
                 try {
                     JSONObject res = response.getJSONObject("goal");
-                    if (res != null) {
                         JSONArray status = res.getJSONArray("status");
                         JSONArray value = res.getJSONArray("obiettivo");
-                        JSONArray progress = res.getJSONArray("valore_attuale");
-                        kcal_goal.setGoal(status.getBoolean(1),value.getInt(1),progress.getDouble(1));
-                    }
+                        kcal_goal= value.getInt(1);
+                    status_goal = status.getBoolean(1);
                 } catch (JSONException e) {
                     e.printStackTrace();
                     createGoals();
@@ -209,6 +225,10 @@ public class KcalFragment extends Fragment {
             public void onResponse(JSONObject response) {
                 try {
                     JSONObject res = response.getJSONObject("goal");
+                    JSONArray status = res.getJSONArray("status");
+                    JSONArray value = res.getJSONArray("obiettivo");
+                    kcal_goal= value.getInt(1);
+                    status_goal = status.getBoolean(1);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -239,6 +259,5 @@ public class KcalFragment extends Fragment {
         });
 
         queue.add(jsonObjectRequest);
-        getGoals();
     }
 }

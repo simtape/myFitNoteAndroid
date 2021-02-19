@@ -128,7 +128,6 @@
                         android:paddingBottom="10dp">
 
                         <com.airbnb.lottie.LottieAnimationView
-                            android:id="@+id/kcal_an"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
                             app:lottie_autoPlay="true"
