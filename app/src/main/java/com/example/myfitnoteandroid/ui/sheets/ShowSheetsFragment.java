@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -65,7 +66,7 @@ public class ShowSheetsFragment extends Fragment {
     LinearLayout layout;
     int progressCounter = 0;
     int img;
-
+    LottieAnimationView empty_sheet_an;
 
     @Override
     public void onStart() {
@@ -87,6 +88,9 @@ public class ShowSheetsFragment extends Fragment {
         noSheets = root.findViewById(R.id.no_sheets);
         noSheets.setVisibility(View.INVISIBLE);
 
+        empty_sheet_an = root.findViewById(R.id.empty_sheet_an);
+        empty_sheet_an.setVisibility(View.GONE);
+
         layout = root.findViewById(R.id.tv_layout);
 
         progressBar = new ProgressDialog(getContext());
@@ -104,7 +108,7 @@ public class ShowSheetsFragment extends Fragment {
             public void run() {
                 if (!thereAreSheets) {
                     noSheets.setVisibility(View.VISIBLE);
-
+                    empty_sheet_an.setVisibility(View.VISIBLE);
                     progressBar.dismiss();
                 } else {
                     layout.setVisibility(View.INVISIBLE);

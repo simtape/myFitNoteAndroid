@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.DocumentsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -45,7 +47,7 @@ public class HomeSheetFragment extends Fragment {
     HomeSheetAdapter homeSheetAdapter;
     Boolean result = false;
 
-
+    LottieAnimationView sheet_empty_animation;
     public HomeSheetFragment() {
 
     }
@@ -66,6 +68,8 @@ public class HomeSheetFragment extends Fragment {
 
         titleFragment = view.findViewById(R.id.title_sheet_home);
         listView = view.findViewById(R.id.list_sheet_home);
+        sheet_empty_animation = view.findViewById(R.id.sheet_empty_animation);
+        sheet_empty_animation.setVisibility(View.GONE);
         getLastSheet();
         //Log.d("fragment creato", "homesheet");
 
@@ -85,6 +89,7 @@ public class HomeSheetFragment extends Fragment {
 
                 } else {
                     titleFragment.setText("Non hai allenamenti!");
+                    sheet_empty_animation.setVisibility(View.VISIBLE);
                 }
 
             }

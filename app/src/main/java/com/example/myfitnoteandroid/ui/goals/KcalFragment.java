@@ -83,6 +83,7 @@ public class KcalFragment extends Fragment {
         kcal_an = root.findViewById(R.id.kcal_an);
         percentual = root.findViewById(R.id.percentual);
         card_switch = root.findViewById(R.id.card_switch_off);
+        card_switch.setVisibility(View.GONE);
         return root;
     }
     public float cKcal() {
