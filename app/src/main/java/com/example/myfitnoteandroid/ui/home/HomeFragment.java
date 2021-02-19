@@ -141,7 +141,8 @@ public class HomeFragment extends Fragment {
     public void set_water(){
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)control.getLayoutParams();
         LinearLayout.LayoutParams kcal = (LinearLayout.LayoutParams)kcalCard.getLayoutParams();
-        if(params.height<600){
+        Log.d("d","d"+params.height);
+        if(params.height<670){
             params.height = kcal.height;
             control.setLayoutParams(params);
             glass.setVisibility(View.GONE);
