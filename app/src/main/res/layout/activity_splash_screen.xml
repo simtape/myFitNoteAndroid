@@ -30,7 +30,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="212dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/logo_transparent2"
+        android:src="@drawable/logo_transparent"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".30"
