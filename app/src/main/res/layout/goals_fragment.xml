@@ -20,7 +20,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.06"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.8" />
+        app:layout_constraintWidth_percent="0.8"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textView2"
@@ -35,7 +36,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.06"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.8" />
+        app:layout_constraintWidth_percent="0.8"
+        tools:targetApi="o"
+        tools:ignore="HardcodedText" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
@@ -109,7 +112,8 @@
                                 android:switchMinWidth="56dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                             <TextView
                                 android:id="@+id/tv2Water"
@@ -123,7 +127,8 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/tvWater"
                                 app:layout_constraintVertical_bias="0.659"
-                                tools:layout_editor_absoluteX="5dp" />
+                                tools:layout_editor_absoluteX="5dp"
+                                tools:ignore="HardcodedText" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -141,7 +146,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                    tools:targetApi="lollipop">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -165,7 +171,8 @@
                                 app:layout_constraintHorizontal_bias="0.0"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.0" />
+                                app:layout_constraintVertical_bias="0.0"
+                                tools:ignore="HardcodedText" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -186,7 +193,8 @@
                                 app:layout_constraintHorizontal_bias="0.03"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.0" />
+                                app:layout_constraintVertical_bias="0.0"
+                                android:importantForAutofill="no" />
 
                             <TextView
                                 android:id="@+id/kcal_unity_mes"
@@ -201,7 +209,8 @@
                                 app:layout_constraintHorizontal_bias="0.22"
                                 app:layout_constraintStart_toEndOf="@+id/kcal_value_num"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.64" />
+                                app:layout_constraintVertical_bias="0.64"
+                                tools:ignore="HardcodedText" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -247,7 +256,8 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintVertical_bias="0.241"
-                                tools:layout_editor_absoluteX="-6dp" />
+                                tools:layout_editor_absoluteX="-6dp"
+                                tools:ignore="HardcodedText" />
 
                             <Switch
                                 android:id="@+id/switchKcal"
@@ -256,7 +266,8 @@
                                 android:switchMinWidth="56dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                             <TextView
                                 android:id="@+id/tv2Kcal"
@@ -270,7 +281,8 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintTop_toTopOf="@+id/tvKcal"
                                 app:layout_constraintVertical_bias="0.659"
-                                tools:layout_editor_absoluteX="5dp" />
+                                tools:layout_editor_absoluteX="5dp"
+                                tools:ignore="HardcodedText" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -287,7 +299,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+                    tools:targetApi="lollipop">
 
                     <LinearLayout
                         android:id="@+id/linearLayout5"
@@ -311,7 +324,8 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.388"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:ignore="HardcodedText" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -332,7 +346,9 @@
                                 app:layout_constraintHorizontal_bias="0.03"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.0" />
+                                app:layout_constraintVertical_bias="0.0"
+                                android:importantForAutofill="no"
+                                tools:ignore="LabelFor" />
 
                             <TextView
                                 android:id="@+id/water_unity_mes"
@@ -347,7 +363,8 @@
                                 app:layout_constraintHorizontal_bias="0.207"
                                 app:layout_constraintStart_toEndOf="@+id/water_value_num"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.64" />
+                                app:layout_constraintVertical_bias="0.64"
+                                tools:ignore="HardcodedText" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </LinearLayout>
