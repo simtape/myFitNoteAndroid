@@ -66,7 +66,8 @@ public class HomeFragment extends Fragment {
         walker = root.findViewById(R.id.walker_an);
         wal_layout = root.findViewById(R.id.walk_layout);
         set_water();
-        set_walker();
+        HomeThread wal_thread = new HomeThread();
+        wal_thread.start();
         //resetstep();
 
       /*  SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
@@ -129,7 +130,6 @@ public class HomeFragment extends Fragment {
             }
         };
         sensorManager.registerListener(stepDetector, stepCounter, SensorManager.SENSOR_DELAY_NORMAL);
-
     }
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
@@ -165,7 +165,6 @@ public class HomeFragment extends Fragment {
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         SessionManager sessionManager = new SessionManager(getContext());
         sessionManager.setLastAccess(calendar.DATE);
-
 
     }
 
@@ -211,6 +210,7 @@ public class HomeFragment extends Fragment {
         return kcal;
     }
     public void set_walker(){
+
         walker.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
@@ -232,6 +232,11 @@ public class HomeFragment extends Fragment {
                 ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)wal_layout.getLayoutParams();
                 params.leftMargin = params.leftMargin + 75;
                 wal_layout.setLayoutParams(params);
+                if(params.leftMargin>13*75){
+                    ConstraintLayout.LayoutParams params_reset = (ConstraintLayout.LayoutParams)wal_layout.getLayoutParams();
+                    params_reset.leftMargin = 0;
+                    wal_layout.setLayoutParams(params_reset);
+                }
             }
         });
     }
@@ -250,6 +255,12 @@ public class HomeFragment extends Fragment {
         } else {
             cal.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR) + 1);
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        }
+    }
+    class HomeThread extends Thread{
+        @Override
+        public void run(){
+            set_walker();
         }
     }
 }
