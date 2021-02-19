@@ -94,10 +94,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="145dp"
+        android:layout_marginTop="127dp"
+        android:background="#226C6666"
         android:gravity="center"
-        android:paddingLeft="80dp"
-        android:background="#226C6666">
+        android:paddingLeft="80dp">
 
         <TextView
             android:id="@+id/textSesso"
@@ -119,7 +119,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="209dp"
+        android:layout_marginTop="180dp"
         android:gravity="center">
 
         <Button
@@ -140,7 +140,8 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="225dp"
+        android:padding="10dp"
         >
 
         <TextView
@@ -162,12 +163,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="320dp">
+        android:layout_marginTop="285dp"
+        android:padding="1dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:background="@drawable/textontable"
+            android:textSize="13dp"
             android:text="L'Indice di Massa Corporea (IMC o BMI dall'inglese Body Mass Index) è uno strumento importante per la misurazione del peso corretto. Il BMI mette in correlazione il peso con l'altezza: viene calcolato dividendo il peso corporeo (kg) per la statura (metri) al quadrato."
             android:textAlignment="center">
 
@@ -183,9 +188,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_gravity="center"
-        android:layout_marginStart="271dp"
-        android:layout_marginLeft="271dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginStart="270dp"
+        android:layout_marginLeft="270dp"
+        android:layout_marginTop="108dp"
         android:layout_marginBottom="-1dp"
         android:text="Seleziona sesso"
         android:textSize="15dp"
@@ -193,22 +198,101 @@
 
     </TextView>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="430dp"
-        android:gravity="center">
+        android:layout_marginTop="355dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="1dp">
 
 
-        <ImageView
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginBottom="0dp"
-            android:src="@mipmap/schema">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        </ImageView>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#D33F51B5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SOTTOPESO"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="305dp"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Per il corpo umano, essere sottopeso non è salutare tanto quanto essere sovrappeso. Una donna è sottopeso quando il suo valore di BMI è al di sotto di 19, mentre per un uomo la soglia è 20. Se sei sottopeso, è opportuno che anche tu ti rechi da un medico per avere consigli alimentari. "
+                    android:textSize="13dp"
+
+                    />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#4CAF50">
+                <TextView
+                    android:text="NORMOPESO"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView2"/>
+                <TextView
+                    android:layout_width="305dp"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Per normopeso si intende il peso naturale o ideale di una persona. Per le donne è auspicabile avere un indice di massa corporea compreso tra 19 e 24, mentre per gli uomini il BMI si attesta tra 20 e 25."
+                    android:textSize="13dp"
+
+                    />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFEB3B">
+                <TextView
+                    android:text="SOVRAPPESO"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView3"/>
+                <TextView
+                    android:layout_width="305dp"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textSize="13dp"
+                    android:text="Per sovrappeso ci si rifersice a persone (in cui il BMI è compreso tra 24 e 30 per le donne e tra 25 e 30 per gli uomini). Se sei sovrappeso, dovresti in ogni caso recarti da un medico e consultare un nutrizionista poiché esiste il rischio di sviluppare malattie cardiovascolari."
+
+                    />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#CDF44336"
+                >
+                <TextView
+                    android:text="ADIPOSITÀ"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView4"/>
+                <TextView
+                    android:layout_width="305dp"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Per adiposità si intende l’obesità patologica che può colpire uomini, donne e bambini, senza distinzione di classe sociale. Negli uomini e nelle donne si parla di adiposità quando il BMI è compreso tra 30 e 40 e di adiposità grave quando il BMI è maggiore di 40. "
+                    android:textSize="13dp"
+
+                    />
+            </TableRow>
+
+        </TableLayout>
     </LinearLayout>
 </RelativeLayout>
