@@ -47,7 +47,7 @@ public class HomeSheetFragment extends Fragment {
     HomeSheetAdapter homeSheetAdapter;
     Boolean result = false;
 
-    LottieAnimationView sheet_empty_animation;
+    LottieAnimationView sheet_empty_animation,loader_pink;
     public HomeSheetFragment() {
 
     }
@@ -65,7 +65,8 @@ public class HomeSheetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = (ViewGroup) inflater.inflate(R.layout.fragment_home_sheet, container, false);
-
+        loader_pink = view.findViewById(R.id.loader_pink);
+        loader_pink.setVisibility(View.VISIBLE);
         titleFragment = view.findViewById(R.id.title_sheet_home);
         listView = view.findViewById(R.id.list_sheet_home);
         sheet_empty_animation = view.findViewById(R.id.sheet_empty_animation);
@@ -79,6 +80,7 @@ public class HomeSheetFragment extends Fragment {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                loader_pink.setVisibility(View.GONE);
                 if (result) {
                     titleFragment.setText("Il tuo allenamento");
                     List<String> names = lastSheet.getNamesExercises();

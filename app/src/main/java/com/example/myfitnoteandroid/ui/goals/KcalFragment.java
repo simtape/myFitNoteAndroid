@@ -44,7 +44,7 @@ import java.util.List;
 public class KcalFragment extends Fragment {
     JSONObject postData;
     ViewGroup root;
-    LottieAnimationView kcal_an;
+    LottieAnimationView kcal_an,loader;
     int peso;
     int counter;
     int peso_cont;
@@ -80,6 +80,8 @@ public class KcalFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         root = (ViewGroup) inflater.inflate(R.layout.kcal_fragment, container, false);
+        loader = root.findViewById(R.id.loader);
+        loader.setVisibility(View.VISIBLE);
         kcal_an = root.findViewById(R.id.kcal_an);
         percentual = root.findViewById(R.id.percentual);
         card_switch = root.findViewById(R.id.card_switch_off);
@@ -128,8 +130,10 @@ public class KcalFragment extends Fragment {
         if(!status_goal){
             card_switch.setVisibility(View.VISIBLE);
             percentual.setVisibility(View.GONE);
+            loader.setVisibility(View.GONE);
         }else
         {
+            loader.setVisibility(View.GONE);
             Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(new Runnable() {
                 @Override
@@ -232,6 +236,7 @@ public class KcalFragment extends Fragment {
                     status_goal = status.getBoolean(1);
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    set_percentage();
                 }
 
 
