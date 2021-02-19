@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.bmi.BodyMassFragment"
     android:orientation="horizontal"
     android:background="#FFFFFF">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -172,7 +175,7 @@
             android:gravity="center_horizontal"
             android:textStyle="bold"
             android:background="@drawable/textontable"
-            android:textSize="13dp"
+            android:textSize="14dp"
             android:text="L'Indice di Massa Corporea (IMC o BMI dall'inglese Body Mass Index) è uno strumento importante per la misurazione del peso corretto. Il BMI mette in correlazione il peso con l'altezza: viene calcolato dividendo il peso corporeo (kg) per la statura (metri) al quadrato."
             android:textAlignment="center">
 
@@ -201,7 +204,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="355dp"
+        android:layout_marginTop="375dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:padding="1dp">
@@ -227,7 +230,7 @@
                     android:layout_height="wrap_content"
                     android:padding="4dp"
                     android:text="Per il corpo umano, essere sottopeso non è salutare tanto quanto essere sovrappeso. Una donna è sottopeso quando il suo valore di BMI è al di sotto di 19, mentre per un uomo la soglia è 20. Se sei sottopeso, è opportuno che anche tu ti rechi da un medico per avere consigli alimentari. "
-                    android:textSize="13dp"
+                    android:textSize="14dp"
 
                     />
             </TableRow>
@@ -247,7 +250,7 @@
                     android:layout_height="wrap_content"
                     android:padding="4dp"
                     android:text="Per normopeso si intende il peso naturale o ideale di una persona. Per le donne è auspicabile avere un indice di massa corporea compreso tra 19 e 24, mentre per gli uomini il BMI si attesta tra 20 e 25."
-                    android:textSize="13dp"
+                    android:textSize="14dp"
 
                     />
             </TableRow>
@@ -266,7 +269,7 @@
                     android:layout_width="305dp"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
-                    android:textSize="13dp"
+                    android:textSize="14dp"
                     android:text="Per sovrappeso ci si rifersice a persone (in cui il BMI è compreso tra 24 e 30 per le donne e tra 25 e 30 per gli uomini). Se sei sovrappeso, dovresti in ogni caso recarti da un medico e consultare un nutrizionista poiché esiste il rischio di sviluppare malattie cardiovascolari."
 
                     />
@@ -288,7 +291,7 @@
                     android:layout_height="wrap_content"
                     android:padding="4dp"
                     android:text="Per adiposità si intende l’obesità patologica che può colpire uomini, donne e bambini. Negli uomini e nelle donne si parla di adiposità quando il BMI è compreso tra 30 e 40 e di adiposità grave quando il BMI è maggiore di 40. Il consiglio è consultare il medico. "
-                    android:textSize="13dp"
+                    android:textSize="14dp"
 
                     />
             </TableRow>
@@ -296,3 +299,4 @@
         </TableLayout>
     </LinearLayout>
 </RelativeLayout>
+</ScrollView>
