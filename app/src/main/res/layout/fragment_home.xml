@@ -11,10 +11,9 @@
 
 
     <androidx.cardview.widget.CardView
-
         android:id="@+id/cardsteps"
         android:layout_width="match_parent"
-        android:layout_height="145dp"
+        android:layout_height="154dp"
         app:cardBackgroundColor="#AB4BB873"
         app:cardCornerRadius="20dp"
         app:cardElevation="0dp"
