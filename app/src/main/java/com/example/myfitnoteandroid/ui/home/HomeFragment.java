@@ -11,6 +11,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +49,7 @@ public class HomeFragment extends Fragment {
     ConstraintLayout wal_layout;
     int[] animation = new int[4];
     int cont=0;
+    DisplayMetrics display;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
@@ -135,8 +137,8 @@ public class HomeFragment extends Fragment {
     public void set_water(){
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)control.getLayoutParams();
         LinearLayout.LayoutParams kcal = (LinearLayout.LayoutParams)kcalCard.getLayoutParams();
-        Log.d("d","d"+params.height);
-        if(params.height<670){
+        Log.d("d","d"+getContext().getResources().getDisplayMetrics().widthPixels);
+        if(getContext().getResources().getDisplayMetrics().widthPixels<1080){
             params.height = kcal.height;
             control.setLayoutParams(params);
             glass.setVisibility(View.GONE);
