@@ -20,7 +20,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.112"
-        app:layout_constraintWidth_percent=".8" />
+        app:layout_constraintWidth_percent=".8"
+        tools:ignore="Autofill,HardcodedText,RtlHardcoded,RtlSymmetry,TextFields" />
 
     <EditText
         android:id="@+id/password"
@@ -39,7 +40,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email"
         app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent=".8" />
+        app:layout_constraintWidth_percent=".8"
+        tools:ignore="Autofill,HardcodedText,RtlHardcoded,RtlSymmetry" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -48,7 +50,8 @@
         android:id="@+id/showpassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password">
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        tools:ignore="HardcodedText">
 
     </CheckBox>
 
@@ -66,7 +69,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintVertical_bias="0.224"
-        app:layout_constraintWidth_percent=".8" />
+        app:layout_constraintWidth_percent=".8"
+        tools:ignore="HardcodedText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

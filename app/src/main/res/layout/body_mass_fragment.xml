@@ -8,7 +8,8 @@
     android:background="#FFFFFF">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="ScrollViewSize">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,8 +22,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textStyle="bold"
-            android:textSize="25dp"
-            android:text="Indice Di Massa Corporea">
+            android:textSize="25sp"
+            android:text="Indice Di Massa Corporea"
+            tools:ignore="HardcodedText">
 
         </TextView>
     </LinearLayout>
@@ -33,13 +35,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="53dp"
         android:paddingLeft="10dp"
-        >
+        tools:ignore="RtlHardcoded,RtlSymmetry">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Inserisci Peso (kg):"
-            android:textSize="13dp"
-            android:textStyle="bold">
+            android:textSize="13sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText">
 
         </TextView>
 
@@ -47,9 +50,10 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:id="@+id/editpeso"
-            android:inputType="number">
+            android:inputType="number"
+            tools:ignore="Autofill,LabelFor">
 
         </EditText>
 
@@ -68,8 +72,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Inserisci Altezza (cm):"
-            android:textSize="13dp"
-            android:textStyle="bold">
+            android:textSize="13sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText">
 
         </TextView>
 
@@ -77,8 +82,9 @@
             android:id="@+id/editaltezza"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:inputType="number">
+            android:textSize="20sp"
+            android:inputType="number"
+            tools:ignore="Autofill,LabelFor">
 
         </EditText>
 
@@ -86,7 +92,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="UselessLeaf">
 
     </LinearLayout>
 
@@ -100,14 +107,15 @@
         android:layout_marginTop="127dp"
         android:background="#226C6666"
         android:gravity="center"
-        android:paddingLeft="80dp">
+        android:paddingLeft="80dp"
+        tools:ignore="RtlHardcoded,RtlSymmetry">
 
         <TextView
             android:id="@+id/textSesso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="100dp"
-            android:textSize="25dp"></TextView>
+            android:textSize="25sp" />
 
         <Spinner
             android:id="@+id/spinnersesso"
@@ -133,7 +141,8 @@
             android:clickable="true"
             android:text="Calcola Indice"
             android:textStyle="bold"
-            android:textColor="#FFFFFF">
+            android:textColor="#FFFFFF"
+            tools:ignore="HardcodedText,KeyboardInaccessibleWidget">
 
         </Button>
 
@@ -154,7 +163,7 @@
             android:gravity="center_horizontal"
             android:paddingTop="10dp"
             android:textAlignment="center"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold">
 
         </TextView>
@@ -175,9 +184,10 @@
             android:gravity="center_horizontal"
             android:textStyle="bold"
             android:background="@drawable/textontable"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:text="L'Indice di Massa Corporea (IMC o BMI dall'inglese Body Mass Index) è uno strumento importante per la misurazione del peso corretto. Il BMI mette in correlazione il peso con l'altezza: viene calcolato dividendo il peso corporeo (kg) per la statura (metri) al quadrato."
-            android:textAlignment="center">
+            android:textAlignment="center"
+            tools:ignore="HardcodedText">
 
         </TextView>
 
@@ -196,8 +206,9 @@
         android:layout_marginTop="108dp"
         android:layout_marginBottom="-1dp"
         android:text="Seleziona sesso"
-        android:textSize="15dp"
-        android:textStyle="bold">
+        android:textSize="15sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText">
 
     </TextView>
 
@@ -213,7 +224,7 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            >
+            tools:ignore="UselessParent">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -224,7 +235,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="SOTTOPESO"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:layout_width="305dp"
@@ -233,7 +245,7 @@
                     android:text="Per il corpo umano, essere sottopeso non è salutare tanto quanto essere sovrappeso. Una donna è sottopeso quando il suo valore di BMI è al di sotto di 19, mentre per un uomo la soglia è 20. Se sei sottopeso, è opportuno che anche tu ti rechi da un medico per avere consigli alimentari. "
                     android:textSize="14dp"
 
-                    />
+                    tools:ignore="HardcodedText,SpUsage" />
             </TableRow>
 
             <TableRow
@@ -245,15 +257,16 @@
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView2"/>
+                    android:id="@+id/textView2"
+                    tools:ignore="HardcodedText" />
                 <TextView
                     android:layout_width="305dp"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
                     android:text="Per normopeso si intende il peso naturale o ideale di una persona. Per le donne è auspicabile avere un indice di massa corporea compreso tra 19 e 24, mentre per gli uomini il BMI si attesta tra 20 e 25."
-                    android:textSize="14dp"
+                    android:textSize="14sp"
 
-                    />
+                    tools:ignore="HardcodedText" />
             </TableRow>
 
             <TableRow
@@ -265,15 +278,16 @@
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView3"/>
+                    android:id="@+id/textView3"
+                    tools:ignore="HardcodedText" />
                 <TextView
                     android:layout_width="305dp"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
                     android:text="Per sovrappeso ci si rifersice a persone (in cui il BMI è compreso tra 24 e 30 per le donne e tra 25 e 30 per gli uomini). Se sei sovrappeso, dovresti in ogni caso recarti da un medico e consultare un nutrizionista poiché esiste il rischio di sviluppare malattie cardiovascolari."
 
-                    />
+                    tools:ignore="HardcodedText" />
             </TableRow>
 
             <TableRow
@@ -286,15 +300,16 @@
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView4"/>
+                    android:id="@+id/textView4"
+                    tools:ignore="HardcodedText" />
                 <TextView
                     android:layout_width="305dp"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
                     android:text="Per adiposità si intende l’obesità patologica che può colpire uomini, donne e bambini. Negli uomini e nelle donne si parla di adiposità quando il BMI è compreso tra 30 e 40 e di adiposità grave quando il BMI è maggiore di 40. Il consiglio è consultare il medico. "
-                    android:textSize="14dp"
+                    android:textSize="14sp"
 
-                    />
+                    tools:ignore="HardcodedText" />
             </TableRow>
 
         </TableLayout>

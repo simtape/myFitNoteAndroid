@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp"
-        >
+        tools:ignore="ScrollViewSize">
 
         <EditText
             android:id="@+id/Cognome"
@@ -32,7 +32,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nome"
             app:layout_constraintVertical_bias="0"
-            app:layout_constraintWidth_percent=".8" />
+            app:layout_constraintWidth_percent=".8"
+            tools:ignore="Autofill,HardcodedText,RtlHardcoded,RtlSymmetry,TextFields" />
 
 
         <EditText
@@ -48,7 +49,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".8" />
+            app:layout_constraintWidth_percent=".8"
+            tools:ignore="Autofill,HardcodedText,RtlHardcoded,RtlSymmetry,TextFields" />
 
         <EditText
             android:id="@+id/Email"
@@ -66,7 +68,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Cognome"
             app:layout_constraintVertical_bias="0"
-            app:layout_constraintWidth_percent=".8" />
+            app:layout_constraintWidth_percent=".8"
+            tools:ignore="Autofill,HardcodedText,RtlHardcoded,RtlSymmetry,TextFields" />
 
 
         <EditText
@@ -85,7 +88,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Email"
             app:layout_constraintVertical_bias="0"
-            app:layout_constraintWidth_percent=".8" />
+            app:layout_constraintWidth_percent=".8"
+            tools:ignore="Autofill,HardcodedText,RtlHardcoded,RtlSymmetry,TextFields" />
 
 
         <Button
@@ -103,7 +107,8 @@
             app:layout_constraintHorizontal_bias="0.463"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintWidth_percent=".8"
-            app:layout_constraintTop_toBottomOf="@+id/password"/>
+            app:layout_constraintTop_toBottomOf="@+id/password"
+            tools:ignore="HardcodedText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

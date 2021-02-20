@@ -41,7 +41,8 @@
         <item
 
 
-            android:title="tools">
+            android:title="Tools"
+            tools:ignore="HardcodedText">
             <menu>
                 <item
                     android:id="@+id/nav_kcal"

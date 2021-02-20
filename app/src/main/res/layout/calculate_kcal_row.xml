@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="70dp"
 
@@ -16,7 +17,8 @@
         android:hint="Alimento"
         android:completionThreshold="1"
         android:paddingTop="10dp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        tools:ignore="HardcodedText,RtlHardcoded" />
 
     <EditText
         android:id="@+id/quantity"
@@ -27,7 +29,8 @@
         android:hint="grammi"
         android:inputType="number"
         android:paddingTop="10dp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        tools:ignore="Autofill,HardcodedText" />
 
     <!--    <Button
             android:id="@+id/button_add"

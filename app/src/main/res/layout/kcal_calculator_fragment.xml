@@ -35,7 +35,7 @@
             android:textColor="#ffffff"
 
 
-            />
+            tools:ignore="HardcodedText,RtlHardcoded" />
 
         <TextView
             android:id="@+id/newKcal"
@@ -55,7 +55,8 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="calorie"
-            android:textSize="16sp">
+            android:textSize="16sp"
+            tools:ignore="HardcodedText">
 
 
         </TextView>

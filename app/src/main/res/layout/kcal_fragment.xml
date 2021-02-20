@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:gravity="center"
                 android:text="Obiettivo Disattivato"
                 android:textStyle="bold"
@@ -39,7 +39,8 @@
                 app:layout_constraintHeight_percent="1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="1" />
+                app:layout_constraintWidth_percent="1"
+                tools:ignore="HardcodedText" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
@@ -88,5 +89,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.4"
         app:layout_constraintHeight_percent="0.4"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UnusedAttribute" />
 </androidx.constraintlayout.widget.ConstraintLayout>

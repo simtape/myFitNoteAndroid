@@ -25,7 +25,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.03">
+        app:layout_constraintVertical_bias="0.03"
+        tools:ignore="HardcodedText,UnusedAttribute">
 
     </TextView>
 
@@ -49,7 +50,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="start|center"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:background="@drawable/edit_text_bg"
         android:gravity="center"
         android:hint="Altezza"
@@ -61,7 +62,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.35"
-        app:layout_constraintWidth_percent="0.6">
+        app:layout_constraintWidth_percent="0.6"
+        tools:ignore="HardcodedText">
 
     </TextView>
 
@@ -88,7 +90,7 @@
         android:gravity="center"
         android:hint="Data di nascita"
         android:textStyle="bold"
-        android:textSize="25dp"
+        android:textSize="25sp"
         app:layout_constraintHeight_percent="0.07"
         app:layout_constraintWidth_percent="0.6"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -96,7 +98,8 @@
         app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.5"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/btn_dtn"
@@ -117,7 +120,8 @@
         app:layout_constraintStart_toEndOf="@+id/Data_nascita"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintHorizontal_bias="0" />
+        app:layout_constraintHorizontal_bias="0"
+        tools:ignore="RtlHardcoded" />
 
 
     <Button
@@ -137,7 +141,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.691" />
+        app:layout_constraintVertical_bias="0.691"
+        tools:ignore="HardcodedText,UnusedAttribute" />
 
     <TextView
         android:id="@+id/Peso"
@@ -147,7 +152,7 @@
         android:background="@drawable/edit_text_bg"
         android:gravity="center"
         android:hint="Peso"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:textStyle="bold"
         android:autoSizeMaxTextSize="25dp"
         app:layout_constraintHeight_percent="0.07"
@@ -157,7 +162,8 @@
         app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.2"
+        tools:ignore="HardcodedText,UnusedAttribute" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

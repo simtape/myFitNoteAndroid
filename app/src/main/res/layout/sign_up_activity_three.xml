@@ -23,7 +23,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent=".8" />
+        app:layout_constraintWidth_percent=".8"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
 
 
     <TextView
@@ -41,7 +42,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/i_tuoi_dati"
-        app:layout_constraintWidth_percent=".8" />
+        app:layout_constraintWidth_percent=".8"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
 
     <TextView
         android:id="@+id/Cognome"
@@ -53,14 +55,15 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:textColor="#FFFFFF"
-        android:textSize="21dp"
+        android:textSize="21sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nome"
         app:layout_constraintVertical_bias="0.003"
-        app:layout_constraintWidth_percent=".8" />
+        app:layout_constraintWidth_percent=".8"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
 
     <TextView
         android:id="@+id/Email"
@@ -72,7 +75,7 @@
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:textSize="21dp"
+        android:textSize="21sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +83,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Cognome"
         app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent=".8" />
+        app:layout_constraintWidth_percent=".8"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
 
     <TextView
         android:id="@+id/password"
@@ -92,7 +96,7 @@
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:textSize="21dp"
+        android:textSize="21sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +104,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Email"
         app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent=".8" />
+        app:layout_constraintWidth_percent=".8"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
 
     <TextView
         android:id="@+id/Peso"
@@ -113,7 +118,7 @@
         android:textColor="#FFFFFF"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:textSize="21dp"
+        android:textSize="21sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -121,7 +126,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent=".8" />
+        app:layout_constraintWidth_percent=".8"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
 
     <TextView
         android:id="@+id/Altezza"
@@ -134,7 +140,7 @@
         android:textColor="#FFFFFF"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:textSize="21dp"
+        android:textSize="21sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -142,7 +148,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Peso"
         app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent=".8" />
+        app:layout_constraintWidth_percent=".8"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
 
     <TextView
         android:id="@+id/Datan"
@@ -155,7 +162,7 @@
         android:textColor="#FFFFFF"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:textSize="21dp"
+        android:textSize="21sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -163,7 +170,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Altezza"
         app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent=".8" />
+        app:layout_constraintWidth_percent=".8"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
 
 
     <Button
@@ -180,7 +188,8 @@
         app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent=".8"
-        app:layout_constraintTop_toBottomOf="@+id/Datan"/>
+        app:layout_constraintTop_toBottomOf="@+id/Datan"
+        tools:ignore="HardcodedText" />
 
 
 

@@ -33,7 +33,8 @@
                 android:layout_marginBottom="26dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlHardcoded">
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/walker_an"
@@ -70,7 +71,8 @@
                         android:layout_gravity="center"
                         android:text="0"
                         android:textColor="#ffffff"
-                        android:textSize="45dp"></TextView>
+                        android:textSize="45sp"
+                        tools:ignore="HardcodedText" />
 
 
                     <TextView
@@ -80,7 +82,8 @@
                         android:text="Passi"
                         android:textAlignment="center"
                         android:textColor="#ffffff"
-                        android:textSize="16dp"></TextView>
+                        android:textSize="16sp"
+                        tools:ignore="HardcodedText" />
 
                     <!--Card view header Layout-->
                 </LinearLayout>
@@ -91,7 +94,8 @@
                     android:orientation="horizontal"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:weightSum="2">
+                    android:weightSum="2"
+                    tools:ignore="DisableBaselineAlignment,RtlHardcoded,RtlSymmetry">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -115,7 +119,7 @@
 
                             android:gravity="center"
                             android:textColor="#ffffff"
-                            android:textSize="16dp"></TextView>
+                            android:textSize="16sp" />
 
 
                     </LinearLayout>
@@ -142,7 +146,7 @@
 
                             android:gravity="center"
                             android:textColor="#ffffff"
-                            android:textSize="16dp"></TextView>
+                            android:textSize="16sp" />
 
 
                     </LinearLayout>
@@ -174,14 +178,16 @@
             android:layout_marginRight="5dp"
             app:cardBackgroundColor="#8AFB8C00"
             app:cardCornerRadius="20dp"
-            app:cardElevation="0dp">
+            app:cardElevation="0dp"
+            tools:ignore="RtlHardcoded">
 
 
             <fragment
                 android:id="@+id/fragment3"
                 android:name="com.example.myfitnoteandroid.ui.goals.KcalFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                tools:ignore="FragmentTagUsage" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -191,7 +197,8 @@
             android:layout_marginLeft="5dp"
             app:cardBackgroundColor="#AB5A99CD"
             app:cardCornerRadius="20dp"
-            app:cardElevation="0dp">
+            app:cardElevation="0dp"
+            tools:ignore="RtlHardcoded">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/glass"
@@ -199,14 +206,16 @@
                 android:layout_height="match_parent"
                 android:backgroundTint="@android:color/transparent"
                 app:cardCornerRadius="20dp"
-                app:cardElevation="0dp">
+                app:cardElevation="0dp"
+                tools:ignore="UnusedAttribute">
 
                 <fragment
                     android:id="@+id/fragment1"
                     android:name="com.example.myfitnoteandroid.ui.goals.WaterFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    tools:ignore="FragmentTagUsage" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -215,12 +224,14 @@
                 android:layout_height="match_parent"
                 android:backgroundTint="@android:color/transparent"
                 app:cardCornerRadius="20dp"
-                app:cardElevation="0dp" >
+                app:cardElevation="0dp"
+                tools:ignore="UnusedAttribute">
                 <fragment
                     android:id="@+id/fragment2"
                     android:name="com.example.myfitnoteandroid.ui.goals.WaterFragmentSecond"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    tools:ignore="FragmentTagUsage" />
             </androidx.cardview.widget.CardView>
         </androidx.cardview.widget.CardView>
 
@@ -243,7 +254,8 @@
             android:id="@+id/fragment"
             android:name="com.example.myfitnoteandroid.ui.home.HomeSheetFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            tools:ignore="FragmentTagUsage" />
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

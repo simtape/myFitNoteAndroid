@@ -35,13 +35,14 @@
                     android:paddingLeft="20dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.112"
-                    app:layout_constraintWidth_percent=".8"></EditText>
+                    app:layout_constraintWidth_percent=".8"
+                    tools:ignore="Autofill,HardcodedText,RtlHardcoded,RtlSymmetry,TextFields" />
 
                 <TextView
                     android:id="@+id/days_sheet"
@@ -52,7 +53,7 @@
                     android:paddingBottom="10dp"
                     android:text="Giorni"
                     android:textColor="#000000"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +61,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/email"
                     app:layout_constraintVertical_bias="0"
-                    app:layout_constraintWidth_percent=".8"></TextView>
+                    app:layout_constraintWidth_percent=".8"
+                    tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
                 <CheckBox
                     android:id="@+id/checkBox1"
@@ -68,7 +70,8 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="Lunedì"
-                    android:textSize="18dp" />
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
 
                 <CheckBox
                     android:id="@+id/checkBox2"
@@ -76,7 +79,8 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="Martedì"
-                    android:textSize="18dp" />
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
 
                 <CheckBox
                     android:id="@+id/checkBox3"
@@ -84,7 +88,8 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="Mercoledì"
-                    android:textSize="18dp" />
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
 
                 <CheckBox
                     android:id="@+id/checkBox4"
@@ -92,7 +97,8 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="Giovedì"
-                    android:textSize="18dp" />
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
 
                 <CheckBox
                     android:id="@+id/checkBox5"
@@ -100,7 +106,8 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="Venerdì"
-                    android:textSize="18dp" />
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
 
                 <CheckBox
                     android:id="@+id/checkBox6"
@@ -108,7 +115,8 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="Sabato"
-                    android:textSize="18dp" />
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
 
                 <CheckBox
                     android:id="@+id/checkBox7"
@@ -117,7 +125,8 @@
                     android:layout_marginBottom="20dp"
                     android:padding="5dp"
                     android:text="Domenica"
-                    android:textSize="18dp" />
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/tvExercises"
@@ -129,14 +138,15 @@
                     android:paddingBottom="10dp"
                     android:text="Esercizi"
                     android:textColor="#000000"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias=".5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintVertical_bias="0"
-                    app:layout_constraintWidth_percent=".8"></TextView>
+                    app:layout_constraintWidth_percent=".8"
+                    tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -163,7 +173,8 @@
                         app:layout_constraintHorizontal_bias=".5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintVertical_bias="0"
-                        app:layout_constraintWidth_percent=".8"></AutoCompleteTextView>
+                        app:layout_constraintWidth_percent=".8"
+                        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SpUsage" />
 
                     <EditText
                         android:id="@+id/editTextReps1"
@@ -177,13 +188,14 @@
                         android:paddingTop="10dp"
                         android:paddingRight="10dp"
                         android:paddingBottom="10dp"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias=".5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintVertical_bias="0"
-                        app:layout_constraintWidth_percent=".8"></EditText>
+                        app:layout_constraintWidth_percent=".8"
+                        tools:ignore="Autofill,HardcodedText,RtlHardcoded" />
 
                     <EditText
                         android:id="@+id/editTextSeries1"
@@ -195,14 +207,15 @@
                         android:paddingTop="10dp"
                         android:paddingRight="10dp"
                         android:paddingBottom="10dp"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:inputType="number"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias=".5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintVertical_bias="0"
-                        app:layout_constraintWidth_percent=".8"></EditText>
+                        app:layout_constraintWidth_percent=".8"
+                        tools:ignore="Autofill,HardcodedText" />
 
 
                 </LinearLayout>
@@ -225,14 +238,15 @@
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
                         android:textColor="#000000"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:completionThreshold="1"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias=".5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintVertical_bias="0"
-                        app:layout_constraintWidth_percent=".8"></AutoCompleteTextView>
+                        app:layout_constraintWidth_percent=".8"
+                        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
                     <EditText
                         android:id="@+id/editTextReps2"
@@ -245,14 +259,15 @@
                         android:paddingTop="10dp"
                         android:paddingRight="10dp"
                         android:paddingBottom="10dp"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:inputType="number"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias=".5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintVertical_bias="0"
-                        app:layout_constraintWidth_percent=".8"></EditText>
+                        app:layout_constraintWidth_percent=".8"
+                        tools:ignore="Autofill,HardcodedText,RtlHardcoded" />
 
                     <EditText
                         android:id="@+id/editTextSeries2"
@@ -264,14 +279,15 @@
                         android:paddingTop="10dp"
                         android:paddingRight="10dp"
                         android:paddingBottom="10dp"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:inputType="number"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias=".5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintVertical_bias="0"
-                        app:layout_constraintWidth_percent=".8"></EditText>
+                        app:layout_constraintWidth_percent=".8"
+                        tools:ignore="Autofill,HardcodedText" />
 
 
                 </LinearLayout>
@@ -294,14 +310,15 @@
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
                         android:textColor="#000000"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:completionThreshold="1"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias=".5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintVertical_bias="0"
-                        app:layout_constraintWidth_percent=".8"></AutoCompleteTextView>
+                        app:layout_constraintWidth_percent=".8"
+                        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
                     <EditText
                         android:id="@+id/editTextReps3"
@@ -314,14 +331,15 @@
                         android:paddingTop="10dp"
                         android:paddingRight="10dp"
                         android:paddingBottom="10dp"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:inputType="number"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias=".5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintVertical_bias="0"
-                        app:layout_constraintWidth_percent=".8"></EditText>
+                        app:layout_constraintWidth_percent=".8"
+                        tools:ignore="Autofill,HardcodedText,RtlHardcoded" />
 
                     <EditText
                         android:id="@+id/editTextSeries3"
@@ -333,14 +351,15 @@
                         android:paddingTop="10dp"
                         android:paddingRight="10dp"
                         android:paddingBottom="10dp"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:inputType="number"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias=".5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintVertical_bias="0"
-                        app:layout_constraintWidth_percent=".8"></EditText>
+                        app:layout_constraintWidth_percent=".8"
+                        tools:ignore="Autofill,HardcodedText" />
 
 
                 </LinearLayout>
@@ -363,14 +382,15 @@
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
                         android:textColor="#000000"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:completionThreshold="1"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias=".5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintVertical_bias="0"
-                        app:layout_constraintWidth_percent=".8"></AutoCompleteTextView>
+                        app:layout_constraintWidth_percent=".8"
+                        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
                     <EditText
                         android:id="@+id/editTextReps4"
@@ -383,14 +403,15 @@
                         android:paddingTop="10dp"
                         android:paddingRight="10dp"
                         android:paddingBottom="10dp"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:inputType="number"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias=".5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintVertical_bias="0"
-                        app:layout_constraintWidth_percent=".8"></EditText>
+                        app:layout_constraintWidth_percent=".8"
+                        tools:ignore="Autofill,HardcodedText,RtlHardcoded" />
 
                     <EditText
                         android:id="@+id/editTextSeries4"
@@ -402,14 +423,15 @@
                         android:paddingTop="10dp"
                         android:paddingRight="10dp"
                         android:paddingBottom="10dp"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:inputType="number"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias=".5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintVertical_bias="0"
-                        app:layout_constraintWidth_percent=".8"></EditText>
+                        app:layout_constraintWidth_percent=".8"
+                        tools:ignore="Autofill,HardcodedText" />
 
 
                 </LinearLayout>
@@ -420,7 +442,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_bg"
                     android:text="CREA"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                    tools:ignore="HardcodedText" />
 
 
             </LinearLayout>

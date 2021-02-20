@@ -47,7 +47,8 @@
                             android:textStyle="bold"
                             android:textColor="#B22196F3"
                             android:text="Nome:  "
-                            android:layout_marginLeft="10dp">
+                            android:layout_marginLeft="10dp"
+                            tools:ignore="HardcodedText,RtlHardcoded">
 
                         </TextView>
 
@@ -60,10 +61,12 @@
                        <EditText
                            android:layout_width="match_parent"
                            android:layout_height="match_parent"
-                           android:textSize="20dp"
+                           android:textSize="20sp"
                            android:backgroundTint="#ee98fb"
                            android:id="@+id/nomeEdit"
-                           >
+                           android:importantForAutofill="no"
+                           tools:ignore="LabelFor,TextFields"
+                           tools:targetApi="lollipop">
 
                        </EditText>
 
@@ -76,7 +79,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="10dp">
+            android:layout_height="10dp"
+            tools:ignore="UselessLeaf">
 
         </LinearLayout>
 
@@ -109,7 +113,8 @@
                         android:text="Cognome:  "
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
-                        android:textColor="#B22196F3">
+                        android:textColor="#B22196F3"
+                        tools:ignore="HardcodedText,RtlHardcoded">
 
                     </TextView>
 
@@ -122,10 +127,10 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:backgroundTint="#ee98fb"
                         android:id="@+id/cognomeEdit"
-                        >
+                        tools:ignore="Autofill,LabelFor,TextFields,UnusedAttribute">
 
                     </EditText>
 
@@ -138,7 +143,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="10dp">
+            android:layout_height="10dp"
+            tools:ignore="UselessLeaf">
 
         </LinearLayout>
 
@@ -171,7 +177,8 @@
                         android:text="Data di nascita:  "
                         android:textStyle="bold"
                         android:textColor="#B22196F3"
-                        android:layout_marginLeft="10dp">
+                        android:layout_marginLeft="10dp"
+                        tools:ignore="HardcodedText,RtlHardcoded">
 
                     </TextView>
 
@@ -184,10 +191,10 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:backgroundTint="#ee98fb"
                         android:id="@+id/datadiNascitaEdit"
-                        >
+                        tools:ignore="Autofill,LabelFor,TextFields,UnusedAttribute">
 
                     </EditText>
 
@@ -200,7 +207,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="10dp">
+            android:layout_height="10dp"
+            tools:ignore="UselessLeaf">
 
         </LinearLayout>
 
@@ -234,7 +242,7 @@
                         android:textStyle="bold"
                         android:textColor="#B22196F3"
                         android:layout_marginLeft="10dp"
-                        >
+                        tools:ignore="HardcodedText,RtlHardcoded">
 
                     </TextView>
 
@@ -248,10 +256,11 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:backgroundTint="#ee98fb"
                         android:id="@+id/PesoEdit"
-                        >
+                        tools:targetApi="lollipop"
+                        tools:ignore="Autofill,LabelFor,TextFields">
 
                     </EditText>
 
@@ -264,7 +273,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="10dp">
+            android:layout_height="10dp"
+            tools:ignore="UselessLeaf">
 
         </LinearLayout>
 
@@ -297,7 +307,8 @@
                         android:text="Altezza: "
                         android:textStyle="bold"
                         android:textColor="#B22196F3"
-                        android:layout_marginLeft="10dp">
+                        android:layout_marginLeft="10dp"
+                        tools:ignore="HardcodedText,RtlHardcoded">
 
                     </TextView>
 
@@ -311,10 +322,10 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:backgroundTint="#ee98fb"
                         android:id="@+id/altezzaEdit"
-                        >
+                        tools:ignore="Autofill,LabelFor,TextFields,UnusedAttribute">
 
                     </EditText>
 
@@ -327,7 +338,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="10dp">
+            android:layout_height="10dp"
+            tools:ignore="UselessLeaf">
 
         </LinearLayout>
 
@@ -336,21 +348,23 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp">
+            android:layout_height="80dp"
+            tools:ignore="UselessLeaf">
 
         </LinearLayout>
 
         <Button
             android:layout_gravity="center"
             android:text="Modifica Profilo"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:clickable="true"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:id="@+id/bottoneUpdate"
-            android:background="@drawable/button_bg">
+            android:background="@drawable/button_bg"
+            tools:ignore="HardcodedText,KeyboardInaccessibleWidget">
 
         </Button>
 
@@ -358,7 +372,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/logo_transparent">
+            android:src="@drawable/logo_transparent"
+            tools:ignore="ContentDescription">
 
         </ImageView>
 
