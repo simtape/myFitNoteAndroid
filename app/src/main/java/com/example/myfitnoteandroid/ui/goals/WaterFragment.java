@@ -1,11 +1,11 @@
 package com.example.myfitnoteandroid.ui.goals;
 
 import android.animation.Animator;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
@@ -32,9 +31,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Struct;
 import java.util.Arrays;
-import java.util.logging.Handler;
 
 public class WaterFragment extends Fragment {
     ViewGroup root;
@@ -42,15 +39,14 @@ public class WaterFragment extends Fragment {
     Goal kcal = new Goal();
     private JSONObject postData;
     TextView water_goal,water_value;
-    public static WaterFragment newInstance() {
-        return new WaterFragment();
-    }
     ImageButton button_plus;
     Button reset;
     LottieAnimationView glass,complete,menu_an;
+    int[] animation = new int[2];
     ConstraintLayout but_layout;
     CardView card_total,card_switch;
     String id_user;
+    int counter = 1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,6 +59,8 @@ public class WaterFragment extends Fragment {
         complete = root.findViewById(R.id.complete_goal);
         card_switch = root.findViewById(R.id.card_switch);
         menu_an = root.findViewById(R.id.menu_an);
+        animation[0]=R.raw.menu2;
+        animation[1]=R.raw.switch_an;
         reset = root.findViewById(R.id.reset);
         button_plus_lst();
         button_reset_lst();
@@ -121,7 +119,7 @@ public class WaterFragment extends Fragment {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });
@@ -131,7 +129,8 @@ public class WaterFragment extends Fragment {
     public void set_card(){
         if(!water.getStatus_goal()){
             card_switch.setVisibility(View.VISIBLE);
-            activate_menu();
+            WaterFragment.MenuThread menu_thread = new  WaterFragment.MenuThread();
+            menu_thread.start();
         }else
         if((water.getValue_goal()==0)){
             card_switch.setVisibility(View.VISIBLE);
@@ -148,10 +147,6 @@ public class WaterFragment extends Fragment {
         }
     }
     public void activate_menu(){
-        menu_an.setAnimation(R.raw.menu2);
-        menu_an.setMinAndMaxFrame(0,130);
-        menu_an.setSpeed(-1);
-        menu_an.playAnimation();
         menu_an.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
@@ -159,7 +154,7 @@ public class WaterFragment extends Fragment {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                activate_switch();
+
             }
 
             @Override
@@ -169,38 +164,22 @@ public class WaterFragment extends Fragment {
 
             @Override
             public void onAnimationRepeat(Animator animator) {
-
+                if(counter==0){
+                    menu_an.setAnimation(animation[1]);
+                    menu_an.setMinAndMaxFrame(0,170);
+                    menu_an.setSpeed(1);
+                    menu_an.playAnimation();
+                    counter=1;
+                }else{
+                    menu_an.setAnimation(animation[0]);
+                    menu_an.setMinAndMaxFrame(0,130);
+                    menu_an.setSpeed(-1);
+                    menu_an.playAnimation();
+                    counter=0;
+                }
             }
         });
     }
-    public void activate_switch() {
-        menu_an.setAnimation(R.raw.switch_an);
-        menu_an.setMinAndMaxFrame(0,170);
-        menu_an.setSpeed(1);
-        menu_an.playAnimation();
-        menu_an.addAnimatorListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                menu_an.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-    }
-
         public void button_plus_lst(){
         button_plus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,18 +190,16 @@ public class WaterFragment extends Fragment {
                 removeGoals();
                 if(value<=water.getValue_goal()){
                     card_total.setVisibility(View.GONE);
-                if(value==1.5){
                     ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin - (103*5);
+                    if(value==1.5){
+                        params.leftMargin = params.leftMargin - (103*5);
                     params.topMargin = params.topMargin + 170;
-                    but_layout.setLayoutParams(params);
-                }
+                    }
                 else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
+                        params.leftMargin = params.leftMargin + 103;
+                    }
                     but_layout.setLayoutParams(params);
-                }
-                set_valore();
+                    set_valore();
                 String value_sw = Double.toString(value);
                 switch (value_sw){
                     case "0.25":
@@ -290,7 +267,7 @@ public class WaterFragment extends Fragment {
         int value = water.getValue_goal();
         double progress = water.getProgress_goal();
         String value_sw = Double.toString(progress);
-        ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
+        ConstraintLayout.LayoutParams params;
         switch(value) {
             case 1:
                 switch (value_sw){
@@ -360,7 +337,7 @@ public class WaterFragment extends Fragment {
                         glass.setSpeed(-1);
                         glass.playAnimation();
                         params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*1);
+                        params.leftMargin = params.leftMargin - (103);
                         but_layout.setLayoutParams(params);
                         break;
                 }
@@ -450,7 +427,7 @@ public class WaterFragment extends Fragment {
                         glass.setMinAndMaxFrame(0,27);
                         glass.playAnimation();
                         params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*1);
+                        params.leftMargin = params.leftMargin - (103);
                         params.topMargin = params.topMargin - 170;
                         but_layout.setLayoutParams(params);
                         break;
@@ -585,7 +562,7 @@ public class WaterFragment extends Fragment {
                         glass.setSpeed(-1);
                         glass.playAnimation();
                         params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*1);
+                        params.leftMargin = params.leftMargin - (103);
                         but_layout.setLayoutParams(params);
                         break;
                 }
@@ -910,7 +887,7 @@ public class WaterFragment extends Fragment {
                         glass.setMinAndMaxFrame(0,27);
                         glass.playAnimation();
                         params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*1);
+                        params.leftMargin = params.leftMargin - (103);
                         params.topMargin = params.topMargin - 170;
                         but_layout.setLayoutParams(params);
                         break;
@@ -1045,16 +1022,18 @@ public class WaterFragment extends Fragment {
                         glass.setSpeed(-1);
                         glass.playAnimation();
                         params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*1);
+                        params.leftMargin = params.leftMargin - (103);
                         but_layout.setLayoutParams(params);
                         break;
                 }
                 break;
     }}
+    @SuppressLint("SetTextI18n")
     public void set_obiettivo(){
         water_goal.setText("Obiettivo: "+water.getValue_goal()+" Litri");
     }
 
+    @SuppressLint("SetTextI18n")
     public void set_valore(){
         water_value.setText(water.getProgress_goal()+"L");
     }
@@ -1532,7 +1511,7 @@ public class WaterFragment extends Fragment {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });
@@ -1581,7 +1560,7 @@ public class WaterFragment extends Fragment {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });
@@ -1611,11 +1590,6 @@ public class WaterFragment extends Fragment {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                try {
-                    JSONObject res = response.getJSONObject("goal");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
             }
         }, new Response.ErrorListener() {
             public void onErrorResponse(VolleyError error) {
@@ -1635,7 +1609,7 @@ public class WaterFragment extends Fragment {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });
@@ -1664,12 +1638,7 @@ public class WaterFragment extends Fragment {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                try {
-                    JSONObject res = response.getJSONObject("goal");
-                    getGoals();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                getGoals();
             }
         }, new Response.ErrorListener() {
             public void onErrorResponse(VolleyError error) {
@@ -1689,10 +1658,16 @@ public class WaterFragment extends Fragment {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });
         queue.add(jsonObjectRequest);
+    }
+    class MenuThread extends Thread{
+        @Override
+        public void run(){
+            activate_menu();
+        }
     }
 }
