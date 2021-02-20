@@ -144,10 +144,8 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
                         System.out.println("sessione: " + sessionHandler.getSession());
 
                         //carico le schede di allenamento dell'utente
-                        //getSheets();
                         Intent intent = new Intent(getActivity(), MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        //getActivity().finish();
                         startActivity(intent);
 
                     } else {
@@ -174,11 +172,7 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
                 error.printStackTrace();
             }
         });
-
-        /*jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
-                DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 2,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));*/
+        
 
         jsonObjectRequest.setRetryPolicy(new RetryPolicy() {
             @Override

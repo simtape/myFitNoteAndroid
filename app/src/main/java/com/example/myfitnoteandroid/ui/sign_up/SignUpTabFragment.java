@@ -59,15 +59,7 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
             String password = this.password.getText().toString();
             if (name.trim().isEmpty() || surname.trim().isEmpty() || mail.trim().isEmpty() || password.trim().isEmpty()) {
                 Toast.makeText(getContext(), "Non hai compilato tutti i campi", Toast.LENGTH_LONG).show();
-            } /*else if (name.trim().isEmpty()) {
-                Toast.makeText(getContext(), "Compilare campo nome", Toast.LENGTH_LONG).show();
-            }else if (surname.trim().isEmpty()) {
-                Toast.makeText(getContext(), "Compilare campo cognome", Toast.LENGTH_LONG).show();
-            }else if (mail.trim().isEmpty()) {
-                Toast.makeText(getContext(), "Compilare campo email", Toast.LENGTH_LONG).show();
-            }else if (password.trim().isEmpty()) {
-                Toast.makeText(getContext(), "Compilare campo password", Toast.LENGTH_LONG).show();
-            } */else {
+            } else {
 
                 SessionManager sessionManager  =  new SessionManager(getContext());
 
@@ -81,8 +73,6 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
                 System.out.println("Cognome registrazione parte 1: " + sessionManager.getSurname());
                 System.out.println("Email registrazione parte 1: " + sessionManager.getMail());
                 Intent intent = new Intent(getActivity(), SignUpTwoActivity.class);
-                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                //getActivity().finish();
                 startActivity(intent);
 
             }
