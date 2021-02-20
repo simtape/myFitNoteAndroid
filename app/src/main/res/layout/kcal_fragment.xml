@@ -45,6 +45,22 @@
 
     </androidx.cardview.widget.CardView>
 
+    <ProgressBar
+        android:id="@+id/kcal_bar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:indeterminateOnly="false"
+        android:progressDrawable="@drawable/circle_draw"
+        android:progress="60"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="1"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent="1" />
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/kcal_an"
         android:layout_width="0dp"
@@ -57,7 +73,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintWidth_percent="1"
-        app:lottie_rawRes="@raw/kcal2" />
+        app:lottie_rawRes="@raw/kcal" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loader"

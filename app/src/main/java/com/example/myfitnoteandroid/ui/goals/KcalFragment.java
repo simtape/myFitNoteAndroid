@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -44,7 +45,8 @@ import java.util.List;
 public class KcalFragment extends Fragment {
     JSONObject postData;
     ViewGroup root;
-    LottieAnimationView kcal_an,loader;
+    LottieAnimationView loader,kcal_an;
+    ProgressBar kcal_bar;
     int peso;
     int counter;
     int peso_cont;
@@ -83,6 +85,8 @@ public class KcalFragment extends Fragment {
         loader = root.findViewById(R.id.loader);
         loader.setVisibility(View.VISIBLE);
         kcal_an = root.findViewById(R.id.kcal_an);
+        kcal_bar = root.findViewById(R.id.kcal_bar);
+        kcal_bar.setVisibility(View.GONE);
         percentual = root.findViewById(R.id.percentual);
         card_switch = root.findViewById(R.id.card_switch_off);
         card_switch.setVisibility(View.GONE);
@@ -101,10 +105,9 @@ public class KcalFragment extends Fragment {
     public void set_animation_kcal(){
         int i;
         int perc_control=0;
-        int sec1=0;
-        int sec2=2;
         if(percentage>=100){
-            kcal_an.setAnimation(R.raw.kcal);
+            kcal_bar.setVisibility(View.GONE);
+            kcal_an.setVisibility(View.VISIBLE);
             kcal_an.setMinAndMaxFrame(0,60);
             kcal_an.setSpeed(1);
             kcal_an.playAnimation();
@@ -112,12 +115,9 @@ public class KcalFragment extends Fragment {
         }else{
             do{
             if(percentage>=perc_control){
-                kcal_an.setAnimation(R.raw.kcal2);
-                kcal_an.setMinAndMaxFrame(sec1,sec2);
-                kcal_an.setSpeed(2);
-                kcal_an.playAnimation();
-                sec1+=2;
-                sec2+=2;
+                kcal_bar.setVisibility(View.VISIBLE);
+                kcal_an.setVisibility(View.GONE);
+                kcal_bar.setProgress(perc_control);
                 perc_control+=1;
                 i=0;
             }else{
