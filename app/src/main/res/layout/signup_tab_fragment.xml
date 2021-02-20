@@ -60,6 +60,7 @@
             android:background="@drawable/edit_text_bg"
             android:hint="Email"
             android:paddingLeft="20dp"
+            android:inputType="textPassword"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -73,7 +74,7 @@
 
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/passwordL"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -98,7 +99,7 @@
             android:id="@+id/showpasswordReg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password"
+            app:layout_constraintTop_toBottomOf="@+id/passwordL"
             tools:ignore="HardcodedText">
 
         </CheckBox>
@@ -119,7 +120,7 @@
             app:layout_constraintHorizontal_bias="0.463"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintWidth_percent=".8"
-            app:layout_constraintTop_toBottomOf="@+id/password"
+            app:layout_constraintTop_toBottomOf="@+id/passwordL"
             tools:ignore="HardcodedText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

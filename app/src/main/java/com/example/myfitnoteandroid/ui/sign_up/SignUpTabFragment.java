@@ -36,6 +36,13 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
 
     private JSONObject postData, exercisesJsonObject;
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.signup_tab_fragment, container, false);
@@ -43,7 +50,7 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
         nome = root.findViewById(R.id.nome);
         cognome = root.findViewById(R.id.Cognome);
         email = root.findViewById(R.id.Email);
-        password = root.findViewById(R.id.password);
+        password = root.findViewById(R.id.passwordL);
         showpassword = root.findViewById(R.id.showpasswordReg);
 
         btn_registration1 = root.findViewById(R.id.registrazione1);
