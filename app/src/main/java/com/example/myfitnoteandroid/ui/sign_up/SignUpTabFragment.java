@@ -2,11 +2,15 @@ package com.example.myfitnoteandroid.ui.sign_up;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,6 +29,7 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
     //RequestQueue requestQueue;
     EditText nome, cognome, email, password;
     Button btn_registration1;
+    CheckBox showpassword;
     User newUser;
 
     float v = 0;
@@ -39,12 +44,21 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
         cognome = root.findViewById(R.id.Cognome);
         email = root.findViewById(R.id.Email);
         password = root.findViewById(R.id.password);
-
+        showpassword = root.findViewById(R.id.showpasswordReg);
 
         btn_registration1 = root.findViewById(R.id.registrazione1);
 
         btn_registration1.setOnClickListener((View.OnClickListener) this);
-
+        showpassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
 
         return root;
     }
