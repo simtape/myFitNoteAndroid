@@ -3,6 +3,7 @@ package com.example.myfitnoteandroid.ui.goals;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
@@ -50,13 +52,14 @@ public class KcalFragment extends Fragment {
     int kcal_goal;
     boolean status_goal;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getGoals();
-        SessionManager sessionManager = new SessionManager(getContext());
+        SessionManager sessionManager = new SessionManager(requireContext());
         peso = Integer.parseInt(sessionManager.getPeso());
-        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE);
         counter=sharedPreferences.getInt("stepCount", 0);
         kcal = cKcal();
         Handler handler = new Handler(Looper.getMainLooper());
@@ -145,16 +148,17 @@ public class KcalFragment extends Fragment {
             }
         }, 500);
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void getGoals() {
         postData = new JSONObject();
-        SessionManager sessionManager = new SessionManager(getContext());
+        SessionManager sessionManager = new SessionManager(requireContext());
         try {
             postData.put("id_user", sessionManager.getSession());
         } catch (JSONException e) {
             e.printStackTrace();
         }
         String url = "https://myfitnote.herokuapp.com/goals/get_goals";
-        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        RequestQueue queue = Volley.newRequestQueue(requireActivity().getApplicationContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -195,6 +199,7 @@ public class KcalFragment extends Fragment {
         });
         queue.add(jsonObjectRequest);
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void createGoals() {
         Boolean[] status_array = new Boolean[]{false,false};
         JSONArray status_jarray = new JSONArray(Arrays.asList(status_array));
@@ -202,7 +207,7 @@ public class KcalFragment extends Fragment {
         JSONArray value_jarray = new JSONArray(Arrays.asList(value_array));
         Double[] prog_array = new Double[]{0.00,0.00};
         JSONArray prog_jarray = new JSONArray(Arrays.asList(prog_array));
-        SessionManager sessionManager = new SessionManager(getContext());
+        SessionManager sessionManager = new SessionManager(requireContext());
         try {
             postData.put("status",status_jarray);
             postData.put("obiettivo",value_jarray);
@@ -212,7 +217,7 @@ public class KcalFragment extends Fragment {
             e.printStackTrace();
         }
         String url = "https://myfitnote.herokuapp.com/goals/create_goals";
-        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        RequestQueue queue = Volley.newRequestQueue(requireActivity().getApplicationContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
