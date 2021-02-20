@@ -1,13 +1,6 @@
 package com.example.myfitnoteandroid.ui.sheets;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +12,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -32,26 +29,22 @@ import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
 import com.example.myfitnoteandroid.data.sheets_data.Sheet;
 import com.example.myfitnoteandroid.data.sheets_data.SheetExercise;
-import com.example.myfitnoteandroid.ui.exercises.ShowExercisesAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CreateSheetFragment extends Fragment implements View.OnClickListener {
 
-    private CreateSheetViewModel mViewModel;
-
-    private AutoCompleteTextView[] exercises = new AutoCompleteTextView[4];
+    private final AutoCompleteTextView[] exercises = new AutoCompleteTextView[4];
     //private List<AutoCompleteTextView> exercises = new ArrayList<>();
-    private EditText[] reps = new EditText[4];
-    private EditText[] series = new EditText[4];
+    private final EditText[] reps = new EditText[4];
+    private final EditText[] series = new EditText[4];
     private EditText nameSheet;
-    private CheckBox[] checkBoxes = new CheckBox[7];
+    private final CheckBox[] checkBoxes = new CheckBox[7];
     private Button createSheetBtn;
     Boolean allFull = true, atLeastOneChecked = true;
     JSONObject newSheetJO;
@@ -61,10 +54,6 @@ public class CreateSheetFragment extends Fragment implements View.OnClickListene
     private Sheet newSheet;
     ViewGroup root;
 
-
-    public static CreateSheetFragment newInstance() {
-        return new CreateSheetFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -140,7 +129,6 @@ public class CreateSheetFragment extends Fragment implements View.OnClickListene
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(CreateSheetViewModel.class);
         // TODO: Use the ViewModel
     }
 
@@ -345,7 +333,7 @@ public class CreateSheetFragment extends Fragment implements View.OnClickListene
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });

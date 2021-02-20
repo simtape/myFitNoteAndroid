@@ -1,21 +1,12 @@
 package com.example.myfitnoteandroid.ui.exercises;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
-import com.example.myfitnoteandroid.R;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.example.myfitnoteandroid.R;
 
 public class exerciseDetailsActivity extends AppCompatActivity {
     int position;

@@ -1,23 +1,17 @@
 package com.example.myfitnoteandroid.ui.exercises;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,23 +21,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myfitnoteandroid.R;
-import com.example.myfitnoteandroid.data.sheets_data.Sheet;
-import com.example.myfitnoteandroid.data.sheets_data.SheetExercise;
-import com.example.myfitnoteandroid.data.sheets_data.SheetsHandler;
-import com.example.myfitnoteandroid.ui.sheets.SheetDetailsActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class exercisesFragment extends Fragment {
     ListView listView;
-    private List<String> nameExercises = new ArrayList<>();
-    private List<String> nameGear = new ArrayList<>();
+    private final List<String> nameExercises = new ArrayList<>();
+    private final List<String> nameGear = new ArrayList<>();
     SearchView searchViewExe;
     ShowExercisesAdapter adapter;
     ProgressDialog progressBar;
@@ -165,7 +154,7 @@ public class exercisesFragment extends Fragment {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });

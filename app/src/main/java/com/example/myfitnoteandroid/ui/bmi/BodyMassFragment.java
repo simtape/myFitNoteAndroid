@@ -1,15 +1,8 @@
 package com.example.myfitnoteandroid.ui.bmi;
 
-import androidx.lifecycle.ViewModelProvider;
-
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +14,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.example.myfitnoteandroid.R;
-import com.example.myfitnoteandroid.data.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +34,7 @@ public class BodyMassFragment extends Fragment implements View.OnClickListener {
     final double meter = 0.01;
     double result;
 
-    private BodyMassViewModel mViewModel;
-
-    public static BodyMassFragment newInstance() {
-        return new BodyMassFragment();
+    public BodyMassFragment() {
     }
 
     @Override
@@ -93,6 +86,7 @@ public class BodyMassFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View v) {
         if (v.getId() == indiceC.getId()) {
@@ -155,8 +149,7 @@ public class BodyMassFragment extends Fragment implements View.OnClickListener {
     }
 
     public double cBMI(int peso, double altezza){
-        double cBMi = peso/(altezza*altezza);
-        return cBMi;
+        return peso/(altezza*altezza);
     }
 }
 

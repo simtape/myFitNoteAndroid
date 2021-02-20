@@ -1,5 +1,6 @@
 package com.example.myfitnoteandroid.ui.foods;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,11 +31,12 @@ public class ShowFoodAdapter extends ArrayAdapter<String> implements Filterable 
         this.rKcal = kcal;
     }
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowFood = layoutInflater.inflate(R.layout.rowfood, parent, false);
+        @SuppressLint("ViewHolder") View rowFood = layoutInflater.inflate(R.layout.rowfood, parent, false);
         TextView myFood = rowFood.findViewById(R.id.nameFoodTxt);
         TextView myKcal = rowFood.findViewById(R.id.KcaltextView);
 
@@ -52,7 +54,7 @@ public class ShowFoodAdapter extends ArrayAdapter<String> implements Filterable 
 
     }
 
-    private Filter customFilter = new Filter() {
+    private final Filter customFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<String> filteredList = rFoodFull;

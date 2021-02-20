@@ -12,7 +12,7 @@ import com.example.myfitnoteandroid.ui.login.LoginActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    ImageView background, logo;
+    ImageView logo;
     Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

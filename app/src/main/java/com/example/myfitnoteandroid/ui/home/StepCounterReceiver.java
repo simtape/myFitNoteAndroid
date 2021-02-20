@@ -3,13 +3,11 @@ package com.example.myfitnoteandroid.ui.home;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.myfitnoteandroid.data.StepCounterHandler;
 
 public class StepCounterReceiver extends BroadcastReceiver {
-    String SHARED_PREF_NAME = "counter";
 
     @Override
     public void onReceive(Context context, Intent intent) {

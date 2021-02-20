@@ -1,13 +1,12 @@
 package com.example.myfitnoteandroid.ui.goals;
 
 import android.animation.Animator;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +42,6 @@ public class WaterFragmentSecond extends Fragment {
     Button reset_second;
     String id_user;
     CardView card_switch_second;
-    public static WaterFragmentSecond newInstance() { return new WaterFragmentSecond(); }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -177,16 +175,18 @@ public class WaterFragmentSecond extends Fragment {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });
         queue.add(jsonObjectRequest);
     }
+    @SuppressLint("SetTextI18n")
     public void set_obiettivo2(){
         water_goal_second.setText("Obiettivo: "+water_second.getValue_goal()+" L");
     }
 
+    @SuppressLint("SetTextI18n")
     public void set_valore2(){
         water_value_second.setText(water_second.getProgress_goal()+"L");
         set_glass();
@@ -215,7 +215,6 @@ public class WaterFragmentSecond extends Fragment {
                 if(progress>=cont+0.25){
                     glass_second.setMinAndMaxFrame(24,32);
                     glass_second.playAnimation();
-                    cont+=0.25;
                     plus_second.setVisibility(View.GONE);
                     glass_second.setVisibility(View.GONE);
                     complete_goal.setMinAndMaxFrame(0,50);
@@ -262,7 +261,6 @@ public class WaterFragmentSecond extends Fragment {
                 if(progress>=cont+0.25){
                     glass_second.setMinAndMaxFrame(28,32);
                     glass_second.playAnimation();
-                    cont+=0.25;
                     plus_second.setVisibility(View.GONE);
                     glass_second.setVisibility(View.GONE);
                     complete_goal.setMinAndMaxFrame(0,50);
@@ -329,7 +327,6 @@ public class WaterFragmentSecond extends Fragment {
                 if(progress>=cont+0.25){
                     glass_second.setMinAndMaxFrame(28,36);
                     glass_second.playAnimation();
-                    cont+=0.25;
                     plus_second.setVisibility(View.GONE);
                     glass_second.setVisibility(View.GONE);
                     complete_goal.setMinAndMaxFrame(0,50);
@@ -581,7 +578,6 @@ public class WaterFragmentSecond extends Fragment {
         try {
             postData.put("id_user", sessionManager.getSession());
             id_user = sessionManager.getSession();
-            Log.d("user_id", id_user);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -590,12 +586,7 @@ public class WaterFragmentSecond extends Fragment {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                try {
-                    Log.d("Post", response.getString("message"));
-                    updateGoals();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                updateGoals();
 
             }
         }, new Response.ErrorListener() {
@@ -616,7 +607,7 @@ public class WaterFragmentSecond extends Fragment {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });
@@ -640,16 +631,10 @@ public class WaterFragmentSecond extends Fragment {
             e.printStackTrace();
         }
         String url = "https://myfitnote.herokuapp.com/goals/update_goals";
-        Log.d("PostDAta",postData.toString());
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                try {
-                    JSONObject res = response.getJSONObject("goal");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
             }
         }, new Response.ErrorListener() {
             public void onErrorResponse(VolleyError error) {
@@ -669,7 +654,7 @@ public class WaterFragmentSecond extends Fragment {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });

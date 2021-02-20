@@ -2,6 +2,7 @@ package com.example.myfitnoteandroid.ui.sign_up;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +30,7 @@ public class SignUpThreeActivity extends AppCompatActivity implements View.OnCli
 
     private JSONObject postData, userJsonObject;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,7 +138,7 @@ public class SignUpThreeActivity extends AppCompatActivity implements View.OnCli
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });
