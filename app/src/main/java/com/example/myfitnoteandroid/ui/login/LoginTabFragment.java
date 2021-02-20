@@ -28,16 +28,9 @@ import com.example.myfitnoteandroid.MainActivity;
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
 import com.example.myfitnoteandroid.data.User;
-import com.example.myfitnoteandroid.data.sheets_data.Sheet;
-import com.example.myfitnoteandroid.data.sheets_data.SheetExercise;
-import com.example.myfitnoteandroid.data.sheets_data.SheetsHandler;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoginTabFragment extends Fragment implements View.OnClickListener {
 
@@ -47,9 +40,6 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
     CheckBox showpassword;
     float v = 0;
     private JSONObject postData, userJsonObject;
-    List<SheetExercise> sheetExerciseList = new ArrayList<>();
-    List<String> days = new ArrayList<>();
-    JSONArray jsonArrayResponse;
 
     @Override
     public void onStart() {
@@ -186,7 +176,7 @@ public class LoginTabFragment extends Fragment implements View.OnClickListener {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });

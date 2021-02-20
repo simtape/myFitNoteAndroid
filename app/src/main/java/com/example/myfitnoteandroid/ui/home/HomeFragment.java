@@ -1,10 +1,8 @@
 package com.example.myfitnoteandroid.ui.home;
 
 import android.animation.Animator;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -13,7 +11,6 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,33 +19,28 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
 import com.example.myfitnoteandroid.data.StepCounterHandler;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Calendar;
-import java.util.TimeZone;
 
 public class HomeFragment extends Fragment {
 
-    TextView stepCountertxt, metrestxt, pesoTxt, kcaltxt;
+    TextView stepCountertxt;
+    TextView metrestxt;
+    TextView kcaltxt;
     SensorManager sensorManager;
     double MagnitudePrevius = 0;
-    private Integer stepCount = 0;
-    float metrespass, kcalConvert;
+    float metrespass;
     float kcalpass;
-    String peso, KcalString;
+    String peso;
     int pesoInt;
     LinearLayout control;
     CardView glass,pluss,kcalCard;
@@ -107,6 +99,7 @@ public class HomeFragment extends Fragment {
         StepCounterHandler.getInstance().setCounter(StepCounterHandler.getInstance().getCounter() - 1);
 
         SensorEventListener stepDetector = new SensorEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 if (sensorEvent != null) {
@@ -138,13 +131,7 @@ public class HomeFragment extends Fragment {
         };
         sensorManager.registerListener(stepDetector, stepCounter, SensorManager.SENSOR_DELAY_NORMAL);
     }
-    public static double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
 
-        BigDecimal bd = BigDecimal.valueOf(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
-    }
     public void set_water(){
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)control.getLayoutParams();
         LinearLayout.LayoutParams kcal = (LinearLayout.LayoutParams)kcalCard.getLayoutParams();
@@ -169,9 +156,8 @@ public class HomeFragment extends Fragment {
         editor.putInt("stepCount", StepCounterHandler.getInstance().getCounter());
         editor.apply();
 
-        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         SessionManager sessionManager = new SessionManager(getContext());
-        sessionManager.setLastAccess(calendar.DATE);
+        sessionManager.setLastAccess(Calendar.DATE);
 
     }
 
@@ -183,9 +169,8 @@ public class HomeFragment extends Fragment {
         editor.putInt("stepCount", StepCounterHandler.getInstance().getCounter());
         editor.apply();
 
-        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         SessionManager sessionManager = new SessionManager(getContext());
-        sessionManager.setLastAccess(calendar.DATE);
+        sessionManager.setLastAccess(Calendar.DATE);
 
 
     }
@@ -194,27 +179,24 @@ public class HomeFragment extends Fragment {
 
         super.onResume();
         SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         SessionManager sessionManager = new SessionManager(getContext());
-        if (sessionManager.getAccess() != calendar.DATE) {
+        if (sessionManager.getAccess() != Calendar.DATE) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.clear();
             editor.putInt("stepCount", 0);
             editor.apply();
 
-            sessionManager.setLastAccess(calendar.DATE);
+            sessionManager.setLastAccess(Calendar.DATE);
         }
         StepCounterHandler.getInstance().setCounter(sharedPreferences.getInt("stepCount", 0));
     }
 
     public float cMetres() {
-        float metres = (float) (0.762 * StepCounterHandler.getInstance().getCounter());
-        return metres;
+        return (float) (0.762 * StepCounterHandler.getInstance().getCounter());
     }
 
     public float cKcal() {
-        float kcal = (float) ((0.0005) * (pesoInt) * (cMetres()));
-        return kcal;
+        return (float) ((0.0005) * (pesoInt) * (cMetres()));
     }
     public void set_walker(){
         walker.addAnimatorListener(new Animator.AnimatorListener() {
@@ -251,23 +233,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-    public void resetstep() {
-        //reset steps every 24 hours
-        Calendar now = Calendar.getInstance();
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.HOUR_OF_DAY, 21);
-        cal.set(Calendar.MINUTE, 53);
-        cal.set(Calendar.SECOND, 15);
-        Intent intent = new Intent(getContext(), StepCounterReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext().getApplicationContext(), 1253, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
-        if (now.before(cal)) {
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-        } else {
-            cal.set(Calendar.DAY_OF_YEAR, now.get(Calendar.DAY_OF_YEAR) + 1);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-        }
-    }
+
     class HomeThread extends Thread{
         @Override
         public void run(){

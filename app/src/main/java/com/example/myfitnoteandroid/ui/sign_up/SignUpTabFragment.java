@@ -15,9 +15,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
-import com.example.myfitnoteandroid.data.User;
-
-import org.json.JSONObject;
 
 
 public class SignUpTabFragment extends Fragment implements View.OnClickListener {
@@ -25,11 +22,9 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
     //RequestQueue requestQueue;
     EditText nome, cognome, email, password;
     Button btn_registration1;
-    User newUser;
 
-    float v = 0;
-
-    private JSONObject postData, exercisesJsonObject;
+    public SignUpTabFragment() {
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

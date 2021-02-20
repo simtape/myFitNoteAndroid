@@ -1,5 +1,6 @@
 package com.example.myfitnoteandroid.ui.exercises;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +36,7 @@ public class ShowExercisesAdapter extends ArrayAdapter<String>implements Filtera
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater)context.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowExe = layoutInflater.inflate(R.layout.rowexe, parent, false);
+        @SuppressLint("ViewHolder") View rowExe = layoutInflater.inflate(R.layout.rowexe, parent, false);
         TextView myExercise = rowExe.findViewById(R.id.textViewExe);
         TextView myGear = rowExe.findViewById(R.id.gearTextView);
 
@@ -54,7 +55,7 @@ public class ShowExercisesAdapter extends ArrayAdapter<String>implements Filtera
     }
 
 
-    private Filter customFilter = new Filter() {
+    private final Filter customFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<String> filteredList = rExerciseFull;

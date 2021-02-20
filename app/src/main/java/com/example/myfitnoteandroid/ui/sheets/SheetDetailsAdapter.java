@@ -1,5 +1,6 @@
 package com.example.myfitnoteandroid.ui.sheets;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,7 +32,7 @@ public class SheetDetailsAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row = layoutInflater.inflate(R.layout.row_details_sheet, parent, false);
+        @SuppressLint("ViewHolder") View row = layoutInflater.inflate(R.layout.row_details_sheet, parent, false);
         TextView nameExercise = row.findViewById(R.id.tvNameExercises);
         TextView myDescription = row.findViewById(R.id.tvSeriesReps);
         nameExercise.setText(sheet.getSheetExercises().get(position).getNameExercise());

@@ -1,13 +1,6 @@
 package com.example.myfitnoteandroid.ui.calculator;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -19,9 +12,12 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -46,7 +42,6 @@ public class KcalCalculator extends Fragment implements View.OnClickListener {
     List<AutoCompleteTextView> foodsACList = new ArrayList<>();
     List<EditText> gramsACList = new ArrayList<>();
 
-    AutoCompleteTextView food, grams;
     Button addButton, calculateBtn;
     LayoutInflater layoutInflater;
     ViewGroup container;
@@ -57,10 +52,6 @@ public class KcalCalculator extends Fragment implements View.OnClickListener {
     LinearLayout rowsLayout;
     int tot = 0;
 
-
-    public static KcalCalculator newInstance() {
-        return new KcalCalculator();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -135,7 +126,7 @@ public class KcalCalculator extends Fragment implements View.OnClickListener {
     private void calculateKcal() {
 
         List<Integer> kcalForGrams = new ArrayList<>();
-        Boolean isEmpty = false, allEquals = true;
+        boolean isEmpty = false, allEquals = true;
         Boolean[] equalWords = new Boolean[foodsACList.size()];
         tot = 0;
 
@@ -153,7 +144,7 @@ public class KcalCalculator extends Fragment implements View.OnClickListener {
                         !food.getText().toString().isEmpty() &&
                         !gramsACList.get(j).getText().toString().isEmpty()) {
 
-                    int value = kcal.get(i) * (Integer.valueOf(gramsACList.get(j).getText().toString()))
+                    int value = kcal.get(i) * (Integer.parseInt(gramsACList.get(j).getText().toString()))
                             / 100;
                     kcalForGrams.add(value);
                     equalWords[j] = true;
@@ -174,10 +165,10 @@ public class KcalCalculator extends Fragment implements View.OnClickListener {
 
         }
 
-        for (int l = 0; l < equalWords.length; l++) {
-            if (!equalWords[l])
+        for (Boolean equalWord : equalWords) {
+            if (!equalWord)
                 allEquals = false;
-            Log.d("boolean", equalWords[l].toString());
+            Log.d("boolean", equalWord.toString());
 
         }
 
@@ -189,11 +180,6 @@ public class KcalCalculator extends Fragment implements View.OnClickListener {
 
         }
         totKcal.setText(String.valueOf(tot));
-    }
-
-    private void findKcal() {
-
-
     }
 
     private void addNewRow() {
@@ -260,7 +246,7 @@ public class KcalCalculator extends Fragment implements View.OnClickListener {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });

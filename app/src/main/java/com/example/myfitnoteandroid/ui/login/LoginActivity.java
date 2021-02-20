@@ -1,39 +1,19 @@
 package com.example.myfitnoteandroid.ui.login;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.myfitnoteandroid.MainActivity;
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
-import com.example.myfitnoteandroid.data.sheets_data.Sheet;
-import com.example.myfitnoteandroid.data.sheets_data.SheetExercise;
-import com.example.myfitnoteandroid.data.sheets_data.SheetsHandler;
 import com.google.android.material.tabs.TabLayout;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
-    List<SheetExercise> sheetExerciseList = new ArrayList<>();
-    List<String> days = new ArrayList<>();
-    JSONArray jsonArrayResponse;
 
     @Override
     protected void onStart() {
@@ -58,8 +38,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
             startActivity(intent);
-
-        }else{
 
         }
 

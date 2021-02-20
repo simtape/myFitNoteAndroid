@@ -3,18 +3,16 @@ package com.example.myfitnoteandroid.ui.goals;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
@@ -1041,7 +1039,6 @@ public class WaterFragment extends Fragment {
     public void set_glasses(){
         int value = water.getValue_goal();
         double progress = water.getProgress_goal();
-        Log.d("msg","s"+value);
         switch(value){
             case 1:
                 glass = root.findViewById(R.id.glass1);
@@ -1476,7 +1473,6 @@ public class WaterFragment extends Fragment {
         try {
             postData.put("id_user", sessionManager.getSession());
             id_user = sessionManager.getSession();
-            Log.d("user_id", id_user);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1485,12 +1481,7 @@ public class WaterFragment extends Fragment {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                try {
-                    Log.d("Post", response.getString("message"));
-                    updateGoals();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                updateGoals();
 
             }
         }, new Response.ErrorListener() {
@@ -1524,7 +1515,6 @@ public class WaterFragment extends Fragment {
         try {
             postData.put("id_user", sessionManager.getSession());
             id_user = sessionManager.getSession();
-            Log.d("user_id", id_user);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -1533,13 +1523,7 @@ public class WaterFragment extends Fragment {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                try {
-                    Log.d("Post", response.getString("message"));
-                    updateGoals2();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                updateGoals2();
 
             }
         }, new Response.ErrorListener() {
@@ -1585,7 +1569,6 @@ public class WaterFragment extends Fragment {
             e.printStackTrace();
         }
         String url = "https://myfitnote.herokuapp.com/goals/update_goals";
-        Log.d("PostDAta",postData.toString());
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
             @Override
@@ -1633,7 +1616,6 @@ public class WaterFragment extends Fragment {
             e.printStackTrace();
         }
         String url = "https://myfitnote.herokuapp.com/goals/update_goals";
-        Log.d("PostDAta",postData.toString());
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
             @Override

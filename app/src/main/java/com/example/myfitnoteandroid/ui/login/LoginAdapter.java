@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.myfitnoteandroid.ui.sign_up.SignUpTabFragment;
 
+import org.jetbrains.annotations.NotNull;
+
 public class LoginAdapter extends FragmentPagerAdapter {
 
 
@@ -26,14 +28,13 @@ public class LoginAdapter extends FragmentPagerAdapter {
         return totalTabs;
     }
 
+    @NotNull
     public Fragment getItem(int position){
         switch (position){
             case 0:
-            LoginTabFragment loginTabFragment = new LoginTabFragment();
-            return loginTabFragment;
+                return new LoginTabFragment();
             case 1:
-            SignUpTabFragment registrazioneTabFragment = new SignUpTabFragment();
-            return registrazioneTabFragment;
+                return new SignUpTabFragment();
             default:
                 return null;
         }

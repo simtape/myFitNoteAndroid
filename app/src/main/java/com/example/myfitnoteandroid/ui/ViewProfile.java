@@ -1,23 +1,24 @@
 package com.example.myfitnoteandroid.ui;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
 
 public class ViewProfile extends AppCompatActivity {
 
-    TextView mailTxt, dateTxt, weightTxt, heightTxt, sheetsTxt, nameTxt, surnameTxt;
+    TextView mailTxt;
+    TextView dateTxt;
+    TextView weightTxt;
+    TextView heightTxt;
+    TextView nameTxt;
+    TextView surnameTxt;
     Button button;
 
     @Override

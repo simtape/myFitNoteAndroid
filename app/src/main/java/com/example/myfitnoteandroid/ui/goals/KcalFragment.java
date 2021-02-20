@@ -1,24 +1,21 @@
 package com.example.myfitnoteandroid.ui.goals;
 
-import androidx.cardview.widget.CardView;
-import androidx.lifecycle.ViewModelProvider;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
@@ -30,17 +27,12 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
-import com.example.myfitnoteandroid.data.StepCounterHandler;
-import com.example.myfitnoteandroid.ui.home.HomeSheetAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.Arrays;
-import java.util.List;
 
 public class KcalFragment extends Fragment {
     JSONObject postData;
@@ -52,15 +44,12 @@ public class KcalFragment extends Fragment {
     int peso_cont;
     float percentage_cont;
     int percentage;
-    String passi;
     float kcal;
     TextView percentual;
     CardView card_switch;
     int kcal_goal;
     boolean status_goal;
-    public static KcalFragment newInstance() {
-        return new KcalFragment();
-    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,12 +83,10 @@ public class KcalFragment extends Fragment {
     }
     public float cKcal() {
         peso_cont = peso;
-        float kcal_ = (float) ((0.0005) * (peso) * (cMetres()));
-        return kcal_;
+        return (float) ((0.0005) * (peso) * (cMetres()));
     }
     public float cMetres() {
-        float metres = (float) (0.762 * counter);
-        return metres;
+        return (float) (0.762 * counter);
     }
 
     public void set_animation_kcal(){
@@ -136,6 +123,7 @@ public class KcalFragment extends Fragment {
             loader.setVisibility(View.GONE);
             Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(new Runnable() {
+                @SuppressLint("SetTextI18n")
                 @Override
                 public void run() {
                     card_switch.setVisibility(View.GONE);
@@ -201,7 +189,7 @@ public class KcalFragment extends Fragment {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });
@@ -259,7 +247,7 @@ public class KcalFragment extends Fragment {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });

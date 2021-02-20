@@ -1,5 +1,6 @@
 package com.example.myfitnoteandroid;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private AppBarConfiguration mAppBarConfiguration;
     TextView nome, navMail;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,19 +75,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()) {
-            case R.id.logout: {
-
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                this.finish();
-                startActivity(intent);
-                SessionManager sessionManager = new SessionManager(this);
-                sessionManager.removeSession();
-                break;
-            }
-            default:
-                break;
-
+        if (item.getItemId() == R.id.logout) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            this.finish();
+            startActivity(intent);
+            SessionManager sessionManager = new SessionManager(this);
+            sessionManager.removeSession();
         }
 
         return super.onOptionsItemSelected(item);

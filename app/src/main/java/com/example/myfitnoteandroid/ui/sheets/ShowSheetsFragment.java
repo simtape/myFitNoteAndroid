@@ -5,34 +5,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.provider.DocumentsContract;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.SearchEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
@@ -44,7 +35,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,13 +49,9 @@ public class ShowSheetsFragment extends Fragment {
     ListView listView;
     SearchView searchView;
     ShowSheetsAdapter showSheetsAdapter;
-    ProgressBar progress;
-    Thread thread;
     ProgressDialog progressBar;
     Boolean thereAreSheets = true;
     LinearLayout layout;
-    int progressCounter = 0;
-    int img;
     LottieAnimationView empty_sheet_an;
 
     @Override
@@ -109,7 +95,6 @@ public class ShowSheetsFragment extends Fragment {
                 if (!thereAreSheets) {
                     noSheets.setVisibility(View.VISIBLE);
                     empty_sheet_an.setVisibility(View.VISIBLE);
-                    progressBar.dismiss();
                 } else {
                     layout.setVisibility(View.INVISIBLE);
                     List<String> dates = SheetsHandler.getInstance().datesList();
@@ -117,8 +102,8 @@ public class ShowSheetsFragment extends Fragment {
                     searchView.setVisibility(View.VISIBLE);
                     showSheetsAdapter = new ShowSheetsAdapter(getContext(), names, dates);
                     listView.setAdapter(showSheetsAdapter);
-                    progressBar.dismiss();
                 }
+                progressBar.dismiss();
 
 
             }
@@ -183,12 +168,10 @@ public class ShowSheetsFragment extends Fragment {
 
                                 String exercise = exerciseJsonArray.getString(j);
                                 String repsString = repsJsonArray.getString(j);
-                                String seriesString = seriesJsonArray.getString(j);
 
-                                String reps = repsString;
-                                String series = seriesString;
+                                String series = seriesJsonArray.getString(j);
 
-                                SheetExercise sheetExercise = new SheetExercise(exercise, reps, series);
+                                SheetExercise sheetExercise = new SheetExercise(exercise, repsString, series);
                                 sheetExerciseList.add(sheetExercise);
 
                             }
@@ -209,14 +192,12 @@ public class ShowSheetsFragment extends Fragment {
 
                             Sheet sheet = new Sheet(name, id, sheetExerciseList, daysNew, splittedDate);
                             for (int m = 0; m < sheetExerciseList.size(); m++) {
-
-
                             }
 
                             SheetsHandler.getInstance().addSheet(sheet);
                         }
                     }
-                } catch (JSONException e) {
+                } catch (JSONException ignored) {
 
 
                 }

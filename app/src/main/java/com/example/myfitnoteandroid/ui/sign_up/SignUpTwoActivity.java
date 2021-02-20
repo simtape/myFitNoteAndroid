@@ -1,9 +1,7 @@
 package com.example.myfitnoteandroid.ui.sign_up;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +12,8 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
@@ -109,6 +109,7 @@ public class SignUpTwoActivity extends AppCompatActivity implements View.OnClick
 
 
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -135,6 +136,7 @@ public class SignUpTwoActivity extends AppCompatActivity implements View.OnClick
                 int month = c.get(Calendar.MONTH);
                 int year = c.get(Calendar.YEAR);
                 dpd = new DatePickerDialog(SignUpTwoActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onDateSet(DatePicker view, int mYear, int mMonth, int mDay) {
                         datetxt.setText(mDay + "/" + (mMonth+1) + "/" + mYear);

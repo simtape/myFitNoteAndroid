@@ -1,9 +1,8 @@
 package com.example.myfitnoteandroid.ui.foods;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myfitnoteandroid.R;
 
@@ -12,7 +11,6 @@ public class foodDetailsActivity extends AppCompatActivity {
 
     int position;
     String nameFood, kcalFood;
-    TextView foodTxt, kcalTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

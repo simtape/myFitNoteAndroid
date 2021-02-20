@@ -1,5 +1,6 @@
 package com.example.myfitnoteandroid.ui.sheets;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.myfitnoteandroid.R;
-import com.example.myfitnoteandroid.data.sheets_data.Sheet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +22,6 @@ import java.util.List;
 public class ShowSheetsAdapter extends ArrayAdapter<String> implements Filterable {
 
     Context context;
-    String rTitle[];
-    String rDescription[];
-    List<Sheet> sheets, sheetsFull;
     List<String> names, namesFull, dates;
 
     ShowSheetsAdapter(Context c,  /*String description[], List<Sheet> sheets,*/ List<String> names, List<String> dates) {
@@ -48,7 +45,7 @@ public class ShowSheetsAdapter extends ArrayAdapter<String> implements Filterabl
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         LayoutInflater layoutInflater = (LayoutInflater) context.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row = layoutInflater.inflate(R.layout.row, parent, false);
+        @SuppressLint("ViewHolder") View row = layoutInflater.inflate(R.layout.row, parent, false);
         //ImageView images = row.findViewById(R.id.image);
         TextView myTitle = row.findViewById(R.id.textView1);
         TextView myDescription = row.findViewById(R.id.gearTextView);
@@ -79,7 +76,7 @@ public class ShowSheetsAdapter extends ArrayAdapter<String> implements Filterabl
 
     }
 
-    private Filter customFilter = new Filter() {
+    private final Filter customFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<String> filteredList = namesFull;

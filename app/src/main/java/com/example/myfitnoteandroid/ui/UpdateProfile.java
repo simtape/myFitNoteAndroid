@@ -1,7 +1,5 @@
 package com.example.myfitnoteandroid.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,7 +20,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.myfitnoteandroid.MainActivity;
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
-import com.example.myfitnoteandroid.ui.home.HomeFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,8 +28,10 @@ public class UpdateProfile extends AppCompatActivity implements View.OnClickList
 
     EditText nameEdit, surnameEdit, dtnEdit, heightEdit, weightEdit;
     Button btnUpdate;
-    private JSONObject postData, userJsonObject;
-    String mail;
+    private JSONObject postData;
+
+    public UpdateProfile() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,7 +132,7 @@ public class UpdateProfile extends AppCompatActivity implements View.OnClickList
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });

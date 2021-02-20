@@ -1,17 +1,9 @@
 package com.example.myfitnoteandroid.ui.goals;
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +12,11 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -39,22 +36,18 @@ import java.util.Arrays;
 
 
 public class GoalsFragment extends Fragment {
-
-    String mTitle[] = {"Acqua", "Grassi Bruciati"};
-    Button conferma,conferma2;
+    String[] mTitle = {"Acqua", "Grassi Bruciati"};
+    Button conferma;
     String id_user;
     Goal water_goal = new Goal();
     Goal kcal_goal = new Goal();
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch waterSwitch, kcalSwitch;
     ViewGroup root;
     private JSONObject postData;
     JSONObject local_goal;
-    int arraySize;
     TextView water, kcal;
     EditText kcal_value,water_value;
-    public static GoalsFragment newInstance() {
-        return new GoalsFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -86,7 +79,6 @@ public class GoalsFragment extends Fragment {
         try {
             postData.put("id_user", sessionManager.getSession());
             id_user = sessionManager.getSession();
-            Log.d("user_id", id_user);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -132,7 +124,7 @@ public class GoalsFragment extends Fragment {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });
@@ -161,13 +153,6 @@ public class GoalsFragment extends Fragment {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                try {
-                    JSONObject res = response.getJSONObject("goal");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
             }
         }, new Response.ErrorListener() {
             public void onErrorResponse(VolleyError error) {
@@ -187,7 +172,7 @@ public class GoalsFragment extends Fragment {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });
@@ -198,19 +183,13 @@ public class GoalsFragment extends Fragment {
 
 
     public void setSwitches() {
-        //ricerca di acqua
         for (int i = 0; i < mTitle.length; i++) {
-            Log.d("for", "entra");
-
             if (water_goal.getStatus_goal()) {
                 waterSwitch.setChecked(true);
             }
 
         }
-        //ricerca di kcal
         for (int j = 0; j < mTitle.length; j++) {
-            Log.d("for", "entra");
-
             if (kcal_goal.getStatus_goal()) {
                 kcalSwitch.setChecked(true);
             }
@@ -237,19 +216,12 @@ public class GoalsFragment extends Fragment {
             e.printStackTrace();
         }
         String url = "https://myfitnote.herokuapp.com/goals/update_goals";
-        Log.d("PostDAta",postData.toString());
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                try {
-                    JSONObject res = response.getJSONObject("goal");
-                    Log.d("Post",res.toString());
-                    Toast.makeText(getContext(), "Modifica effettuata", Toast.LENGTH_LONG).show();
-                    conferma.setEnabled(false);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                Toast.makeText(getContext(), "Modifica effettuata", Toast.LENGTH_LONG).show();
+                conferma.setEnabled(false);
             }
         }, new Response.ErrorListener() {
             public void onErrorResponse(VolleyError error) {
@@ -269,7 +241,7 @@ public class GoalsFragment extends Fragment {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });
@@ -286,21 +258,21 @@ public class GoalsFragment extends Fragment {
                 if(water_value.getText().toString().trim().length() != 0){
                     int w;
                     w = Integer.parseInt(water_value.getText().toString());
-                if(w>3){
-                    Toast.makeText(getContext(), "MAX 3 Litri", Toast.LENGTH_LONG).show();
-                    return;
-                }else if(w!=0){
-                    water_goal.setValue_goal(w);
-                }}
+                    if(w>3){
+                        Toast.makeText(getContext(), "MAX 3 Litri", Toast.LENGTH_LONG).show();
+                        return;
+                    }else if(w!=0){
+                        water_goal.setValue_goal(w);
+                    }}
                 if(kcal_value.getText().toString().trim().length() != 0){
                     int k;
                     k = Integer.parseInt(kcal_value.getText().toString());
-                if(k>4000){
-                    Toast.makeText(getContext(), "MAX 4000 Kcal", Toast.LENGTH_LONG).show();
-                    return;
-                }else if(k!=0){
-                    kcal_goal.setValue_goal(k);
-                }}
+                    if(k>4000){
+                        Toast.makeText(getContext(), "MAX 4000 Kcal", Toast.LENGTH_LONG).show();
+                        return;
+                    }else if(k!=0){
+                        kcal_goal.setValue_goal(k);
+                    }}
                 removeGoals();
             }
         });
@@ -312,7 +284,6 @@ public class GoalsFragment extends Fragment {
         try {
             postData.put("id_user", sessionManager.getSession());
             id_user = sessionManager.getSession();
-            Log.d("user_id", id_user);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -321,12 +292,7 @@ public class GoalsFragment extends Fragment {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, postData, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                try {
-                    Log.d("Post",response.getString("message"));
-                    updateGoals();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                updateGoals();
 
 
             }
@@ -348,7 +314,7 @@ public class GoalsFragment extends Fragment {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });
@@ -398,11 +364,11 @@ public class GoalsFragment extends Fragment {
         CardView water_value = (CardView) root.findViewById(R.id.water_value);
         setWaterHint();
         //ricerca di acqua
-            if (waterSwitch.isChecked()) {
-                water_value.setVisibility(View.VISIBLE);
-            }else {
-                water_value.setVisibility(View.GONE);
-            }
+        if (waterSwitch.isChecked()) {
+            water_value.setVisibility(View.VISIBLE);
+        }else {
+            water_value.setVisibility(View.GONE);
+        }
     }
     public void setWaterHint() {
         String water = String.valueOf(water_goal.getValue_goal());

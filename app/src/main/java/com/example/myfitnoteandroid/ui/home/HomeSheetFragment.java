@@ -1,22 +1,17 @@
 package com.example.myfitnoteandroid.ui.home;
 
-import android.app.DownloadManager;
-import android.os.Build;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-
 import android.os.Handler;
 import android.os.Looper;
-import android.provider.DocumentsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
@@ -31,7 +26,6 @@ import com.example.myfitnoteandroid.data.SessionManager;
 import com.example.myfitnoteandroid.data.sheets_data.Sheet;
 import com.example.myfitnoteandroid.data.sheets_data.SheetExercise;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -78,6 +72,7 @@ public class HomeSheetFragment extends Fragment {
 
         Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void run() {
                 loader_pink.setVisibility(View.GONE);
@@ -151,7 +146,7 @@ public class HomeSheetFragment extends Fragment {
                                 result = false;
 
                             }
-                        } catch (JSONException e) {
+                        } catch (JSONException ignored) {
 
                         }
                     }
@@ -173,7 +168,7 @@ public class HomeSheetFragment extends Fragment {
             }
 
             @Override
-            public void retry(VolleyError error) throws VolleyError {
+            public void retry(VolleyError error) {
 
             }
         });

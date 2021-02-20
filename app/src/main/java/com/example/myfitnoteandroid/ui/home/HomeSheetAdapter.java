@@ -1,5 +1,6 @@
 package com.example.myfitnoteandroid.ui.home;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +32,7 @@ public class HomeSheetAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row = layoutInflater.inflate(R.layout.last_sheet_row_home, parent, false);
+        @SuppressLint("ViewHolder") View row = layoutInflater.inflate(R.layout.last_sheet_row_home, parent, false);
         TextView nameExercise = row.findViewById(R.id.tvNameExercisesHome);
         nameExercise.setText(sheet.getSheetExercises().get(position).getNameExercise());
 
