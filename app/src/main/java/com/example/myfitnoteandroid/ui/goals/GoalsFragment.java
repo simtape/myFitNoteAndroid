@@ -349,9 +349,7 @@ public class GoalsFragment extends Fragment {
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            String wat = water_value.getText().toString().trim();
-            String kal = kcal_value.getText().toString().trim();
-            conferma.setEnabled((wat.isEmpty())||(kal.isEmpty()));
+            conferma.setEnabled(true);
         }
 
         @Override
