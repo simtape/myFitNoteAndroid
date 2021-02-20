@@ -49,13 +49,13 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
 
         nome = root.findViewById(R.id.nome);
         cognome = root.findViewById(R.id.Cognome);
-        email = root.findViewById(R.id.Email);
+        email = root.findViewById(R.id.Emaill);
         password = root.findViewById(R.id.passwordL);
-        showpassword = root.findViewById(R.id.showpasswordReg);
+
 
         btn_registration1 = root.findViewById(R.id.registrazione1);
+        showpassword = root.findViewById(R.id.showpasswordReg);
 
-        btn_registration1.setOnClickListener((View.OnClickListener) this);
         showpassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -66,7 +66,7 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
                 }
             }
         });
-
+        btn_registration1.setOnClickListener(this);
         return root;
     }
 
