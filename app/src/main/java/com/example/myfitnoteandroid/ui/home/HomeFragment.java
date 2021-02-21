@@ -4,6 +4,8 @@ import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -51,7 +53,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     int[] animation = new int[4];
     int cont=0;
     DisplayMetrics display;
-    Button reset;
+    Button reset,walk_run;
+    int switch_walk;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
@@ -69,10 +72,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         walker = root.findViewById(R.id.walker_an);
         wal_layout = root.findViewById(R.id.walk_layout);
         reset = root.findViewById(R.id.resetHome);
+        walk_run = root.findViewById(R.id.walkRun);
         reset.setOnClickListener(this);
         set_water();
         HomeThread wal_thread = new HomeThread();
-        wal_thread.start();
+        switch_lst();
         //resetstep();
 
       /*  SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
@@ -116,7 +120,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     double MagnitudeDelta = Magnitude - MagnitudePrevius;
                     MagnitudePrevius = Magnitude;
                     DecimalFormat df = new DecimalFormat("0.00");
-                    if (MagnitudeDelta > 6) {
+                    if (MagnitudeDelta > switch_walk) {
                         StepCounterHandler.getInstance().increase();
                     }
                     stepCountertxt.setText(String.valueOf(StepCounterHandler.getInstance().getCounter()));
@@ -137,7 +141,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         };
         sensorManager.registerListener(stepDetector, stepCounter, SensorManager.SENSOR_DELAY_NORMAL);
     }
-
+    public void set_btn_walk(){
+        if(switch_walk==10){
+            walker.setAnimation(R.raw.run2);
+            walker.playAnimation();
+            walk_run.setText("Corsa");
+            walk_run.setBackgroundResource(R.drawable.button_run);
+        }else{
+            switch_walk=6;
+            walker.setAnimation(R.raw.walk);
+            walker.playAnimation();
+            walk_run.setText("Camminata");
+            walk_run.setBackgroundResource(R.drawable.button_walk);
+        }
+    }
     public void set_water(){
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)control.getLayoutParams();
         LinearLayout.LayoutParams kcal = (LinearLayout.LayoutParams)kcalCard.getLayoutParams();
@@ -160,6 +177,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.putInt("stepCount", StepCounterHandler.getInstance().getCounter());
+        editor.putInt("switch_walk",switch_walk);
         editor.apply();
 
         SessionManager sessionManager = new SessionManager(getContext());
@@ -173,6 +191,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.putInt("stepCount", StepCounterHandler.getInstance().getCounter());
+        editor.putInt("switch_walk",switch_walk);
         editor.apply();
 
         SessionManager sessionManager = new SessionManager(getContext());
@@ -195,6 +214,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             sessionManager.setLastAccess(Calendar.DATE);
         }
         StepCounterHandler.getInstance().setCounter(sharedPreferences.getInt("stepCount", 0));
+        switch_walk=sharedPreferences.getInt("switch_walk",0);
+        set_btn_walk();
     }
 
     public float cMetres() {
@@ -245,6 +266,27 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         if (v.getId() == reset.getId()){
             StepCounterHandler.getInstance().setCounter(0);
         }
+    }
+    public void switch_lst(){
+        walk_run.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(walk_run.getText()=="Camminata"){
+                    walker.setAnimation(R.raw.run2);
+                    walker.playAnimation();
+                    switch_walk = 10;
+                    walk_run.setText("Corsa");
+                    walk_run.setBackgroundResource(R.drawable.button_run);
+
+                }else{
+                    walker.setAnimation(R.raw.walk);
+                    walker.playAnimation();
+                    switch_walk = 6;
+                    walk_run.setText("Camminata");
+                    walk_run.setBackgroundResource(R.drawable.button_walk);
+                }
+            }
+        });
     }
 
     class HomeThread extends Thread{
