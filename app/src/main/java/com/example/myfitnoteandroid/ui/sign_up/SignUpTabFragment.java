@@ -84,7 +84,7 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
 
             checkMail();
             Log.d("PROVA", "ho cliccato sul tasto registrazione parte 1");
-            String name = nome.getText().toString();
+          /*  String name = nome.getText().toString();
             String surname = cognome.getText().toString();
             String mail = email.getText().toString();
             String password = this.password.getText().toString();
@@ -108,7 +108,7 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
                 Intent intent = new Intent(getActivity(), SignUpTwoActivity.class);
                 startActivity(intent);
 
-            }
+            }*/
 
         }
     }
@@ -128,10 +128,38 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    if (response.getBoolean("error"))
+                    if (response.getBoolean("error")){
                         mailIsUsed = true;
-                    else
-                        mailIsUsed = false;
+                        Toast.makeText(getContext(), "La mail è gia usata!", Toast.LENGTH_LONG).show();
+                    }
+
+                    else{
+
+                        String name = nome.getText().toString();
+                        String surname = cognome.getText().toString();
+                        String mail = email.getText().toString();
+                        String pw = password.getText().toString();
+                        if (name.trim().isEmpty() || surname.trim().isEmpty() || mail.trim().isEmpty() || pw.trim().isEmpty()) {
+                            Toast.makeText(getContext(), "Non hai compilato tutti i campi", Toast.LENGTH_LONG).show();
+                        } else {
+
+                            SessionManager sessionManager = new SessionManager(getContext());
+
+                            sessionManager.removeSession();
+                            sessionManager.setSessionName(name);
+                            sessionManager.setSessionSurname(surname);
+                            sessionManager.setSessionMail(mail);
+                            sessionManager.setSessionPassword(pw);
+
+                            System.out.println("Nome registrazione parte 1: " + sessionManager.getName());
+                            System.out.println("Cognome registrazione parte 1: " + sessionManager.getSurname());
+                            System.out.println("Email registrazione parte 1: " + sessionManager.getMail());
+                            Intent intent = new Intent(getActivity(), SignUpTwoActivity.class);
+                            startActivity(intent);
+
+                        }
+                    }
+                        //mailIsUsed = false;
                 } catch (JSONException e) {
                 }
 
