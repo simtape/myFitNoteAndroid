@@ -4,6 +4,7 @@ import com.example.myfitnoteandroid.ui.home.StepCounterReceiver;
 
 public class StepCounterHandler {
     int counter;
+    int switch_walk;
 
     private static StepCounterHandler stepCounterHandler = new StepCounterHandler();
 
@@ -21,6 +22,12 @@ public class StepCounterHandler {
 
     public int getCounter(){
         return counter;
+    }
+    public void setSwitch(int i){
+        this.switch_walk=i;
+    }
+    public int getSwitch(){
+        return switch_walk;
     }
 
     public void increase(){

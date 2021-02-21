@@ -74,7 +74,7 @@
 
 
         <EditText
-            android:inputType="textPassword"
+             android:inputType="textPassword"
             android:id="@+id/passwordL"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
