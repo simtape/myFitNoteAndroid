@@ -3,6 +3,7 @@ package com.example.myfitnoteandroid.ui.goals;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class WaterFragment extends Fragment {
     ImageButton button_plus;
     Button reset;
     LottieAnimationView glass,complete,menu_an;
+    int[] glass_array = new int[12];
     int[] animation = new int[2];
     ConstraintLayout but_layout;
     CardView card_total,card_switch;
@@ -49,6 +51,18 @@ public class WaterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         root = (ViewGroup) inflater.inflate(R.layout.fragment_water, container, false);
+        glass_array[0] = R.id.glass1;
+        glass_array[1] = R.id.glass2;
+        glass_array[2] = R.id.glass3;
+        glass_array[3] = R.id.glass4;
+        glass_array[4] = R.id.glass5;
+        glass_array[5] = R.id.glass6;
+        glass_array[6] = R.id.glass7;
+        glass_array[7] = R.id.glass8;
+        glass_array[8] = R.id.glass9;
+        glass_array[9] = R.id.glass10;
+        glass_array[10] = R.id.glass11;
+        glass_array[11] = R.id.glass12;
         water_goal = root.findViewById(R.id.water_goal);
         water_value = root.findViewById(R.id.water_value);
         button_plus = root.findViewById(R.id.button_plus);
@@ -188,55 +202,19 @@ public class WaterFragment extends Fragment {
                 removeGoals();
                 if(value<=water.getValue_goal()){
                     card_total.setVisibility(View.GONE);
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
+                    ConstraintLayout.LayoutParams params_ = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
                     if(value==1.5){
-                        params.leftMargin = params.leftMargin - (103*5);
-                    params.topMargin = params.topMargin + 170;
+                        params_.leftMargin = params_.leftMargin - (103*5);
+                    params_.topMargin = params_.topMargin + 170;
                     }
                 else{
-                        params.leftMargin = params.leftMargin + 103;
+                        params_.leftMargin = params_.leftMargin + 103;
+                        Log.d("ff","ff"+103);
                     }
-                    but_layout.setLayoutParams(params);
+                    but_layout.setLayoutParams(params_ );
                     set_valore();
-                String value_sw = Double.toString(value);
-                switch (value_sw){
-                    case "0.25":
-                        set_glasses2(1);
-                    break;
-                    case "0.5":
-                        set_glasses2(2);
-                        break;
-                    case "0.75":
-                        set_glasses2(3);
-                        break;
-                    case "1.0":
-                        set_glasses2(4);
-                        break;
-                    case "1.25":
-                        set_glasses2(5);
-                        break;
-                    case "1.5":
-                        set_glasses2(6);
-                        break;
-                    case "1.75":
-                        set_glasses2(7);
-                        break;
-                    case "2.0":
-                        set_glasses2(8);
-                        break;
-                    case "2.25":
-                        set_glasses2(9);
-                        break;
-                    case "2.5":
-                        set_glasses2(10);
-                        break;
-                    case "2.75":
-                        set_glasses2(11);
-                        break;
-                    case "3.0":
-                        set_glasses2(12);
-                        break;
-                }
+                    int j= (int) (water.getProgress_goal()/0.25);
+                    set_glasses2(j);
                     if (value == water.getValue_goal()) {
                         card_total.setVisibility(View.VISIBLE);
                         button_plus.setVisibility(View.GONE);
@@ -256,776 +234,34 @@ public class WaterFragment extends Fragment {
                     complete.setVisibility(View.GONE);
                 }
                 unset_glasses();
+                int j = (int)(water.getProgress_goal()/0.25);
+
                 water.setProgress_goal(0.0);
                 removeGoals2();
             }
         });
     }
     public void unset_glasses(){
-        int value = water.getValue_goal();
         double progress = water.getProgress_goal();
-        String value_sw = Double.toString(progress);
-        ConstraintLayout.LayoutParams params;
-        switch(value) {
-            case 1:
-                switch (value_sw){
-                    case "1.0":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass4);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*4);
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "0.75":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*3);
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "0.5":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*2);
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "0.25":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103);
-                        but_layout.setLayoutParams(params);
-                        break;
-                }
-                break;
-            case 2:
-                switch (value_sw){
-                    case "2.0":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass4);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass5);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass6);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass7);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass8);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*2);
-                        params.topMargin = params.topMargin - 170;
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "1.75":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass4);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass5);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass6);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass7);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103);
-                        params.topMargin = params.topMargin - 170;
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "1.5":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass4);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass5);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass6);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*6);
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "1.25":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass4);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass5);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*5);
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "1.0":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass4);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*4);
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "0.75":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*3);
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "0.5":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*2);
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "0.25":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103);
-                        but_layout.setLayoutParams(params);
-                        break;
-                }
-                break;
-            case 3:
-                switch (value_sw){
-                    case "3.0":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass4);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass5);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass6);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass7);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass8);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass9);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass10);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass11);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass12);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*6);
-                        params.topMargin = params.topMargin - 170;
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "2.75":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass4);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass5);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass6);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass7);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass8);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass9);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass10);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass11);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*5);
-                        params.topMargin = params.topMargin - 170;
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "2.5":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass4);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass5);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass6);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass7);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass8);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass9);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass10);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*4);
-                        params.topMargin = params.topMargin - 170;
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "2.25":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass4);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass5);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass6);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass7);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass8);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass9);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*3);
-                        params.topMargin = params.topMargin - 170;
-                        but_layout.setLayoutParams(params);
-                        break;
-
-                    case "2.0":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass4);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass5);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass6);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass7);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass8);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*2);
-                        params.topMargin = params.topMargin - 170;
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "1.75":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass4);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass5);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass6);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass7);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103);
-                        params.topMargin = params.topMargin - 170;
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "1.5":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass4);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass5);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass6);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*6);
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "1.25":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass4);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass5);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*5);
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "1.0":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass4);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*4);
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "0.75":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass3);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*3);
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "0.5":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        glass = root.findViewById(R.id.glass2);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103*2);
-                        but_layout.setLayoutParams(params);
-                        break;
-                    case "0.25":
-                        glass = root.findViewById(R.id.glass1);
-                        glass.setVisibility(View.VISIBLE);
-                        glass.setMinAndMaxFrame(0,27);
-                        glass.setSpeed(-1);
-                        glass.playAnimation();
-                        params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                        params.leftMargin = params.leftMargin - (103);
-                        but_layout.setLayoutParams(params);
-                        break;
-                }
-                break;
-    }}
+        int j = (int)( progress/0.25);
+        for(int i=0; i<j;i++){
+            glass = root.findViewById(glass_array[i]);
+            glass.setVisibility(View.VISIBLE);
+            glass.setMinAndMaxFrame(0,27);
+            glass.setSpeed(-1);
+            glass.playAnimation();
+        }
+        if(j>=6){
+            ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
+            params.leftMargin = params.leftMargin - (103*(j-6));
+            params.topMargin = params.topMargin - 170;
+            but_layout.setLayoutParams(params);
+        }else{
+            ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
+            params.leftMargin = params.leftMargin - (103*j);
+            but_layout.setLayoutParams(params);
+        }
+    }
     @SuppressLint("SetTextI18n")
     public void set_obiettivo(){
         water_goal.setText("Obiettivo: "+water.getValue_goal()+" Litri");
@@ -1036,434 +272,60 @@ public class WaterFragment extends Fragment {
         water_value.setText(water.getProgress_goal()+"L");
     }
 
-    public void set_glasses(){
+    public void set_glasses() {
         int value = water.getValue_goal();
         double progress = water.getProgress_goal();
-        switch(value){
-            case 1:
-                glass = root.findViewById(R.id.glass1);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<0.25){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
+        double value_control = 0.25;
+        int i=0;
+        for(i=0; i<12; i++){
+            glass = root.findViewById(glass_array[i]);
+            glass.setVisibility(View.VISIBLE);
+            if(progress<value_control){
+                button_plus.setVisibility(View.VISIBLE);
+            }else{
+                if(i!=5){
                     ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
                     params.leftMargin = params.leftMargin + 103;
                     but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.setSpeed(1);
-                    glass.playAnimation();
-                }
-                glass = root.findViewById(R.id.glass2);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<0.5){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();}
-                glass = root.findViewById(R.id.glass3);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<0.75){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();}
-                glass = root.findViewById(R.id.glass4);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<1){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();
-                    card_total.setVisibility(View.VISIBLE);
-                    set_glasses2(0);
-                    complete.setVisibility(View.VISIBLE);
-                    complete.setMinAndMaxFrame(0,50);
-                    complete.playAnimation();
-                }
-                glass = root.findViewById(R.id.glass5);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass6);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass7);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass8);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass9);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass10);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass11);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass12);
-                glass.setVisibility(View.GONE);
-                break;
-            case 2:
-                glass = root.findViewById(R.id.glass1);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<0.25){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();
-                }
-                glass = root.findViewById(R.id.glass2);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<0.5){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();}
-                glass = root.findViewById(R.id.glass3);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<0.75){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();}
-                glass = root.findViewById(R.id.glass4);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<1){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();}
-                glass = root.findViewById(R.id.glass5);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<1.25){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();
-                }
-                glass = root.findViewById(R.id.glass6);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<1.5){
-                    button_plus.setVisibility(View.VISIBLE);
+
                 }else{
                     ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
                     params.leftMargin =params.leftMargin - (103*5);
                     params.topMargin = params.topMargin + 170;
                     but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();
                 }
-                glass = root.findViewById(R.id.glass7);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<1.75){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();
-                }
-                glass = root.findViewById(R.id.glass8);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<2){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();
-                    set_glasses2(0);
-                    complete.setVisibility(View.VISIBLE);
-                    complete.setMinAndMaxFrame(0,50);
-                    complete.playAnimation();
-                }
-                glass = root.findViewById(R.id.glass9);
+                glass.setMinAndMaxFrame(0,27);
+                glass.setSpeed(1);
+                glass.playAnimation();
+            }
+            if(value_control>value){
+                glass = root.findViewById(glass_array[i]);
                 glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass10);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass11);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass12);
-                glass.setVisibility(View.GONE);
-                break;
-            case 3:
-                glass = root.findViewById(R.id.glass1);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<0.25){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();
-                }
-                glass = root.findViewById(R.id.glass2);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<0.5){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();}
-                glass = root.findViewById(R.id.glass3);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<0.75){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();}
-                glass = root.findViewById(R.id.glass4);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<1){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();}
-                glass = root.findViewById(R.id.glass5);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<1.25){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();
-                }
-                glass = root.findViewById(R.id.glass6);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<1.5){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin =params.leftMargin - (103*5);
-                    params.topMargin = params.topMargin + 170;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();
-                }
-                glass = root.findViewById(R.id.glass7);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<1.75){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();
-                }
-                glass = root.findViewById(R.id.glass8);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<2){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();
-                }
-                glass = root.findViewById(R.id.glass9);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<2.25){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();
-                }
-                glass = root.findViewById(R.id.glass10);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<2.5){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();
-                }
-                glass = root.findViewById(R.id.glass11);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<2.75){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();
-                }
-                glass = root.findViewById(R.id.glass12);
-                glass.setVisibility(View.VISIBLE);
-                if(progress<3){
-                    button_plus.setVisibility(View.VISIBLE);
-                }else{
-                    ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)but_layout.getLayoutParams();
-                    params.leftMargin = params.leftMargin + 103;
-                    but_layout.setLayoutParams(params);
-                    glass.setMinAndMaxFrame(0,27);
-                    glass.playAnimation();
-                    set_glasses2(0);
-                    complete.setVisibility(View.VISIBLE);
-                    complete.setMinAndMaxFrame(0,50);
-                    complete.playAnimation();
-                }
-                break;
+            }
+            value_control+=0.25;
+        }
+
+        if(progress==value){
+            button_plus.setVisibility(View.GONE);
+            card_total.setVisibility(View.VISIBLE);
+            set_glasses2(0);
+            complete.setVisibility(View.VISIBLE);
+            complete.setMinAndMaxFrame(0,50);
+            complete.playAnimation();
         }
     }
     public void set_glasses2(int i){
-        switch(i){
-            case 0:
-                glass = root.findViewById(R.id.glass1);
+        if(i==0){
+            for(int j=0;j<12;j++){
+                glass = root.findViewById(glass_array[j]);
                 glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass2);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass3);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass4);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass5);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass6);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass7);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass8);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass9);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass10);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass11);
-                glass.setVisibility(View.GONE);
-                glass = root.findViewById(R.id.glass12);
-                glass.setVisibility(View.GONE);
-                break;
-            case 1:
-                glass = root.findViewById(R.id.glass1);
-                glass.setVisibility(View.VISIBLE);
-                glass.setMinAndMaxFrame(0,27);
-                glass.setSpeed(1);
-                glass.playAnimation();
-            break;
-            case 2:
-                glass = root.findViewById(R.id.glass2);
-                glass.setVisibility(View.VISIBLE);
-                glass.setMinAndMaxFrame(0,27);
-                glass.setSpeed(1);
-                glass.playAnimation();
-                break;
-
-            case 3:
-                glass = root.findViewById(R.id.glass3);
-                glass.setVisibility(View.VISIBLE);
-                glass.setMinAndMaxFrame(0,27);
-                glass.setSpeed(1);
-                glass.playAnimation();
-                break;
-
-            case 4:
-                glass = root.findViewById(R.id.glass4);
-                glass.setVisibility(View.VISIBLE);
-                glass.setMinAndMaxFrame(0,27);
-                glass.setSpeed(1);
-                glass.playAnimation();
-                break;
-
-            case 5:
-                glass = root.findViewById(R.id.glass5);
-                glass.setVisibility(View.VISIBLE);
-                glass.setMinAndMaxFrame(0,27);
-                glass.setSpeed(1);
-                glass.playAnimation();
-                break;
-
-            case 6:
-                glass = root.findViewById(R.id.glass6);
-                glass.setVisibility(View.VISIBLE);
-                glass.setMinAndMaxFrame(0,27);
-                glass.setSpeed(1);
-                glass.playAnimation();
-                break;
-            case 7:
-                glass = root.findViewById(R.id.glass7);
-                glass.setVisibility(View.VISIBLE);
-                glass.setMinAndMaxFrame(0,27);
-                glass.setSpeed(1);
-                glass.playAnimation();
-                break;
-            case 8:
-                glass = root.findViewById(R.id.glass8);
-                glass.setVisibility(View.VISIBLE);
-                glass.setMinAndMaxFrame(0,27);
-                glass.setSpeed(1);
-                glass.playAnimation();
-                break;
-
-            case 9:
-                glass = root.findViewById(R.id.glass9);
-                glass.setVisibility(View.VISIBLE);
-                glass.setMinAndMaxFrame(0,27);
-                glass.setSpeed(1);
-                glass.playAnimation();
-                break;
-
-            case 10:
-                glass = root.findViewById(R.id.glass10);
-                glass.setVisibility(View.VISIBLE);
-                glass.setMinAndMaxFrame(0,27);
-                glass.setSpeed(1);
-                glass.playAnimation();
-                break;
-
-            case 11:
-                glass = root.findViewById(R.id.glass11);
-                glass.setVisibility(View.VISIBLE);
-                glass.setMinAndMaxFrame(0,27);
-                glass.setSpeed(1);
-                glass.playAnimation();
-                break;
-
-            case 12:
-                glass = root.findViewById(R.id.glass12);
-                glass.setVisibility(View.VISIBLE);
-                glass.setMinAndMaxFrame(0,27);
-                glass.setSpeed(1);
-                glass.playAnimation();
-                break;
+            }
+        }else{
+            glass = root.findViewById(glass_array[i-1]);
+            glass.setVisibility(View.VISIBLE);
+            glass.setMinAndMaxFrame(0,27);
+            glass.setSpeed(1);
+            glass.playAnimation();
         }
     }
 
