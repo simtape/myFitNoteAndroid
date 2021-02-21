@@ -17,10 +17,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
 import com.example.myfitnoteandroid.data.User;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -31,6 +38,7 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
     Button btn_registration1;
     CheckBox showpassword;
     User newUser;
+    Boolean mailIsUsed = false;
 
     float v = 0;
 
@@ -59,7 +67,7 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
         showpassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 } else {
                     password.setTransformationMethod(PasswordTransformationMethod.getInstance());
@@ -73,6 +81,8 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
 
         if (v.getId() == btn_registration1.getId()) {
+
+            checkMail();
             Log.d("PROVA", "ho cliccato sul tasto registrazione parte 1");
             String name = nome.getText().toString();
             String surname = cognome.getText().toString();
@@ -80,9 +90,11 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
             String password = this.password.getText().toString();
             if (name.trim().isEmpty() || surname.trim().isEmpty() || mail.trim().isEmpty() || password.trim().isEmpty()) {
                 Toast.makeText(getContext(), "Non hai compilato tutti i campi", Toast.LENGTH_LONG).show();
+            } else if (mailIsUsed) {
+                Toast.makeText(getContext(), "La mail è gia usata!", Toast.LENGTH_LONG).show();
             } else {
 
-                SessionManager sessionManager  =  new SessionManager(getContext());
+                SessionManager sessionManager = new SessionManager(getContext());
 
                 sessionManager.removeSession();
                 sessionManager.setSessionName(name);
@@ -100,5 +112,39 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
 
         }
     }
+
+    private void checkMail() {
+        JSONObject postData = new JSONObject();
+        try {
+            postData.put("mail", email.getText().toString());
+        } catch (JSONException e) {
+
+        }
+        String url = "https://myfitnote.herokuapp.com/users/find_mail";
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        //mailIsUsed = false;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,
+                postData, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response.getBoolean("error"))
+                        mailIsUsed = true;
+                    else
+                        mailIsUsed = false;
+                } catch (JSONException e) {
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        queue.add(jsonObjectRequest);
+
     }
+}
 
