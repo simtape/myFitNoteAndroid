@@ -4,19 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.myfitnoteandroid.R;
+import com.example.myfitnoteandroid.data.SessionManager;
 import com.example.myfitnoteandroid.data.sheets_data.Sheet;
 import com.example.myfitnoteandroid.data.sheets_data.SheetsHandler;
 
 import java.util.List;
 
-public class SheetDetailsActivity extends AppCompatActivity {
+public class SheetDetailsActivity extends AppCompatActivity implements View.OnClickListener {
     int position;
     ListView listView;
     TextView nameSheet, dateSheet, trainingDays;
+    ImageButton favouriteSheet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,8 @@ public class SheetDetailsActivity extends AppCompatActivity {
         nameSheet = findViewById(R.id.name_sheetTV);
         dateSheet = findViewById(R.id.date_tv);
         trainingDays = findViewById(R.id.training_days);
+        favouriteSheet = findViewById(R.id.favourite_btn);
+        favouriteSheet.setOnClickListener(this);
 
         nameSheet.setText(sheet.getName());
         dateSheet.setText(sheet.getDate());
@@ -55,5 +61,54 @@ public class SheetDetailsActivity extends AppCompatActivity {
         SheetDetailsAdapter sheetDetailsAdapter;
         sheetDetailsAdapter = new SheetDetailsAdapter(this, objs, sheet);
         listView.setAdapter(sheetDetailsAdapter);
+        controlFavouriteOnCreate();
+    }
+
+    private void setFavouriteSheet() {
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
+        controlFavouriteOnClick();
+        if (position == sessionManager.getFavouriteSheet()) {
+            sessionManager.removeFavourite();
+
+        } else {
+            sessionManager.setFavouriteSheet(position);
+        }
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == favouriteSheet.getId())
+            setFavouriteSheet();
+    }
+
+    private void controlFavouriteOnCreate(){
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
+
+        if (position == sessionManager.getFavouriteSheet()) {
+            favouriteSheet.setBackgroundResource(R.drawable.ic_full_star);
+
+        } else {
+            favouriteSheet.setBackgroundResource(R.drawable.ic_empty_fav);
+        }
+
+
+
+    }
+
+    private void controlFavouriteOnClick(){
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
+
+        if (position == sessionManager.getFavouriteSheet()) {
+            favouriteSheet.setBackgroundResource(R.drawable.ic_empty_fav);
+
+        } else {
+
+            favouriteSheet.setBackgroundResource(R.drawable.ic_full_star);
+        }
+
+
+
     }
 }

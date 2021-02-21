@@ -63,6 +63,7 @@ public class SignUpThreeActivity extends AppCompatActivity implements View.OnCli
         altezza.setText(sessionManager.getAltezza());
         dataN.setText(sessionManager.getData());
 
+        cancelButton.setOnClickListener(this);
         confirmButton.setOnClickListener((View.OnClickListener) this);
 
     }
@@ -141,7 +142,8 @@ public class SignUpThreeActivity extends AppCompatActivity implements View.OnCli
                     Toast.makeText(getApplication().getBaseContext(), "Utente registrato correttamente", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
-
+                    SessionManager sessionManager = new SessionManager(getApplicationContext());
+                    sessionManager.removeFavourite();
 
 
                 } else {

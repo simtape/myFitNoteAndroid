@@ -12,29 +12,58 @@
         android:layout_margin="10dp"
         app:cardCornerRadius="12dp">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="15dp">
 
-            <TextView
-                android:id="@+id/name_sheetTV"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:text="Prova scheda"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                tools:ignore="UseCompoundDrawables">
+
+                <TextView
+                    android:id="@+id/name_sheetTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="104dp"
+                    android:layout_marginLeft="104dp"
+                    android:text="Prova scheda"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
+
+                <ImageButton
+                    android:id="@+id/favourite_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/name_sheetTV"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginTop="15dp"
+                android:orientation="horizontal"
                 tools:ignore="UseCompoundDrawables">
 
                 <ImageView
@@ -46,7 +75,7 @@
                     tools:ignore="ContentDescription" />
 
                 <TextView
-                    android:id = "@+id/date_tv"
+                    android:id="@+id/date_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -57,9 +86,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="15dp">
-
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
 
 
                 <TextView
@@ -67,8 +95,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:text="Giorni di allenamento: "
                     android:layout_marginRight="10dp"
+                    android:text="Giorni di allenamento: "
 
                     android:textAlignment="textEnd"
                     tools:ignore="HardcodedText,RtlHardcoded" />
@@ -78,9 +106,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:textStyle="bold"
-
                     android:textAlignment="textEnd"
+
+                    android:textStyle="bold"
 
                     />
             </LinearLayout>

@@ -155,7 +155,7 @@ public class SignUpTabFragment extends Fragment implements View.OnClickListener 
 
                         } else if (!isOk) {
                             Toast.makeText(getContext(), "Email non valida!", Toast.LENGTH_LONG).show();
-                            
+
                         } else {
 
                             SessionManager sessionManager = new SessionManager(getContext());

@@ -25,7 +25,9 @@ import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
 import com.example.myfitnoteandroid.data.sheets_data.Sheet;
 import com.example.myfitnoteandroid.data.sheets_data.SheetExercise;
+import com.example.myfitnoteandroid.data.sheets_data.SheetsHandler;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,7 +43,11 @@ public class HomeSheetFragment extends Fragment {
     HomeSheetAdapter homeSheetAdapter;
     Boolean result = false;
 
-    LottieAnimationView sheet_empty_animation,loader_pink;
+    LottieAnimationView sheet_empty_animation, loader_pink;
+    private boolean thereAreSheets;
+    private JSONArray jsonArrayResponse;
+    List<String> days = new ArrayList<>();
+
     public HomeSheetFragment() {
 
     }
@@ -65,9 +71,9 @@ public class HomeSheetFragment extends Fragment {
         listView = view.findViewById(R.id.list_sheet_home);
         sheet_empty_animation = view.findViewById(R.id.sheet_empty_animation);
         sheet_empty_animation.setVisibility(View.GONE);
-        getLastSheet();
+        //getLastSheet();
         //Log.d("fragment creato", "homesheet");
-
+        getSheets();
 
 
         Handler handler = new Handler(Looper.getMainLooper());
@@ -76,7 +82,7 @@ public class HomeSheetFragment extends Fragment {
             @Override
             public void run() {
                 loader_pink.setVisibility(View.GONE);
-                if (result) {
+              /*  if (result) {
                     titleFragment.setText("Il tuo allenamento");
                     List<String> names = lastSheet.getNamesExercises();
 
@@ -87,11 +93,27 @@ public class HomeSheetFragment extends Fragment {
                 } else {
                     titleFragment.setText("Non hai allenamenti!");
                     sheet_empty_animation.setVisibility(View.VISIBLE);
+                }*/
+                SessionManager sessionManager = new SessionManager(getContext());
+                int posFav = sessionManager.getFavouriteSheet();
+                if (posFav == -1) {
+                    titleFragment.setText("Non hai un allenamento preferito!");
+                    sheet_empty_animation.setVisibility(View.VISIBLE);
+
+                } else {
+                    setSheetToShow();
+                    titleFragment.setText("Il tuo allenamento preferito");
+                    List<String> names = lastSheet.getNamesExercises();
+
+                    homeSheetAdapter = new HomeSheetAdapter(getContext(), names, lastSheet);
+                    listView.setAdapter(homeSheetAdapter);
+
+
                 }
 
-            }
-        }, 2500);
 
+            }
+        }, 3000);
 
 
         return view;
@@ -177,4 +199,93 @@ public class HomeSheetFragment extends Fragment {
         queue.add(jsonObjectRequest);
 
     }
+
+    private void setSheetToShow() {
+        SessionManager sessionManager = new SessionManager(getContext());
+        int positionFav = sessionManager.getFavouriteSheet();
+        this.lastSheet = SheetsHandler.getInstance().getUserSheets().get(positionFav);
+
+
+    }
+
+    private void getSheets() {
+        SheetsHandler.getInstance().resetSheetsHandler();
+        SessionManager sessionManager = new SessionManager(getActivity());
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        String url = "https://myfitnote.herokuapp.com/sheets/get_sheets?user_id=";
+        String conc_url = url.concat(sessionManager.getSession());
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, conc_url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+
+                    if (response.getBoolean("error")) {
+                        thereAreSheets = false;
+
+                    } else {
+
+                        jsonArrayResponse = response.getJSONArray("sheet");
+
+                        for (int i = 0; i < jsonArrayResponse.length(); i++) {
+                            List<SheetExercise> sheetExerciseList = new ArrayList<>();
+                            JSONObject jsonObject = jsonArrayResponse.getJSONObject(i);
+
+
+                            for (int j = 0; j < jsonObject.getJSONArray("exercises").length(); j++) {
+
+                                JSONArray exerciseJsonArray = jsonObject.getJSONArray("exercises");
+                                JSONArray repsJsonArray = jsonObject.getJSONArray("reps");
+                                JSONArray seriesJsonArray = jsonObject.getJSONArray("series");
+
+                                String exercise = exerciseJsonArray.getString(j);
+                                String repsString = repsJsonArray.getString(j);
+
+                                String series = seriesJsonArray.getString(j);
+
+                                SheetExercise sheetExercise = new SheetExercise(exercise, repsString, series);
+                                sheetExerciseList.add(sheetExercise);
+
+                            }
+
+                            String name = jsonObject.getString("name_sheet");
+                            String id = jsonObject.getString("_id");
+                            String date = jsonObject.getString("date");
+                            String splittedDate = date.substring(0, 10);
+                            JSONArray daysJsonArray = jsonObject.getJSONArray("days");
+                            days.clear();
+                            List<String> daysNew = new ArrayList<>();
+                            for (int k = 0; k < daysJsonArray.length(); k++) {
+                                days.add(daysJsonArray.getString(k));
+                                daysNew.add(daysJsonArray.getString(k));
+
+
+                            }
+
+                            Sheet sheet = new Sheet(name, id, sheetExerciseList, daysNew, splittedDate);
+                            for (int m = 0; m < sheetExerciseList.size(); m++) {
+                            }
+
+                            SheetsHandler.getInstance().addSheet(sheet);
+                        }
+                    }
+                } catch (JSONException ignored) {
+
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+
+        queue.add(jsonObjectRequest);
+
+
+    }
+
+
 }

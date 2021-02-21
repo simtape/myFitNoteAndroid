@@ -21,6 +21,7 @@ public class SessionManager {
     String REGISTRATION_ALTEZZA = "registration_altezza";
     String REGISTRATION_DATA = "registration_data";
     String LAST_ACCESS = "last_access_user";
+    String FAVOURITE_SHEET = "favourite_sheet";
 
 
     public SessionManager(Context context) {
@@ -135,7 +136,7 @@ public class SessionManager {
     }
 
     public void setLastAccess(int newAccess) {
-        Log.d("datas attuale salvata", String.valueOf(sharedPreferences.getInt(LAST_ACCESS, 0)));
+        //Log.d("datas attuale salvata", String.valueOf(sharedPreferences.getInt(LAST_ACCESS, 0)));
         if (newAccess != sharedPreferences.getInt(LAST_ACCESS, 0)) {
             editor.putInt(LAST_ACCESS, newAccess).commit();
             Log.d("datas AC", String.valueOf(sharedPreferences.getInt(LAST_ACCESS, 0)));
@@ -144,7 +145,7 @@ public class SessionManager {
 
 
     public void setLastAccessNoControl(int newAccess) {
-        Log.d("datas attuale salvata", String.valueOf(sharedPreferences.getInt(LAST_ACCESS, 0)));
+        //Log.d("datas attuale salvata", String.valueOf(sharedPreferences.getInt(LAST_ACCESS, 0)));
         editor.putInt(LAST_ACCESS, newAccess).commit();
         Log.d("datas NoAC", String.valueOf(sharedPreferences.getInt(LAST_ACCESS, 0)));
 
@@ -153,6 +154,20 @@ public class SessionManager {
     public int getAccess() {
 
         return sharedPreferences.getInt(LAST_ACCESS, 0);
+    }
+
+    public int getFavouriteSheet(){
+        return sharedPreferences.getInt(FAVOURITE_SHEET, 0);
+    }
+    public void setFavouriteSheet(int position){
+
+            editor.putInt(FAVOURITE_SHEET, position).commit();
+
+    }
+
+    public void removeFavourite(){
+
+        editor.putInt(FAVOURITE_SHEET, -1).commit();
     }
 
 }

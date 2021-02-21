@@ -27,6 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class FoodsViewFragment extends Fragment {
@@ -73,7 +74,6 @@ public class FoodsViewFragment extends Fragment {
                         return false;
                     }
                 });
-
       Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
