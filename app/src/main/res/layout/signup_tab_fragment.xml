@@ -124,6 +124,24 @@
             app:layout_constraintTop_toBottomOf="@+id/passwordL"
             tools:ignore="HardcodedText" />
 
+        <ImageView
+            android:id="@+id/email_wrong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/Emaill"
+            app:layout_constraintEnd_toEndOf="@+id/Emaill"
+            app:layout_constraintTop_toTopOf="@+id/Emaill"
+            android:background="@drawable/ic_baseline_error_outline_24" />
+
+        <ImageView
+            android:id="@+id/email_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/Emaill"
+            app:layout_constraintEnd_toEndOf="@+id/Emaill"
+            app:layout_constraintTop_toTopOf="@+id/Emaill"
+            android:background="@drawable/ic_baseline_check_circle_outline_24" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

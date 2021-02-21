@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myfitnoteandroid.R;
 import com.example.myfitnoteandroid.data.SessionManager;
+import com.example.myfitnoteandroid.ui.login.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,6 +30,7 @@ public class SignUpTwoActivity extends AppCompatActivity implements View.OnClick
     Button button, datebtn;
     TextView datetxt, pesotext, altezzatext;
     Calendar c;
+    ImageView arrow;
     DatePickerDialog dpd;
      Spinner spinPeso, spinAltezza;
      int i, k;
@@ -50,6 +53,9 @@ public class SignUpTwoActivity extends AppCompatActivity implements View.OnClick
 
         button.setOnClickListener(this);
         datebtn.setOnClickListener(this);
+
+        arrow = findViewById(R.id.back_btn);
+        arrow.setOnClickListener(this);
 
         List<String> peso = new ArrayList<>();
         peso.add("- scegli il tuo peso -");
@@ -144,6 +150,12 @@ public class SignUpTwoActivity extends AppCompatActivity implements View.OnClick
                 }, day, month,year);
                 dpd.show();
             break;
+
+            case R.id.back_btn:
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                this.finish();
+                break;
 
         }
 
