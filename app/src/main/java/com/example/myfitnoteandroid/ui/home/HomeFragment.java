@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,7 +33,7 @@ import com.example.myfitnoteandroid.data.StepCounterHandler;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     TextView stepCountertxt;
     TextView metrestxt;
@@ -50,6 +51,7 @@ public class HomeFragment extends Fragment {
     int[] animation = new int[4];
     int cont=0;
     DisplayMetrics display;
+    Button reset;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
@@ -66,6 +68,8 @@ public class HomeFragment extends Fragment {
         control = root.findViewById(R.id.control);
         walker = root.findViewById(R.id.walker_an);
         wal_layout = root.findViewById(R.id.walk_layout);
+        reset = root.findViewById(R.id.resetHome);
+        reset.setOnClickListener(this);
         set_water();
         HomeThread wal_thread = new HomeThread();
         wal_thread.start();
@@ -234,6 +238,13 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == reset.getId()){
+            StepCounterHandler.getInstance().setCounter(0);
+        }
     }
 
     class HomeThread extends Thread{

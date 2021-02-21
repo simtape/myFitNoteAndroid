@@ -92,7 +92,6 @@ public class exercisesFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(), exerciseDetailsActivity.class);
-                Bundle bundle = new Bundle();
                 intent.putExtra("exe_position", position);
                 intent.putExtra("exe", nameExercises.get(position));
                 intent.putExtra("gear", nameGear.get(position));
