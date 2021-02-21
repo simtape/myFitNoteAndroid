@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +28,8 @@ import org.json.JSONObject;
 
 public class SignUpThreeActivity extends AppCompatActivity implements View.OnClickListener {
     TextView label, name, surname, mail, password, peso, altezza, dataN;
-    Button button;
+    ImageButton confirmButton, cancelButton;
+
 
     private JSONObject postData, userJsonObject;
 
@@ -44,7 +47,9 @@ public class SignUpThreeActivity extends AppCompatActivity implements View.OnCli
         peso = findViewById(R.id.Peso);
         altezza = findViewById(R.id.Altezza);
         dataN = findViewById(R.id.Datan);
-        button = findViewById(R.id.reg3);
+        confirmButton = findViewById(R.id.register_btn);
+        cancelButton = findViewById(R.id.cancel_btn);
+
 
 
         SessionManager sessionManager = new SessionManager(this);
@@ -58,12 +63,42 @@ public class SignUpThreeActivity extends AppCompatActivity implements View.OnCli
         altezza.setText(sessionManager.getAltezza());
         dataN.setText(sessionManager.getData());
 
-        button.setOnClickListener((View.OnClickListener) this);
+        confirmButton.setOnClickListener((View.OnClickListener) this);
 
     }
 
     public void onClick(View v) {
-        if (v.getId() == button.getId()) {
+
+        switch(v.getId()){
+            case R.id.register_btn:
+                postData = new JSONObject();
+
+                try {
+
+                    postData.put("mail", mail.getText().toString().trim());
+                    postData.put("name", name.getText().toString().trim());
+                    postData.put("surname", surname.getText().toString().trim());
+                    postData.put("height", altezza.getText().toString().trim());
+                    postData.put("weight", peso.getText().toString().trim());
+                    postData.put("date", dataN.getText().toString().trim());
+                    postData.put("password", password.getText().toString().trim());
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                registrazione();
+                break;
+
+            case R.id.cancel_btn:
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                this.finish();
+
+        }
+
+/*
+
+        if (v.getId() == confirmButton.getId()) {
             postData = new JSONObject();
 
             try {
@@ -82,6 +117,7 @@ public class SignUpThreeActivity extends AppCompatActivity implements View.OnCli
             registrazione();
 
         }
+*/
 
 
     }

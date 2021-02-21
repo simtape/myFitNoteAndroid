@@ -4,64 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bg"
-    >
+    android:background="@drawable/gradient_bg">
 
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:autoSizeMaxTextSize="30dp"
+        android:autoSizeTextType="uniform"
         android:gravity="center"
         android:text="Ci siamo quasi.."
         android:textColor="#ffffff"
-        android:autoSizeMaxTextSize="30dp"
-        android:autoSizeTextType="uniform"
-        app:layout_constraintHeight_percent="0.07"
-        app:layout_constraintWidth_percent="1"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.03"
+        app:layout_constraintVertical_bias="0.104"
+        app:layout_constraintWidth_percent="1"
         tools:ignore="HardcodedText,UnusedAttribute">
 
     </TextView>
+
 
     <Spinner
         android:id="@+id/spinnerPeso"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="start|center"
-        app:layout_constraintWidth_percent="0.1"
-        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/Peso"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2"
-        app:layout_constraintHorizontal_bias="0"/>
-
+        app:layout_constraintVertical_bias="0.239"
+        app:layout_constraintWidth_percent="0.1" />
 
     <TextView
         android:id="@+id/Altezza"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="start|center"
-        android:textSize="25sp"
         android:background="@drawable/edit_text_bg"
         android:gravity="center"
         android:hint="Altezza"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.07"
-        app:layout_constraintHorizontal_bias="0.453"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35"
+        app:layout_constraintVertical_bias="0.382"
         app:layout_constraintWidth_percent="0.6"
         tools:ignore="HardcodedText">
 
@@ -72,14 +71,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="start|center"
-        app:layout_constraintWidth_percent="0.1"
-        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/Altezza"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35"
-        app:layout_constraintHorizontal_bias="0"/>
+        app:layout_constraintVertical_bias="0.382"
+        app:layout_constraintWidth_percent="0.1" />
 
     <TextView
         android:id="@+id/Data_nascita"
@@ -89,20 +88,24 @@
         android:background="@drawable/edit_text_bg"
         android:gravity="center"
         android:hint="Data di nascita"
-        android:textStyle="bold"
         android:textSize="25sp"
-        app:layout_constraintHeight_percent="0.07"
-        app:layout_constraintWidth_percent="0.6"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintHorizontal_bias="0.451"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintVertical_bias="0.555"
+        app:layout_constraintWidth_percent="0.6"
         tools:ignore="HardcodedText" />
+
 
     <Button
         android:id="@+id/btn_dtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="start|center"
         android:background="@drawable/date_icon"
         android:gravity="center"
         android:paddingLeft="20dip"
@@ -110,38 +113,35 @@
         android:paddingRight="15dip"
         android:paddingBottom="10dp"
         android:textColor="@color/cardview_light_background"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_gravity="start|center"
-        app:layout_constraintWidth_percent="0.12"
-        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/Data_nascita"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="0.555"
+        app:layout_constraintWidth_percent="0.12"
         tools:ignore="RtlHardcoded" />
-
 
     <Button
         android:id="@+id/reg_parte2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="174dp"
+        android:layout_height="50dp"
+        android:autoSizeMaxTextSize="20sp"
+        android:autoSizeTextType="uniform"
         android:background="@drawable/button_bg"
-        app:layout_constraintHeight_percent="0.07"
-        app:layout_constraintWidth_percent="0.6"
         android:gravity="center"
         android:text="PROSEGUI"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMaxTextSize="20sp"
-        app:layout_constraintHorizontal_bias="0.5"
         android:textColor="@color/cardview_light_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintHorizontal_bias="0.827"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.691"
+        app:layout_constraintVertical_bias="0.854"
+        app:layout_constraintWidth_percent="0.6"
         tools:ignore="HardcodedText,UnusedAttribute" />
 
     <TextView
@@ -149,21 +149,45 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="start|center"
+        android:autoSizeMaxTextSize="25dp"
         android:background="@drawable/edit_text_bg"
         android:gravity="center"
         android:hint="Peso"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:autoSizeMaxTextSize="25dp"
-        app:layout_constraintHeight_percent="0.07"
-        app:layout_constraintWidth_percent="0.6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintVertical_bias="0.239"
+        app:layout_constraintWidth_percent="0.6"
         tools:ignore="HardcodedText,UnusedAttribute" />
+
+    <ImageView
+        android:id="@+id/back_btn"
+        android:layout_width="28dp"
+        android:layout_height="32dp"
+        android:autoSizeMaxTextSize="20sp"
+        android:autoSizeTextType="uniform"
+
+        android:background="@drawable/ic_back_arrow"
+        android:text="annulla"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintHorizontal_bias="0.053"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.032"
+        app:layout_constraintWidth_percent="0.05"
+
+        tools:ignore="HardcodedText,UnusedAttribute"
+
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
