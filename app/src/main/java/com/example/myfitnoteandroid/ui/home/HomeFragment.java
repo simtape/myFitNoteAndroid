@@ -277,13 +277,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     switch_walk = 10;
                     walk_run.setText("Corsa");
                     walk_run.setBackgroundResource(R.drawable.button_run);
-
+                    StepCounterHandler.getInstance().setCounter(0);
                 }else{
                     walker.setAnimation(R.raw.walk);
                     walker.playAnimation();
                     switch_walk = 6;
                     walk_run.setText("Camminata");
                     walk_run.setBackgroundResource(R.drawable.button_walk);
+                    StepCounterHandler.getInstance().setCounter(0);
                 }
             }
         });
