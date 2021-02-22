@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10sp"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
         <ListView
             android:id="@+id/list_sheet_home"
